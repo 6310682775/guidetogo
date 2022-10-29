@@ -1,0 +1,19 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block title %}GuideToGo | Home{% endblock %}
+
+{% block body %}
+
+<style>
+    * {
+        text-align: center;
+    }
+</style>
+
+<br>
+<h1>This is Home page</h1>
+
+<h4><a href="{% url 'main:about' %}">About Us</a></h4>
+
+{% endblock %}
