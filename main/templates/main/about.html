@@ -1,120 +1,47 @@
 {% extends "main/layout.html" %}
-{% load static %}
-
-{% block title %}GuideToGo | About Us{% endblock %}
 
 {% block body %}
+<title>GuideToGo | About Us</title>
 
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'main/about.css' %}">
 
-html {
-  box-sizing: border-box;
-}
+<div class="about-section">
+  <h1>GuideToGo <span style="color: #000;">| About Us</span></h1>
+</div>
 
-*, *:before, *:after {
-  box-sizing: inherit;
-  list-style: none;
-  text-align: center;
-}
+<br>
+<div class="about-section-2">
+  <p>GuideToGo เป็น Web Application ที่รวบรวมเหล่าไกด์นำเที่ยวและกลุ่มคนที่ชื่นชอบการท่องเที่ยวแต่ไม่ต้องการวางแผนการท่องเที่ยวด้วยตัวเอง ให้สามารถมาติดต่อพูดคุยวางแผนการท่องเที่ยวต่าง ๆ ได้
+    ซึ่งการท่องเที่ยวในปัจจุบันนั้นหากต้องการหาไกด์นำเที่ยวก็อาจจะต้องไปซื้อทัวร์กับบริษัททัวร์ต่าง ๆ ซึ่งยังไม่มีช่องทางที่รวบรวมไกด์นำเที่ยวอิสระหรือไกด์ท้องถิ่นให้สามารถติดต่อพูดคุยเพื่อให้มาเป็นไกด์นำเที่ยวของเราได้สะดวกมากนัก 
+    และไกด์ท้องถิ่นเองก็หานักท่องเที่ยวได้ยาก เว็บไซต์นี้จึงเป็นอีกตัวช่วยหนึ่ง
+  </p>
+</div>
 
-.column {
-  float: left;
-  width: 33.3%;
-  margin-bottom: 16px;
-  padding: 0 8px;
-}
-
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin: 0 auto;
-  float: none;
-}
-
-.about-section {
-  padding: 100px;
-  text-align: center;
-  background-color: #868686;
-  color: white;
-}
-
-.about-section-2 {
-  padding: 20px;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-.container {
-  padding: 0 16px;
-}
-
-.container::after, .row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.link {
-  margin: 50px 0;
-}
-
-.button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-}
-
-.button:hover {
-  background-color: #555;
-}
-
-@media screen and (max-width: 650px) {
-  .column {
-    width: 100%;
-    display: block;
-  }
-}
-</style>
-
-    <div class="about-section">
-      <h1>GuideToGo <span style="color: #000;">| About Us</span></h1>
-    </div>
-
-    <div class="about-section-2">
-      <p>GuideToGo เป็น Web Application ที่รวบรวมเหล่าไกด์นำเที่ยวและกลุ่มคนที่ชื่นชอบการท่องเที่ยวแต่ไม่ต้องการวางแผนการท่องเที่ยวด้วยตัวเอง ให้สามารถมาติดต่อพูดคุยวางแผนการท่องเที่ยวต่าง ๆ ได้
-        ซึ่งการท่องเที่ยวในปัจจุบันนั้นหากต้องการหาไกด์นำเที่ยวก็อาจจะต้องไปซื้อทัวร์กับบริษัททัวร์ต่าง ๆ ซึ่งยังไม่มีช่องทางที่รวบรวมไกด์นำเที่ยวอิสระหรือไกด์ท้องถิ่นให้สามารถติดต่อพูดคุยเพื่อให้มาเป็นไกด์นำเที่ยวของเราได้สะดวกมากนัก 
-        และไกด์ท้องถิ่นเองก็หานักท่องเที่ยวได้ยาก เว็บไซต์นี้จึงเป็นอีกตัวช่วยหนึ่ง
-      </p>
-    </div>
-    
-    <hr>
+<hr>
+<div class="card members">
+  <h2>Members</h2>
     <br>
-    <h2>Members</h2>
-      <br>
-      <h4>นายภูชิชย์ กลีบมาลัย 6210612716</h4>
-      <h4>นายธฤษณุ เตชะธัญโชติ 6310682775</h4>
-      <h4>นายณภัทร อิศรางกูร ณ อยุธยา 6310611121</h4>
-      <h4>นายวงศกร กองกะมุด 6310611006</h4>
-      <h4>นายชนนชนม์ เอมแสง 6310682759</h4>
+    <h4>นายภูชิชย์ กลีบมาลัย 6210612716</h4>
+    <h4>นายธฤษณุ เตชะธัญโชติ 6310682775</h4>
+    <h4>นายณภัทร อิศรางกูร ณ อยุธยา 6310611121</h4>
+    <h4>นายวงศกร กองกะมุด 6310611006</h4>
+    <h4>นายชนนชนม์ เอมแสง 6310682759</h4>
+</div>
 
-    <!-- https://logos-world.net/ -->
-    <div class="link">
-      <a href="https://www.pivotaltracker.com/n/projects/2607782" target="_blank"><img src="https://logos-download.com/wp-content/uploads/2019/11/Pivotal_Tracker_Logo.png" width="180" height="70"></a>
-      <br>
-      <a href="https://github.com/6310682775/guidetogo" target="_blank"><img src="https://logos-world.net/wp-content/uploads/2020/11/GitHub-Emblem.png" width="180" height="100"></a>
-      <br>
-      <a href="https://drive.google.com/drive/folders/1HN_mj79bX9JCWz4SqDVX8dFVSM2YJ1Xd?usp=share_link" target="_blank">Report File</a>
-      <br><br><br>
-      <button class="button"><a href="{% url 'main:home' %}" target="_blank">Back to Home</a></button>
-    </div>
+<!-- https://logos-world.net/ -->
+<div class="link">
+  <a class="btn btn-outline-dark" role="button" href="https://drive.google.com/drive/folders/1HN_mj79bX9JCWz4SqDVX8dFVSM2YJ1Xd?usp=share_link" target="_blank">Report File</a>
+  <br><br>
+  <a href="https://www.pivotaltracker.com/n/projects/2607782" target="_blank"><img src="https://logos-download.com/wp-content/uploads/2019/11/Pivotal_Tracker_Logo.png" width="180" height="70"></a>
+  <br>
+  <a href="https://github.com/6310682775/guidetogo" target="_blank"><img src="https://logos-world.net/wp-content/uploads/2020/11/GitHub-Emblem.png" width="180" height="100"></a>
+  <br><br><br>
+  <!-- <a class="btn btn-dark" role="button" href="{% url 'main:home' %}">back</a> -->
+  <form class="fixed-bottom" action="{% url 'main:home' %}">
+    <input type="hidden" value="Back to Home" />
+    <button class="button">Back to Home Page</button>
+  </form>
+</div>
 
 {% endblock %}
