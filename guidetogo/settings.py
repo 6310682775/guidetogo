@@ -35,7 +35,7 @@ AUTH_USER_MODEL= "users.User"
 # Application definition
 
 INSTALLED_APPS = [
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -141,5 +141,5 @@ STATICFILES_DIR = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# import django_on_heroku
-# django_on_heroku.settings(locals())
+import django_on_heroku
+django_on_heroku.settings(locals())
