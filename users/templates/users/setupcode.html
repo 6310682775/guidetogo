@@ -1,0 +1,42 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+<html lang="en">
+<head>
+  <title>Guide to Go</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+{% block body %}
+
+<div class="info">
+    <h1>Welcome,{{ request.user.username }}</h1>
+    <ul>
+         <p>Username: {{ request.user.username }}</p>
+         <p>Email: {{ request.user.member.email }}</p>
+         <p>Province: {{ request.user.member.province }}</p>
+         <p>Address: {{ request.user.guide.designation }}</p>
+         <p>Tel: {{ request.user.member.phone_number }}</p>
+    
+    </ul>
+    
+    <ul>
+    
+        <p>Status: {{ request.user.store.status }}</p>
+        <p>Service time: {{ request.user.store.open_time }} - {{ request.user.store.close_time }}</p>
+        <p>Type: {{ request.user.store.type_store }}</p>
+        <p>Place: {{ request.user.store.place }}</p>
+        <p>Location: {{ request.user.store.location_url }}</p>
+        <p>Description: {{ request.user.store.description }}</p>
+        
+    </ul>
+  
+</div>
+
+
+</body>
+{% endblock %}
