@@ -1,0 +1,104 @@
+{% extends "main/layout.html" %}
+
+{% block body %}
+<title>Create Tour | GuideToGo</title>
+
+{% load static %}
+{% load crispy_forms_tags %}
+<style>
+    .container {
+        padding: 70px 0;
+        /* border: 1px solid red; */
+    }
+
+    .user_card {
+        margin: 0 200px;
+        padding: 30px 80px;
+        border-radius: 10px;
+        background-color: #dfdfdfd0;
+    }
+
+    /* .controls .textinput, .numberinput {
+        padding: 5px;
+        width: 100%;
+        border-radius: 5px;
+    } */
+
+    #id_province {
+        padding: 5px;
+        width: 100%;
+        border-radius: 5px;
+        
+    }
+
+    #id_img {
+        width: 100%;
+    }
+
+    .textarea {
+        height: 150px;
+        padding: 5px;
+        width: 100%;
+        border-radius: 10px;
+        /* background-color: gray; */
+    }
+</style>
+
+    <div class="container h-100">
+        <div class="user_card">
+            <a class="btn btn-dark me-auto" role="button" href="{% url 'tour:my_tour' %}">Back</a>
+    
+            <div class="d-flex justify-content-center">
+                <h3 id="form-title">Create Your Tour</h3>
+            </div>
+
+            <div class="justify-content-center form_container">
+                <form method="POST" action="{% url 'tour:create_tour' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                        <!-- {% crispy form %} -->
+
+                        <!-- {{ form | crispy }} -->
+
+                        {{ form.t_title | as_crispy_field }}
+                        {{ form.province | as_crispy_field }}
+                        {{ form.price | as_crispy_field }}
+                        {{ form.amount | as_crispy_field }}
+                        {{ form.period | as_crispy_field }}                       
+                        {{ form.img | as_crispy_field }}
+                        <div class="info-emoji">
+                            {{ form.information | as_crispy_field }}
+                            <h6 id="emoji-1" class="btn btn-outline-light rounded-pill">◼️</h6>
+                            <!-- <h6 id="emoji-2" class="btn btn-outline-light rounded-pill">🔸</h6> -->
+                        </div>
+                        <!-- <label class="form-label" for="customFile">Image</label>
+                        <input type="file" class="form-control" id="customFile" /> -->
+
+                        <br>
+                        <input class="btn btn-dark w-100" type="submit" value="Create Tour" onclick="return confirm('Please check the tour information again.')">
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const textarea = document.getElementById('id_information');
+    const emoji1 = document.getElementById('emoji-1');
+    
+    // textarea.value += 'Locations:\n\n';
+
+    emoji1.addEventListener('click', function handleClick() {
+        textarea.value += '◼️ \n';
+    });
+
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[2].placeholder='Title';
+    form_fields[3].placeholder='Price';
+    form_fields[4].placeholder='Amount';
+    form_fields[5].placeholder='Period';
+
+    for (var field in form_fields) {	
+        form_fields[field].className += ' form-control'
+    }
+</script>
+{% endblock %}

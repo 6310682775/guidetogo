@@ -1,15 +1,11 @@
 {% extends "main/layout.html" %}
 
 {% block body %}
-<title>GuideToGo | Home</title>
+<title>Home | GuideToGo</title>
 
 {% load static %}
 
 <style>
-    .temp {
-        text-align: center;
-    }
-
     .carousel-item img {
         object-fit: cover;
     }
@@ -63,8 +59,54 @@
 
 <br>
 
-<div class="temp">
-    <h4><a class="btn btn-secondary" role="button" href="{% url 'main:about' %}">About Us</a></h4>
+<div class="container px-4 px-lg-5 mt-5">
+
+    <h2 class="pt-3">All Tours</h2><br><br>
+
+    <div class="row gx-4 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+        {% for t in all_tour %}
+        <div class="col mb-5">
+            <div class="card border-light h-100">
+                <img class="card-img-top" src="https://images.unsplash.com/photo-1576311510484-ab9fbdb2a47e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="..." />
+                <!-- Tour details-->
+                <div class="card-body p-4">
+                    <div class="text-start">
+                        <!-- Tour name-->
+                        <h5 class="fw-bolder text-truncate">{{ t.t_name }}</h5>
+                        <!-- Tour reviews-->
+                        <div class="d-flex justify-content-start small text-warning mb-2" style="font-size: 12px; letter-spacing: 2px;">
+                            <i class="fa-solid fa-star pt-1"></i>
+                            <i class="fa-solid fa-star pt-1"></i>
+                            <i class="fa-solid fa-star pt-1"></i>
+                            <i class="fa-solid fa-star pt-1"></i>
+                            <i class="fa-solid fa-star pt-1"></i>
+                        </div>
+                        <!-- Tour info-->
+                        <p class="card-text text-truncate pt-2">{{ t.information }}</p>
+                        <div class="d-flex flex-row justify-content-start">
+                            <button type="button" class="btn btn-outline-secondary btn-sm mb-2" disabled>{{ t.province }}</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm mb-2 ms-1" disabled>{{ t.period }}</button>
+                        </div>
+                        
+                        <div class="card_subtitle d-flex justify-content-start">
+                            <h5 class="text-black">฿{{ t.price }} <h6 class="text-muted ps-1"> /per group</h6></h5>
+                        </div>
+                        
+                        <small class="card-subtitle">By {{ t.guide.first_name }} {{ t.guide.last_name }}</small><br>
+                        <small class="card-subtitle text-muted">Last Updated: {{ t.date }}</small>
+                    </div>
+                </div>
+                <!-- Tour actions-->
+                <div class="card-footer border-top-0">
+                    <div class="d-flex flex-row bd-highlight m-1 justify-content-center text-center">
+                        <a class="btn btn-outline-dark m-2 bd-highlight" role="button" href="{% url 'tour:view_tour' t.id %}"><i class="fa-solid fa-eye p-1"></i> More Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
 </div>
 
 {% endblock %}

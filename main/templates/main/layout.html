@@ -15,11 +15,12 @@
 
   {% load static %}
   <link rel="icon" type="image/x-icon" href="https://firebasestorage.googleapis.com/v0/b/guidetogo-2faa4.appspot.com/o/gtg-icon.ico?alt=media&token=39e27606-1ff4-4d03-9f5a-b03a96f64e26">
-  <link rel="stylesheet" type="text/css" href="{% static 'main/layout.css' %}">
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'main/layout.css' %}"> -->
 
 <style>
     .navbar {
         background-color: #f58e2e;
+        font-family: Roboto;
     }
 
     .navbar-brand {
@@ -31,7 +32,8 @@
         margin: 8px 0;
     }
 
-    .nav-item {
+    .nav-item, .dropdown {
+        padding-top: 5px;
         padding-right: 15px;
     }
 
@@ -43,6 +45,11 @@
         font-size: 20px;
         letter-spacing: 1px;
         color: #fff;
+    }
+
+    footer {
+        font-size: 18px;
+        /* background: linear-gradient(to top,#f58e2e,#ffffff); */
     }
 </style>
 </head>
@@ -75,16 +82,67 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'main:about' %}">About Us</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="nav-link" href="{% url 'users:logout' %}">
+                        <button type="button" class="btn btn-outline-dark">Logout</button>
+                    </a>
+                </li>
+                <li>
+                    <div class="dropdown mt-1">
+                        <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{ request.user.username }}</button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            {% if user.is_superuser %}
+                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            {% elif user.is_guide %}
+                                <li><a class="dropdown-item" href="{% url 'users:guide_profile' %}">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tour:my_tour' %}">My Tours</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tour:create_tour' %}">Create Tour</a></li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="{% url 'users:member_profile' %}">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tour:my_tour' %}">My Tours</a></li>
+                            {% endif %}
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'users:logout' %}">Logout</a></li>
+                        </ul>
+                    </div>
+                </li>
                 
+                {% else %}
+                <li>
+                    <div class="dropdown mt-1">
+                        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Sign Up</button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{% url 'users:member_register' %}">As a Member</a></li>
+                            <li><a class="dropdown-item" href="{% url 'users:guide_register' %}">As a Guide</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'users:login' %}">
+                        <button type="button" class="btn btn-dark">Login</button>
+                    </a>
+                </li>
+                {% endif %}
             </ul>
-            
         </div>
     </div>
 </nav>
 
-<body>
-  {% block body %}
-  {% endblock %}
+<body class="d-flex flex-column min-vh-100">
+    {% block body %}
+    {% endblock %}
 </body>
+
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top p-5 bg-light mt-auto">
+    <div class="col-md-4 d-flex align-items-center">
+        <span class="mb-3 mb-md-0 text-muted">© GuideToGo 2022</span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+    <li class="ms-3"><a class="text-dark ms-1" href="{% url 'main:home' %}"><i class="fa-solid fa-house"></i></a></li>
+    <li class="ms-3"><a class="text-dark ms-1" href="{% url 'main:about' %}"><i class="fa-solid fa-circle-info"></i></a></li>
+    </ul>
+</footer>
 
 </html>

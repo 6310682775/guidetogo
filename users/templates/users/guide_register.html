@@ -1,0 +1,50 @@
+{% extends "main/layout.html" %}
+
+{% block body %}
+<title>Register | GuideToGo</title>
+
+{% load static %}
+{% load widget_tweaks %}
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
+
+<style>
+  section {
+    font-family: Roboto;
+  }
+
+  .form-group {
+    margin-top: 10px;
+  }
+</style>
+
+<section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card m-5">
+            <div class="card-header border-light text-black">
+              <h2 class="mt-2">Guide Register</h2>
+            </div>
+            <div class="card-body p-4">
+                <form action="{% url 'users:guide_register' %}" method="POST" novalidate>
+                  {% csrf_token %}
+                      {% for field in form.visible_fields %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                              {% render_field field class="form-control" %}
+                                {% for error in field.errors %}
+                                  <span style="color:red">{{ error }}</span>
+                                {% endfor %}
+                      {% endfor %}
+                          <input type="submit" value="Register" class="btn btn-block btn-primary w-100 mt-4">
+                        </div>
+                </form>
+              </div>
+                </div>   
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+{% endblock %}

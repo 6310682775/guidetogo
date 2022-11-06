@@ -1,0 +1,43 @@
+{% extends "main/layout.html" %}
+
+{% block body %}
+<title>Tour Detail | GuideToGo</title>
+
+{% load static %}
+
+<style>
+    .container {
+        padding: 70px 0;
+        /* border: 1px solid red; */
+    }
+</style>
+
+<div class="container">
+
+    {{ tour.img }}
+    <h2>{{ tour.t_name }}</h2>
+    <hr>
+    <h3>{{ tour.guide.first_name }} {{ tour.guide.last_name }}</h3>
+    <h5>Province: {{ tour.province }}</h5>
+    <h5>Price: ฿{{ tour.price }} /per group</h5>
+    <h5>Up to {{ tour.amount }} People</h5>
+    <p class="text-start">{{ tour.information }}</p>
+    <p>{{ tour.date }}</p>
+
+    {% if check_owner == 1 %}
+        <div class="d-flex flex-row bd-highlight mb-2 justify-content-start">
+            <a class="btn btn-outline-primary bd-highlight" role="button" href="{% url 'tour:update_tour' tour.id %}"><i class="fa-solid fa-pen"></i> Update</a>
+            <a class="btn btn-outline-danger ms-2 bd-highlight" role="button" href="{% url 'tour:remove_tour' tour.id %}" onclick="return confirm('Are you sure to remove this tour?')"><i class="fa-solid fa-trash-can"></i> Remove</a>
+        </div>
+        <a class="btn btn-outline-dark w-100" role="button" href="{% url 'tour:my_tour' %}">Back To My Tour Page</a>
+        <br><br>
+    {% elif check_owner == 1 or request.user.is_superuser %}
+        <div class="d-flex flex-row bd-highlight mb-2 justify-content-start">
+            <a class="btn btn-outline-danger ms-2 bd-highlight" role="button" href="{% url 'tour:remove_tour' tour.id %}" onclick="return confirm('Are you sure to remove this tour?')"><i class="fa-solid fa-trash-can"></i> Remove</a>
+        </div>
+    {% endif %}
+        <a class="btn btn-dark w-100" role="button" href="{% url 'main:home' %}">Back To Home Page</a>
+
+</div>
+    
+{% endblock %}
