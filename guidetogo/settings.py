@@ -16,8 +16,7 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-MEDIA_ROOT = ''
-MEDIA_URL = ''
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -31,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL= "users.User"
 
 # Application definition
 
@@ -142,5 +141,5 @@ STATICFILES_DIR = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-import django_on_heroku
-django_on_heroku.settings(locals())
+# import django_on_heroku
+# django_on_heroku.settings(locals())
