@@ -22,7 +22,7 @@ class Member(models.Model):
     allergic = models.CharField(max_length=100)
     underlying_disease = models.CharField(max_length=100)
     religion = models.CharField(max_length=100)
-    member_image = models.ImageField(upload_to='main/storeimg')
+    member_image = models.ImageField(null = True, blank = True,upload_to="images/member/")
     
 class Guide(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
@@ -34,4 +34,4 @@ class Guide(models.Model):
     address = models.CharField(max_length=200)
     province = models.CharField(max_length=100)
     tat_license = models.CharField(max_length=100)
-    guide_image = models.ImageField(upload_to='main/storeimg')
+    guide_image = models.ImageField(null = True, blank = True,upload_to="images/guide/")

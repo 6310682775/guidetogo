@@ -21,7 +21,8 @@ class MemberSignUpForm(UserCreationForm):
     allergic = forms.CharField(required=True)
     underlying_disease = forms.CharField(required=True)
     religion = forms.CharField(required=True)
-    # member_image = forms.ImageField()
+    member_image = forms.ImageField(required=True)
+
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -42,7 +43,7 @@ class MemberSignUpForm(UserCreationForm):
         member.allergic = self.cleaned_data.get('allergic')
         member.underlying_disease = self.cleaned_data.get('underlying_disease')
         member.religion = self.cleaned_data.get('religion')
-        # # member.member_image = self.cleaned_data.get('member_image')
+        member.member_image  = self.cleaned_data.get('member_image')
         member.save()
         return user
 
@@ -65,7 +66,7 @@ class GuideSignUpForm(UserCreationForm):
     detail = forms.CharField(required=True)
     province = forms.CharField(required=True)
     tat_license = forms.CharField(required=True)
-    # # guide_image = forms.ImageField()
+    guide_image = forms.ImageField(required=True)
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -86,6 +87,6 @@ class GuideSignUpForm(UserCreationForm):
         guide.address = self.cleaned_data.get('address')
         guide.province = self.cleaned_data.get('province')
         guide.tat_license = self.cleaned_data.get('tat_license')
-        # guide.guide_image = self.cleaned_data.get('guide_image')
+        guide.guide_image  = self.cleaned_data.get('guide_image')
         guide.save()
         return user
