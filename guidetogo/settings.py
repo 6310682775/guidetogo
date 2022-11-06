@@ -134,6 +134,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
@@ -143,3 +144,4 @@ STATICFILES_DIR = (
 )
 import django_on_heroku
 django_on_heroku.settings(locals())
+
