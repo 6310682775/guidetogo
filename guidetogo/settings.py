@@ -143,5 +143,3 @@ STATICFILES_DIR = (
 )
 import django_on_heroku
 django_on_heroku.settings(locals())
-import django_on_heroku
-django_on_heroku.settings(locals())
