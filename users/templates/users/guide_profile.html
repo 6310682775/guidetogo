@@ -25,6 +25,10 @@
                     <div class="row about-list">
                         <div class="col-md-6">
                             <div class="media">
+                                <label>First Name</label>
+                                <p>{{ request.user.first_name }}</p>
+                            </div>
+                            <div class="media">
                                 <label>Tel:</label>
                                 <p>{{ request.user.guide.phone_number }}</p>
                             </div>
@@ -42,6 +46,10 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="media">
+                                <label>Last Name</label>
+                                <p>{{ request.user.last_name }}</p>
+                            </div>
                             <div class="media">
                                 <label>E-mail</label>
                                 <p>{{ request.user.guide.email }}</p>
@@ -61,7 +69,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="about-avatar">
-                    <img src= {{ request.user.guide.guide_image.url }} title="" alt="">
+                    <img  class="img-fluid"  src= "{{ request.user.guide.guide_image.url }}" >
                 </div>
             </div>
         </div>

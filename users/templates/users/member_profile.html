@@ -24,6 +24,10 @@
                     <div class="row about-list">
                         <div class="col-md-6">
                             <div class="media">
+                                <label>First name:</label>
+                                <p>{{ request.user.first_name }}</p>
+                            </div>
+                            <div class="media">
                                 <label>Tel:</label>
                                 <p>{{ request.user.member.phone_number }}</p>
                             </div>
@@ -41,6 +45,10 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="media">
+                                <label>Last name:</label>
+                                <p>{{ request.user.last_name }}</p>
+                            </div>
                             <div class="media">
                                 <label>E-mail</label>
                                 <p>{{ request.user.member.email }}</p>
@@ -63,7 +71,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="about-avatar">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
+                    <img  class="img-fluid"  src= "{{ request.user.member.member_image.url }}" >
                 </div>
             </div>
         </div>

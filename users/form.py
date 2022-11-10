@@ -11,6 +11,7 @@ class MemberSignUpForm(UserCreationForm):
         ('Others', 'Others'),
         ('I prefer not to say', 'I prefer not to say'),
     ]
+
     first_name = forms.CharField(required=True)
     last_name = forms.CharField(required=True)
     email = forms.EmailField()
@@ -21,7 +22,7 @@ class MemberSignUpForm(UserCreationForm):
     allergic = forms.CharField(required=True)
     underlying_disease = forms.CharField(required=True)
     religion = forms.CharField(required=True)
-    member_image = forms.ImageField()
+    member_image = forms.ImageField(required=True)
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -54,7 +55,87 @@ class GuideSignUpForm(UserCreationForm):
         ('Others', 'Others'),
         ('I prefer not to say', 'I prefer not to say'),
     ]
+    PROVINCE = [
 
+        ('Bankok', 'Bankok'),
+        ('Samut Prakan', 'Samut Prakan'),
+        ('Nonthaburi', 'Nonthaburi'),
+        ('Pathum Thani', 'Pathum Thani'),
+        ('Ayutthaya', 'Ayutthaya'),
+        ('Ang Thong', 'Ang Thong'),
+        ('Loburi', 'Loburi'),
+        ('Sing Buri', 'Sing Buri'),
+        ('Chai Nat', 'Chai Nat'),
+        ('Saraburi', 'Saraburi'),
+        ('Chon Buri', 'Chon Buri'),
+        ('Rayong', 'Rayong'),
+        ('Chanthaburi', 'Chanthaburi'),
+        ('Trat', 'Trat'),
+        ('Chachoengsao', 'Chachoengsao'),
+        ('Prachin Buri', 'Prachin Buri'),
+        ('Nakhon Nayok', 'Nakhon Nayok'),
+        ('Sa Kaeo', 'Sa Kaeo'),
+        ('Nakhon Ratchasima', 'Nakhon Ratchasima'),
+        ('Buri Ram', 'Buri Ram'),
+        ('Surin', 'Surin'),
+        ('Sisaket', 'Sisaket'),
+        ('Ubon Ratchathani', 'Ubon Ratchathani'),
+        ('Yasothon', 'Yasothon'),
+        ('Chaiyaphum', 'Chaiyaphum'),
+        ('Amnat Charoen', 'Amnat Charoen'),
+        ('Nongbualamphu', 'Nongbualamphu'),
+        ('Khonkaen', 'Khonkaen'),
+        ('Udon Thani', 'Udon Thani'),
+        ('Loei', 'Loei'),
+        ('Nonk Khai', 'Nonk Khai'),
+        ('Maha Sarakham', 'Maha Sarakham'),
+        ('Roi Et', 'Roi Et'),
+        ('Kalasin', 'Kalasin'),
+        ('Sakon Nakhon', 'Sakon Nakhon'),
+        ('Nakhon Phanom', 'Nakhon Phanom'),
+        ('Mukdahan', 'Mukdahan'),
+        ('Chiang Mai', 'Chiang Mai'),
+        ('Lamphun', 'Lamphun'),
+        ('Lampang', 'Lampang'),
+        ('Uttaradit', 'Uttaradit'),
+        ('Phrae', 'Phrae'),
+        ('Nan', 'Nan'),
+        ('Phayao', 'Phayao'),
+        ('Chiang Rai', 'Chiang Rai'),
+        ('Mae Hong Son', 'Mae Hong Son'),
+        ('Nakhon Sawan', 'Nakhon Sawan'),
+        ('Uthai Thani', 'Uthai Thani'),
+        ('Kamphaeng Phet', 'Kamphaeng Phet'),
+        ('Tak', 'Tak'),
+        ('Sukhothai', 'Sukhothai'),
+        ('Phitsanulok', 'Phitsanulok'),
+        ('Phichit', 'Phichit'),
+        ('Phetchabun', 'Phetchabun'),
+        ('Ratchaburi', 'Ratchaburi'),
+        ('Kanchanaburi', 'Kanchanaburi'),
+        ('Suphan Buri', 'Suphan Buri'),
+        ('Nakhon Pathom', 'Nakhon Pathom'),
+        ('Samut Sakhon', 'Samut Sakhon'),
+        ('Samut Songkhram', 'Samut Songkhram'),
+        ('Phetchaburi', 'Phetchaburi'),
+        ('Prachuap Khirikan', 'Prachuap Khirikan'),
+        ('Nakhon Si Thammarat', 'Nakhon Si Thammarat'),
+        ('Krabi', 'Krabi'),
+        ('Phangnga', 'Phangnga'),
+        ('Phuket', 'Phuket'),
+        ('Surat Thani', 'Surat Thani'),
+        ('Ranong', 'Ranong'),
+        ('Chumphon', 'Chumphon'),
+        ('Songkhla', 'Songkhla'),
+        ('Satun', 'Satun'),
+        ('Trang', 'Trang'),
+        ('Phatthalung', 'Phatthalung'),
+        ('Pattani', 'Pattani'),
+        ('Yala', 'Yala'),
+        ('Narathiwat', 'Narathiwat'),
+        ('Buengkan', 'Buengkan')
+
+    ]
     first_name = forms.CharField(required=True)
     last_name = forms.CharField(required=True)
     email = forms.EmailField()
@@ -63,13 +144,12 @@ class GuideSignUpForm(UserCreationForm):
     address = forms.CharField(required=True)
     gender = forms.ChoiceField(choices=GENDER, required=True)
     detail = forms.CharField(required=True)
-    province = forms.CharField(required=True)
+    province = forms.ChoiceField(choices=PROVINCE, required=True)
     tat_license = forms.CharField(required=True)
-    guide_image = forms.ImageField()
+    guide_image = forms.ImageField(required=True)
 
     class Meta(UserCreationForm.Meta):
         model = User
-        
 
     @transaction.atomic
     def save(self):
@@ -90,3 +170,133 @@ class GuideSignUpForm(UserCreationForm):
         guide.guide_image = self.cleaned_data.get('guide_image')
         guide.save()
         return user
+
+
+class UpdateMemberForm(forms.ModelForm):
+
+    GENDER = [
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Others', 'Others'),
+        ('I prefer not to say', 'I prefer not to say'),
+    ]
+
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField()
+    age = forms.CharField()
+    phone_number = forms.CharField()
+    address = forms.CharField()
+    gender = forms.ChoiceField(choices=GENDER)
+    allergic = forms.CharField()
+    underlying_disease = forms.CharField()
+    religion = forms.CharField()
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'age', 'phone_number',
+                  'address', 'gender', 'allergic', 'underlying_disease', 'religion']
+
+
+class UpdateGuideForm(forms.ModelForm):
+    GENDER = [
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Others', 'Others'),
+        ('I prefer not to say', 'I prefer not to say'),
+    ]
+    PROVINCE = [
+
+        ('Bankok', 'Bankok'),
+        ('Samut Prakan', 'Samut Prakan'),
+        ('Nonthaburi', 'Nonthaburi'),
+        ('Pathum Thani', 'Pathum Thani'),
+        ('Ayutthaya', 'Ayutthaya'),
+        ('Ang Thong', 'Ang Thong'),
+        ('Loburi', 'Loburi'),
+        ('Sing Buri', 'Sing Buri'),
+        ('Chai Nat', 'Chai Nat'),
+        ('Saraburi', 'Saraburi'),
+        ('Chon Buri', 'Chon Buri'),
+        ('Rayong', 'Rayong'),
+        ('Chanthaburi', 'Chanthaburi'),
+        ('Trat', 'Trat'),
+        ('Chachoengsao', 'Chachoengsao'),
+        ('Prachin Buri', 'Prachin Buri'),
+        ('Nakhon Nayok', 'Nakhon Nayok'),
+        ('Sa Kaeo', 'Sa Kaeo'),
+        ('Nakhon Ratchasima', 'Nakhon Ratchasima'),
+        ('Buri Ram', 'Buri Ram'),
+        ('Surin', 'Surin'),
+        ('Sisaket', 'Sisaket'),
+        ('Ubon Ratchathani', 'Ubon Ratchathani'),
+        ('Yasothon', 'Yasothon'),
+        ('Chaiyaphum', 'Chaiyaphum'),
+        ('Amnat Charoen', 'Amnat Charoen'),
+        ('Nongbualamphu', 'Nongbualamphu'),
+        ('Khonkaen', 'Khonkaen'),
+        ('Udon Thani', 'Udon Thani'),
+        ('Loei', 'Loei'),
+        ('Nonk Khai', 'Nonk Khai'),
+        ('Maha Sarakham', 'Maha Sarakham'),
+        ('Roi Et', 'Roi Et'),
+        ('Kalasin', 'Kalasin'),
+        ('Sakon Nakhon', 'Sakon Nakhon'),
+        ('Nakhon Phanom', 'Nakhon Phanom'),
+        ('Mukdahan', 'Mukdahan'),
+        ('Chiang Mai', 'Chiang Mai'),
+        ('Lamphun', 'Lamphun'),
+        ('Lampang', 'Lampang'),
+        ('Uttaradit', 'Uttaradit'),
+        ('Phrae', 'Phrae'),
+        ('Nan', 'Nan'),
+        ('Phayao', 'Phayao'),
+        ('Chiang Rai', 'Chiang Rai'),
+        ('Mae Hong Son', 'Mae Hong Son'),
+        ('Nakhon Sawan', 'Nakhon Sawan'),
+        ('Uthai Thani', 'Uthai Thani'),
+        ('Kamphaeng Phet', 'Kamphaeng Phet'),
+        ('Tak', 'Tak'),
+        ('Sukhothai', 'Sukhothai'),
+        ('Phitsanulok', 'Phitsanulok'),
+        ('Phichit', 'Phichit'),
+        ('Phetchabun', 'Phetchabun'),
+        ('Ratchaburi', 'Ratchaburi'),
+        ('Kanchanaburi', 'Kanchanaburi'),
+        ('Suphan Buri', 'Suphan Buri'),
+        ('Nakhon Pathom', 'Nakhon Pathom'),
+        ('Samut Sakhon', 'Samut Sakhon'),
+        ('Samut Songkhram', 'Samut Songkhram'),
+        ('Phetchaburi', 'Phetchaburi'),
+        ('Prachuap Khirikan', 'Prachuap Khirikan'),
+        ('Nakhon Si Thammarat', 'Nakhon Si Thammarat'),
+        ('Krabi', 'Krabi'),
+        ('Phangnga', 'Phangnga'),
+        ('Phuket', 'Phuket'),
+        ('Surat Thani', 'Surat Thani'),
+        ('Ranong', 'Ranong'),
+        ('Chumphon', 'Chumphon'),
+        ('Songkhla', 'Songkhla'),
+        ('Satun', 'Satun'),
+        ('Trang', 'Trang'),
+        ('Phatthalung', 'Phatthalung'),
+        ('Pattani', 'Pattani'),
+        ('Yala', 'Yala'),
+        ('Narathiwat', 'Narathiwat'),
+        ('Buengkan', 'Buengkan')
+
+    ]
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField()
+    age = forms.CharField()
+    phone_number = forms.CharField()
+    address = forms.CharField()
+    gender = forms.ChoiceField(choices=GENDER)
+    detail = forms.CharField()
+    province = forms.ChoiceField(choices=PROVINCE)
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'age',
+                  'phone_number', 'address', 'gender', 'detail', 'province']

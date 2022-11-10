@@ -1,0 +1,67 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+<html lang="en">
+<head>
+  <title>Guide to Go</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'main/profile.css' %}">
+</head>
+
+<h2>Personal Info</h2>
+{% block body %}
+
+<div class="container">
+    <div class="form-container sign-in-container">
+        {% if user_form.errors %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <div id="form_errors">
+                    {% for key, value in user_form.errors.items %}
+                        <strong>{{ value }}</strong>
+                    {% endfor %}
+                </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data" id="form-group">
+            {% csrf_token %}
+            <label>First name</label>
+                {{ user_form.first_name }}
+            <label>Last name</label>
+                {{ user_form.last_name }}
+            <label>Email</label>
+                {{ user_form.email }}
+            <label>Age</label>
+                {{ user_form.age }}
+            <label>Tel</label>
+                {{ user_form.phone_number }}
+            <label>Address</label>
+                {{ user_form.address }}
+            <label>Gender</label>
+                {{ user_form.gender }}
+            <label>Allergic</label>
+                {{ user_form.allergic }}
+            <label>Underlying Disease</label>
+                {{ user_form.underlying_disease }}
+            <label>Religion</label>
+                {{ user_form.religion }}
+            <br>
+
+            <div class="btn-pro">
+                <button type="submit" class="pro">Save Changes</button>
+                <button type="reset" class="pro">Reset</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

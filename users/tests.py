@@ -21,13 +21,13 @@ class UserViewTestCase(TestCase):
             '1234'), email="user2@example.com", is_member=True)
         mem = Member.objects.create(
             user = usermem, phone_number = "0927866309", gender  = "Male", age = "22", email = "6310611007@student.tu.ac.th", address = "xxx", allergic = "xxx", underlying_disease = "xxx", religion = "xxx")
-    # ทดสอบหน้า lohin
+    # ทดสอบหน้า login
     def test_login_view_with_authentication(self):  
         c = Client()
         user = User.objects.get(username="user1")
         c.force_login(user)
         response = c.get(reverse('users:login'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
     # ทดสอบหน้า login
     def test_login_view_without_authentication(self):
         c = Client()
@@ -63,7 +63,7 @@ class UserViewTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_member_view_with_auth(self):
-        user = User.objects.get(username='user1')
+        user = User.objects.get(username='user3')
         c = Client()
         c.force_login(user)
         response = c.get(reverse('users:member_profile'))
@@ -170,74 +170,3 @@ class UserViewTestCase(TestCase):
 
         users = Member.objects.all()
         self.assertEqual(users.count(), 1)
-
-'''
-    def test_register_page_form(self):
-        c = Client()
-        form_data = {
-            "username": "kik1239",
-            "email": "first123456@hotmail.com",
-            "password1": "test12345",
-            "password2": "test12345",
-            "first_name": "ariya",
-            "last_name": "woddw"}
-        form = MemberSignUpForm(data=form_data)
-        response = c.post(reverse('Users:register'), {
-            "username": "kik1239",
-            "email": "",
-            "password1": "test12345",
-            "password2": "test12345",
-            "first_name": "ariya",
-            "last_name": "woddw"}, follow=True)
-        self.assertEqual(response.status_code, 200)'''
-"""
-    def test_favourite_add_successful(self):
-        user1 = User.objects.get(username='user1')
-        userstore = User.objects.get(username="user2")
-        store = Store.objects.first()
-        c = Client()
-        c.force_login(user1)
-        response = c.get(reverse('users:favourite', args=("2")))
-        self.assertEqual(store.favourite.count(), 1)
-
-
-    def test_favourite_remove_successful(self):
-        user1 = User.objects.get(username='user1')
-        userstore = User.objects.get(username="user2")
-        store = Store.objects.first()
-        store.favourite.add(user1)
-        c = Client()
-        c.force_login(user1)
-        response = c.get(reverse('users:favourite', args=("2")))
-        self.assertEqual(store.favourite.count(), 0)
-
-
-    def test_favourite_view(self):
-        user = User.objects.get(username='user1')
-        c = Client()
-        c.force_login(user)
-        response = c.get(reverse('users:favourite_view', args=(user.id,)))
-        self.assertEqual(response.status_code, 200)
-
-    def test_customer_profile_successful(self):
-        user = User.objects.get(username='user3')
-        cus = Customer.objects.first()
-
-        c = Client()
-        c.force_login(user)
-        response = c.post(reverse('users:customer_profile'), {
-            'user': user, 'first_name': 'kkk',
-        })
-        self.assertEqual(response.status_code, 200)
-
-    def test_store_profile_successful(self):
-        userstore = User.objects.get(username="user2")
-        store = Store.objects.first()
-
-        c = Client()
-        c.force_login(userstore)
-        response = c.post(reverse('users:store_profile'), {
-            'user': userstore ,'store_name': 'kkk',
-        })
-        self.assertEqual(response.status_code, 200)
-        """

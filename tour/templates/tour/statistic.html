@@ -1,0 +1,83 @@
+
+{% load static %}
+
+{% block body %}
+
+<head>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static '/store/css/statistic.css' %}">
+
+
+</head>
+<body>
+<h2>Statistic</h2>
+
+
+<div class="box">
+     <h1>Total Menu:</h1>
+     <h2>{{foods}}</h2>
+</div>
+<div class="box1">
+     <h1>comment:</h1>
+     <h2>{{count}}</h2>
+</div>
+<div class="box2">
+      <h1>Views</h1>
+     <h2>{{stores}}</h2>
+</div>
+<div class="box3">
+      <h1>Total Favourite:</h1>
+     <h2>{{tfav}}</h2>
+</div>
+<div class="box4">
+      <h1>Average Rating:</h1>
+    <h2>{{avg}}
+
+    {% if avg > 4  %}
+       <p>⭐⭐⭐⭐⭐</p>
+    {% elif avg > 3  %}
+      <p>⭐⭐⭐⭐</p>
+    {% elif avg > 2  %}
+      <p>⭐⭐⭐</p>
+    {% elif avg >  1  %}
+      <p>⭐⭐</p>
+    {% else %}
+      <p>⭐</p>
+    {% endif %}
+    </h2>
+
+</div>
+
+
+<div class="comment">
+  <h4>comment</h4>
+</div>
+<div class="commy">
+  {% for comment in com %}
+
+    <h2>{{ comment.comment_name }}</h2>
+    {% if comment.rating == 5  %}
+       <p>⭐⭐⭐⭐⭐</p>
+    {% elif comment.rating == 4  %}
+      <p>⭐⭐⭐⭐</p>
+    {% elif comment.rating == 3  %}
+      <p>⭐⭐⭐</p>
+    {% elif comment.rating == 2  %}
+      <p>⭐⭐</p>
+    {% else %}
+      <p>⭐</p>
+    {% endif %}
+    <p>{{ comment.comment_text }}</p>
+    <p>{{ comment.date }}</p>
+    <hr width="70" align="center" size="3"  color=770088>
+  {% endfor %}
+
+
+
+</div>
+</body>
+
+
+
+{% endblock %}
