@@ -1,0 +1,30 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Kanit&family=Poppins&family=Roboto&family=Sarabun&display=swap');
+
+.navbar {
+    list-style: none;
+    font-size: 18px;
+    padding: 10px auto;
+    background-color: #f58e2e;
+    font-family: 'Roboto';
+}
+
+.navbar-brand {
+    padding: 0 10px;
+    font-size: 35px;
+}
+
+.navbar-nav .me-auto {
+    margin-top: 20px;
+}
+
+.nav-item {
+    padding-right: 10px;
+}
+
+.nav-link {
+    color: #fff;
+}
+
+.input-group {
+    margin: 0 10px;
+} */
