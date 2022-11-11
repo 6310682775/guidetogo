@@ -56,12 +56,14 @@ def my_tour(request):
 
 def view_tour(request, tour_id):
     this_tour = get_object_or_404(Tour, id=tour_id)
+    tour_name = tour_id
     check_owner = 0
     if request.user.username == this_tour.guide.username:
         check_owner = 1
     return render(request, 'tour/view_tour.html', {
         'tour': this_tour,
         'check_owner': check_owner,
+        "reviews": Review.objects.filter(reviewed_tour=tour_name)
     })
     
 
@@ -119,21 +121,22 @@ def remove_tour(request, tour_id):
         # return HttpResponseRedirect(reverse("tour:my_tour", args=(this_tour.tour_id,)))
 
     return HttpResponseRedirect(reverse('tour:view_tour', args=(this_tour.id,)))
-'''
+
 @login_required(login_url='users:login')
-def addcomment(request):
+def addreview(request):
 
     if request.method == "POST":
-        comuser = request.POST.get("user")
-        userstore = User.objects.get(username=comuser)
-        comment = Comment.objects.create(
-            comment_name = request.POST.get("name"),
-            comment_text = request.POST.get("review"),
+        touruser = User.objects.get(id=request.user.id)
+        #touruser = request.POST.get("user")
+        usertour = User.objects.get(username=touruser)
+        review = Review.objects.create(
+            review_name = request.POST.get("name"),
+            review_text = request.POST.get("review"),
             rating = request.POST.get("rate"),
         )
 
-        comment.commented_store.add(userstore)
-        comment.save()
-    return render(request, "storepage/ThankyouC.html")
-'''
+        review.reviewed_tour.add(usertour)
+        review.save()
+    return render(request, "tour/Thankyou.html")
+
     

@@ -181,21 +181,17 @@ class UpdateMemberForm(forms.ModelForm):
         ('I prefer not to say', 'I prefer not to say'),
     ]
 
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    email = forms.EmailField()
     age = forms.CharField()
     phone_number = forms.CharField()
     address = forms.CharField()
-    gender = forms.ChoiceField(choices=GENDER)
     allergic = forms.CharField()
     underlying_disease = forms.CharField()
     religion = forms.CharField()
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'age', 'phone_number',
-                  'address', 'gender', 'allergic', 'underlying_disease', 'religion']
+        fields = ['age', 'phone_number',
+                  'address', 'allergic', 'underlying_disease', 'religion']
 
 
 class UpdateGuideForm(forms.ModelForm):
@@ -286,17 +282,13 @@ class UpdateGuideForm(forms.ModelForm):
         ('Buengkan', 'Buengkan')
 
     ]
-    first_name = forms.CharField()
-    last_name = forms.CharField()
     email = forms.EmailField()
     age = forms.CharField()
     phone_number = forms.CharField()
-    address = forms.CharField()
-    gender = forms.ChoiceField(choices=GENDER)
     detail = forms.CharField()
-    province = forms.ChoiceField(choices=PROVINCE)
+    
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ['first_name', 'last_name', 'email', 'age',
-                  'phone_number', 'address', 'gender', 'detail', 'province']
+        fields = ['email', 'age',
+                  'phone_number', 'detail']

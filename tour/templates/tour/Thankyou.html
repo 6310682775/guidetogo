@@ -1,0 +1,16 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+<html>
+    <link rel="stylesheet" type="text/css" href="{% static '/store/css/thankyou.css' %}">
+    <div class="thank">
+        <h1>Thank You For Review</h1>
+        <input type=button value="Previous Page" onclick="javascript:history.go(-1);">
+    </div>
+</html>
+
+
+
+{% endblock %}

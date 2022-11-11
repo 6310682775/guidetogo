@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'main',
     'users',
     'tour',
+
 ]
 
 MIDDLEWARE = [

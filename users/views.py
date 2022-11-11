@@ -111,3 +111,6 @@ def guide_profile_edit(request):
         'sto_form' : guide_form,
     })
     
+
+
+    
