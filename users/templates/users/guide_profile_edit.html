@@ -41,7 +41,7 @@
                         <div class="col-md-6">
                             <div class="media">
                                 <label>First Name</label>
-                                <p>{{ request.user.guide.first_name }}</p>
+                                <p>{{ request.user.first_name }}</p>
                             </div>
                             <div class="media">
                                 <label>Tel:</label>
@@ -63,7 +63,7 @@
                         <div class="col-md-6">
                             <div class="media">
                                 <label>Last Name</label>
-                                <p>{{ user_form.last_name }}</p>
+                                <p>{{ request.user.last_name }}</p>
                             </div>
                             <div class="media">
                                 <label>E-mail</label>
@@ -71,7 +71,7 @@
                             </div>
                             <div class="media">
                                 <label>Gender</label>
-                                <p>{{ user_form.gender }}</p>
+                                <p>{{ request.user.guide.gender }}</p>
                             </div>
                             <div class="media">
                                 <label>Address</label>
