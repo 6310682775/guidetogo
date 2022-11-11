@@ -35,7 +35,7 @@
                     <form method = "post" enctype="multipart/form-data" id="form-group">
                     <h3 class="dark-color">Welcome: {{ request.user.username }}</h3>
                     <h6 class="theme-color lead">A Lead GUIDE</h6>
-                    <p>Edit datail: {{ user_form.detail }}</p>
+                    <p>Edit datail: {{ guide_form.detail }}</p>
                         {% csrf_token %}
                     <div class="row about-list">
                         <div class="col-md-6">
@@ -45,11 +45,11 @@
                             </div>
                             <div class="media">
                                 <label>Tel:</label>
-                                <p>{{ user_form.phone_number }}</p>
+                                <p>{{ guide_form.phone_number }}</p>
                             </div>
                             <div class="media">
                                 <label>Age</label>
-                                <p>{{ user_form.age }}</p>
+                                <p>{{ guide_form.age }}</p>
                             </div>
                             <div class="media">
                                 <label>Province</label>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="media">
                                 <label>E-mail</label>
-                                <p>{{ user_form.email }}</p>
+                                <p>{{ guide_form.email }}</p>
                             </div>
                             <div class="media">
                                 <label>Gender</label>

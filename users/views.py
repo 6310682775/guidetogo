@@ -108,7 +108,7 @@ def guide_profile_edit(request):
 
     return render(request, 'users/guide_profile_edit.html', {
         'user_form': user_form,
-        'sto_form' : guide_form,
+        'guide_form' : guide_form,
     })
     
 
