@@ -13,13 +13,14 @@ for item in choices:
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('title','category', 'body','snippet')
+        fields = ('title','category', 'body','snippet','article_image')
 
         widgets = {
             'title' : forms.TextInput(attrs={'class': 'form-control','placeholder': 'this is placeholder'}),
             'category' : forms.Select(choices=choices_List,attrs={'class': 'form-control'}),
             'snippet' : forms.Textarea(attrs={'class': 'form-control'}),
             'body' : forms.Textarea(attrs={'class': 'form-control'}),
+    
         }
 
 
@@ -27,7 +28,7 @@ class ArticleForm(forms.ModelForm):
 class UpdateArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('title','category','body','snippet')
+        fields = ('title','category','body','snippet','article_image')
 
         widgets = {
             'title' : forms.TextInput(attrs={'class': 'form-control','placeholder': 'this is placeholder'}),

@@ -5,8 +5,8 @@
 <h1>add </h1>
 <h1>Add post</h1>
 <br/><br>
-<div class="form-group">
-    <form method="POST">
+<div class="form-group" >
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}

@@ -3,10 +3,10 @@
 
 {% load static %}
 
-    <div class="form-group">
-        <form method="POST">
+    <div class="form-group" >
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form. }}
+            {{ form.media }}
             {{ form.as_p }}
             <button class="btn btn-secondary">Update</button>
         </form>

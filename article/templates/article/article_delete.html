@@ -12,6 +12,7 @@
         <form method="POST">
             {% csrf_token %}
             <strong>Are you sure?</strong> <br/> <br/>
+            <button type="submit" class="..." onclick="return confirm('Are you sure?');"></button>
             <button class="btn btn-secondary">Delete</button>
         </form>
     </div>

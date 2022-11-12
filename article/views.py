@@ -15,19 +15,24 @@ def LikeView(request, pk):
     article.likes.add(request.user)
     return HttpResponseRedirect(reverse("article:article_detail", args=[str(pk)]))
 
-
 class ArticleHome(ListView):
     model = Article
     template_name = "article/article_home.html"
     ordering = ['-post_date']
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        category = Category.objects.all()
+        context['category'] = category
+        return context
+
+
+    
+
 def CategoryView(request, cats):
     category_posts = Article.objects.filter(category=cats)
-    return render(request, 'article/category.html', {'cats':cats, 'category_posts':category_posts})
-
-
-
-
+    category = Category.objects.all()
+    return render(request, 'article/category.html', {'cats':cats, 'category_posts':category_posts, 'category':category})
 
 class ArticleDetail(DetailView):
     model = Article
@@ -37,6 +42,8 @@ class ArticleDetail(DetailView):
         context = super(ArticleDetail, self).get_context_data(*arg,**kwargs)
         stuff = get_object_or_404(Article, id=self.kwargs['pk'])
         total_likes = stuff.total_likes()
+        category = Category.objects.all()
+        context['category'] = category
         context["total_likes"] = total_likes
         return context
 
@@ -55,7 +62,6 @@ class AddCategory(LoginRequiredMixin, CreateView):
     # form_class = ArticleForm
     template_name = "article/category_add.html"
     fields = '__all__'
-
 
 class UpdateArticle(UpdateView):
     model = Article
