@@ -1,0 +1,18 @@
+{% extends "main/layout.html" %} {% block body %}
+<title>Article</title>
+
+{% load static %}
+    <h1>Add post</h1>
+    <a href="{% url 'article:article_add' %}">go post</a>
+    <h1>Add category</h1>
+    <a href="{% url 'article:category_add' %}">go category</a>
+    <ul>
+    {% for article in object_list %}
+        <li><a href="{% url 'article:article_detail' article.pk %}">{{article.title}} - <a href="{% url 'article:category_view' article.category%}">{{article.category}}</a> - {{article.author.first_name}}</a>
+            {{article.author.last_name}} - <small><a href="{% url 'article:article_update' article.pk %}">Edit</a></small><br/>
+            - <small><a href="{% url 'article:article_delete' article.pk %}">Delete</a></small>
+            {{article.snippet}}</li>
+    {% endfor%}
+    </ul>
+    <h1>hi</h1>
+{% endblock %}

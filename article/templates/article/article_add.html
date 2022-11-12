@@ -1,0 +1,16 @@
+{% extends "main/layout.html" %} {% block body %}
+<title>Article</title>
+
+{% load static %}
+<h1>add </h1>
+<h1>Add post</h1>
+<br/><br>
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">post</button>
+    </form>
+</div>
+{% endblock %}

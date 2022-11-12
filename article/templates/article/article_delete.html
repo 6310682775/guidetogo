@@ -1,0 +1,18 @@
+{% extends "main/layout.html" %} {% block body %}
+<title>Delete Blog Post</title>
+
+{% load static %}
+
+<h1>Delete Article ... </h1>
+<br/><br/>
+<h3>Delete: {{ post.title }}</h3>
+
+<br/>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            <strong>Are you sure?</strong> <br/> <br/>
+            <button class="btn btn-secondary">Delete</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "main/layout.html" %} {% block body %}
+<title>Article Detail</title>
+
+{% load static %}
+<h1>{{ article.title }}</h1>
+<small>BY : {{article.author.first_name}}
+            {{article.author.last_name}} - 
+            {{ article.post_date}}
+            <a href="{% url 'article:article_update' article.pk %}">Edit</a></small><br/>
+<hr>
+<br/>
+{{ article.body |safe}}
+
+<br/><br/>
+<hr>
+<br/>
+<form action="{% url 'article:like_article' article.pk%}" method="post">
+    {% csrf_token%}
+    <button type="submit", name="article_id", value="{{ article.id}}", class="btn btn-primary btn-sm">Like</button> - {{total_likes}} Like
+</form>
+<a href="{% url 'article:article_home'%}" class="btn btn-secondary">Back</a>
+{% endblock %}

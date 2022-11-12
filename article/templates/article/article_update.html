@@ -1,0 +1,14 @@
+{% extends "main/layout.html" %} {% block body %}
+<title>Edit Blog Post</title>
+
+{% load static %}
+
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form. }}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">Update</button>
+        </form>
+    </div>
+{% endblock %}

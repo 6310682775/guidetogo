@@ -42,10 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_bootstrap5',
+    'ckeditor',
     'widget_tweaks',
     'main',
     'users',
     'tour',
+    'article',
 ]
 
 MIDDLEWARE = [
@@ -141,4 +143,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 STATICFILES_DIR = (
     os.path.join(BASE_DIR, 'static'),
+)
+
+
+
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
+TEMPLATE_DIRS = (
+    os.path.join(SETTINGS_PATH, 'templates'),
 )
