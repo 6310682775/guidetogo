@@ -2,15 +2,17 @@
 <title>Article</title>
 
 {% load static %}
-<h1>add </h1>
-<h1>Add post</h1>
-<br/><br>
-<div class="form-group" >
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.media }}
-        {{ form.as_p }}
-        <button class="btn btn-secondary">post</button>
-    </form>
+<div class="container">
+    <div class="header mx-auto">
+        <h2 class="text-center">Add Article</h2>
+    </div>
+    <div class="form-group" >
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">post</button>
+        </form>
+    </div>
 </div>
 {% endblock %}

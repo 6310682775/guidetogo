@@ -53,19 +53,8 @@
         <div class="justify-content-center form_container">
             <form method="POST" action="" enctype="multipart/form-data">
                 {% csrf_token %}
-
-                {{ form.t_title | as_crispy_field }}
-                {{ form.province | as_crispy_field }}
-                {{ form.price | as_crispy_field }}
-                {{ form.amount | as_crispy_field }}
-                {{ form.period | as_crispy_field }}
-                {{ form.img | as_crispy_field }}
-
-                <div class="info-emoji">
-                    {{ form.information | as_crispy_field }}
-                    <h6 id="emoji-1" class="btn btn-outline-light rounded-pill">◼️</h6>
-                </div>
-
+                {{ form.media }}
+                {{ form.as_p }}
                 <br>
                 <input class="btn btn-dark w-100" type="submit" value="Update Tour"
                     onclick="return confirm('Please check the tour information again.')">

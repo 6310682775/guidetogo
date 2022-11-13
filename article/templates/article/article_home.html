@@ -30,10 +30,16 @@
                                 <div class="actions">
                                     <a href="{% url 'article:article_delete' article.pk %}" class="btn btn btn-outline-danger">Delete</a>
                                 </div>
+                                <!-- <div class="actions">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn btn-outline-danger" onclick="return confirm('Are you sure?');">Delete</button>
+                                    </form>
+                                </div> -->
                             {% endif %}
                             <ul class="stats">
                                 <li><a href="{% url 'article:category_view' article.category %}">{{ article.category }}</a></li>
-                                <li><a href="javascript:void(0);" class="fa fa-heart">{{ article.likes.count }}</a></li>
+                                <li><a href="javascript:void(0);" class="fa fa-heart ">{{ article.likes.count }}</a></li>
                                 <!-- <li><a href="javascript:void(0);" class="fa fa-comment">128</a></li> -->
                             </ul>
                         </div>
@@ -52,12 +58,17 @@
             <div class="col-lg-4 col-md-12 right-box">
                 {% if request.user.is_admin %}
                     <div class="card">
-                        <div class="header">
-                            <h2>Admin Manage</h2>
+                        <div class="header mx-auto">
+                            <h2>Admin Manager</h2>
                         </div>
-                        <div class="body widget">
+                        <div class="body widget mx-auto">
                             <div class="actions">
-                                <a href="{% url 'article:article_add' %}" class="btn btn-outline-primary">Create Article</a>
+                                <a href="{% url 'article:article_add' %}" class="btn btn btn-outline-info mx-auto">Create Article</a>
+                            </div>
+                        </div>
+                        <div class="body widget mx-auto">
+                            <div class="actions">
+                                <a href="{% url 'article:category_add' %}" class="btn btn btn-outline-info">Add Category</a>
                             </div>
                         </div>
                     </div>

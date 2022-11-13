@@ -2,18 +2,20 @@
 <title>Delete Blog Post</title>
 
 {% load static %}
-
-<h1>Delete Article ... </h1>
-<br/><br/>
-<h3>Delete: {{ post.title }}</h3>
-
-<br/>
-    <div class="form-group">
-        <form method="POST">
-            {% csrf_token %}
-            <strong>Are you sure?</strong> <br/> <br/>
-            <button type="submit" class="..." onclick="return confirm('Are you sure?');"></button>
-            <button class="btn btn-secondary">Delete</button>
-        </form>
+<div class="container"></div>
+    <div class="card text-center">
+        <div class="card-header">
+            <h1>Delete: {{ article.title }}</h1>
+        </div>
+        <div class="card-body">
+            <div class="form-group mx-auto">
+                <form method="POST">
+                    {% csrf_token %}
+                    <strong class="text-center">Are you sure?</strong> <br/> <br/>
+                    <button class="btn btn-danger mx-auto">Delete</button>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}

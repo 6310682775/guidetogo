@@ -27,7 +27,7 @@ class Article(models.Model):
     post_date = models.DateField(auto_now_add=True)
     category = models.CharField(max_length=255)
     snippet = models.CharField(max_length=255)
-    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='article_post')
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True,related_name='article_post')
 
     def total_likes(self):
         return self.likes.count()

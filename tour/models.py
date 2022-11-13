@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import User, Guide, Member
-
+from django.urls import reverse_lazy, reverse
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 class Review(models.Model):
@@ -24,8 +25,8 @@ class Tour(models.Model):
     price = models.PositiveIntegerField(default=0)
     period = models.CharField(max_length=50)
     amount = models.PositiveIntegerField(default=1)
-    information = models.TextField()
-    img = models.ImageField(blank=True, null=True)
+    information = RichTextField(blank=True, null=True)
+    img = models.ImageField(null=True, blank=True,upload_to="images/tour/")
     review = models.ManyToManyField(Review, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
@@ -33,5 +34,7 @@ class Tour(models.Model):
     def __str__(self):
         return f'{self.t_name}'
 
+    def get_absolute_url(self):
+        return reverse('tour:my_tour')
     class Meta:
         ordering = ['-date']

@@ -7,9 +7,11 @@
         <div class="row align-items-start">
             <div class="col-lg-8 m-15px-tb">
                 <article class="article">
+                    {% if article.article_image %}
                     <div class="article-img">
                         <img src="{{ article.article_image.url}}" title="" alt="">
                     </div>
+                    {% endif %}
                     <div class="article-title">
                         <h6><a href="{% url 'article:category_view' article.category %}">{{ article.category }}</a></h6>
                         <h2>{{ article.title }}</h2>
@@ -25,6 +27,12 @@
                     </div>
                     <div class="article-content">
                         {{ article.body|safe }}
+
+                        <form action="{% url 'article:like_article' article.pk%}" method="post">
+                            {% csrf_token%}
+                            <button type="submit", name="article_id", value="{{ article.id}}", class="btn btn btn-outline-danger fa fa-heart"></button> <strong> - {{total_likes}} Like </strong>
+                        </form>
+                        <!-- <li><a href="{% url 'article:like_article' article.pk %}" class="fa fa-thumbs-up">{{ article.likes.count }}</a></li> -->
                     </div>
                     <!-- <div class="nav tag-cloud">
                         <a href="#">Design</a>

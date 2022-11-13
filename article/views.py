@@ -66,7 +66,7 @@ class AddCategory(LoginRequiredMixin, CreateView):
 class UpdateArticle(UpdateView):
     model = Article
     form_class = UpdateArticleForm
-    template_name = 'article/article_add.html'
+    template_name = 'article/article_update.html'
     # fields = ['title', 'body']
 
 class DeleteArticle(DeleteView):

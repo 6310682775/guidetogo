@@ -2,13 +2,20 @@
 <title>Add category</title>
 
 {% load static %}
-<h1>add</h1>
-<h1>Add Category</h1>
-<br /><br />
-<div class="form-group">
-  <form method="POST">
-    {% csrf_token %} {{ form.as_p }}
-    <button class="btn btn-secondary">Category</button>
-  </form>
+<div class="container"></div>
+    <div class="card text-center">
+        <div class="card-header">
+            <h1>Add Category</h1>
+        </div>
+        <div class="card-body">
+            <div class="form-group mx-auto">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-secondary">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

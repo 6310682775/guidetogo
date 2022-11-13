@@ -39,7 +39,9 @@
                             <span class="fa fa-star"></span>
                         </div> -->
                         <!-- Tour image-->
-                        <img class="card-img-top" src="https://images.unsplash.com/photo-1576311510484-ab9fbdb2a47e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="..." />
+                        {% if t.img %}
+                            <img class="card-img-top" src="{{ t.img.url}}" alt="..." />
+                        {% endif %}
                         <!-- Tour details-->
                         <div class="card-body p-4">
                             <div class="text-start">
@@ -54,7 +56,7 @@
                                     <i class="fa-solid fa-star pt-1"></i>
                                 </div>
                                 <!-- Tour info-->
-                                <p class="card-text text-truncate pt-2">{{ t.information }}</p>
+                                <p class="card-text text-truncate pt-2">{{ t.information| safe }}</p>
                                 <div class="d-flex flex-row justify-content-start">
                                     <button type="button" class="btn btn-outline-secondary btn-sm mb-2" disabled>{{ t.province }}</button>
                                     <button type="button" class="btn btn-outline-secondary btn-sm mb-2 ms-1" disabled>{{ t.period }}</button>
@@ -66,7 +68,7 @@
                         <div class="card-footer border-top-0">
                             <div class="d-flex flex-row bd-highlight m-1 justify-content-center text-center">
                                 <a class="btn btn-outline-dark m-2 bd-highlight" role="button" href="{% url 'tour:view_tour' t.id %}"><i class="fa-solid fa-eye p-1"></i></a>
-                                <a class="btn btn-outline-primary m-2 bd-highlight" role="button" href="{% url 'tour:update_tour' t.id %}"><i class="fa-solid fa-pen p-1"></i></a>
+                                <a class="btn btn-outline-primary m-2 bd-highlight" role="button" href="{% url 'tour:update_tour' t.pk %}"><i class="fa-solid fa-pen p-1"></i></a>
                                 <a class="btn btn-outline-danger m-2 bd-highlight" role="button" href="{% url 'tour:remove_tour' t.id %}" onclick="return confirm('Are you sure to remove this tour?')"><i class="fa-solid fa-trash-can p-1"></i></a>
                             </div>
                         </div>
