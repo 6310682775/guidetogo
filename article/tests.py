@@ -8,62 +8,33 @@ from django.http import HttpRequest
 from article.models import Article, Category
 from users.models import User, Guide, Member
 # Create your tests here.
-# class TestUrls(SimpleTestCase):
-
-#     def test_article_home_url_is_resolved(self):
-#         url = reverse('article:article_home')
-#         self.assertEqual(resolve(url).func, ArticleHome)
-    
-#     def test_article_detail_url_is_resolved(self):
-#         url = reverse('article:article_detail')
-#         self.assertEqual(resolve(url).func, ArticleDetail)
-
-#     def test_article_add_url_is_resolved(self):
-#         url = reverse('article:article_add')
-#         self.assertEqual(resolve(url).func, AddArticle)
-
-#     def test_category_add_is_resolved(self):
-#         url = reverse('article:category_add')
-#         self.assertEqual(resolve(url).func, AddCategory)
-    
-#     def test_category_view_url_is_resolved(self):
-#         url = reverse('article:category_view', args=['food'])
-#         self.assertEqual(resolve(url).func, CategoryView)
-    
-#     def test_article_update_url_is_resolved(self):
-#         url = reverse('article:article_update', args=['1'])
-#         self.assertEqual(resolve(url).func, UpdateArticle)
-    
-#     def test_article_delete_url_is_resolved(self):
-#         url = reverse('article:article_delete', args=['1'])
-#         self.assertEqual(resolve(url).func, DeleteArticle)
-    
-#     def test_like_article_url_is_resolved(self):
-#         url = reverse('article:like_article', args=['1'])
-#         self.assertEqual(resolve(url).func, LikeView)
-
 
 class TestViews(TestCase):
     def setUp(self):
         
-        User.objects.create(username='user1', password=make_password(
-            '1234'), email='user1@example.com')
-
+        # Create user guide
         userguide1 = User.objects.create(username='user2', password=make_password(
             '1234'), email='user2@example.com', is_guide=True)
         guide = Guide.objects.create(
             user=userguide1, gender='xxx', age='xxx', province='xxx', address='xxx', tat_license='xxx')
+
+        # Create user admin
         admin = User.objects.create(username='admin', password=make_password(
             '1234'), email='user2@example.com', is_admin=True)
         guide = Guide.objects.create(
             user=admin, gender='xxx', age='xxx', province='xxx', address='xxx', tat_license='xxx')
 
+        # Create user member
         usermember = User.objects.create(username='user4', password=make_password(
             '1234'), email='user3@example.com', is_member=True)
         member = Member.objects.create(user=usermember, gender='xxx', age='xxx', address='xxx', allergic='xxx', underlying_disease = 'xxx', religion = 'xxx')
+
+        # Create 2 article
         article1 = Article.objects.create(title = 'article1',author =userguide1,category = 'xxx',snippet = 'xxx')
-        category = Category.objects.create(name = 'category1')
         article2 = Article.objects.create(title = 'article2',author =userguide1,category = 'xxx',snippet = 'xxx')
+
+        # Create 1 category
+        category = Category.objects.create(name = 'category1')
         
 
     def test_article_home_GET(self):
@@ -87,7 +58,7 @@ class TestViews(TestCase):
     
 
     def test_article_detail_GET(self):
-        # test ว่าสามารถเข้าหน้า detailของ article
+        # test ว่าสามารถเข้าหน้า detail ของ article
         c = Client()
         user = User.objects.get(username='user2')
         article = Article.objects.get(title='article1')
@@ -97,7 +68,7 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'article/article_detail.html')
 
     def test_article_add_home_GET(self):
-        # test ว่าสามารถเข้าหน้า detailของ article
+        # test ว่าสามารถเข้าหน้า detail ของ article
         c = Client()
         user = User.objects.get(username='user2')
         article = Article.objects.get(title='article1')
@@ -126,7 +97,7 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'article/category.html')
 
     def test_article_update_GET(self):
-        # test ว่าสามารถเข้าหน้า detailของ article
+        # test ว่าสามารถเข้าหน้า update ของ article
         c = Client()
         user = User.objects.get(username='user2')
         article = Article.objects.get(title='article1')
@@ -136,7 +107,7 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'article/article_update.html')
     
     def test_article_delete_GET(self):
-        # test ว่าสามารถเข้าหน้า detailของ article
+        # test ว่าสามารถเข้าหน้า delete ของ article
         c = Client()
         user = User.objects.get(username='user2')
         article = Article.objects.get(title='article1')
@@ -145,8 +116,8 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'article/article_delete.html')
 
-    def test_AddArticle_GET(self):
-        # test ว่าสามารถadd article ได้ไหม
+    def test_AddArticle_success(self):
+        # test ว่าสามารถ add article ได้ไหม
         form_data = {
             'title' : "AddArticle",
             'category' : "xxx",
@@ -163,8 +134,8 @@ class TestViews(TestCase):
         self.assertEqual(article.title,  "AddArticle")
 
 
-    def test_UpdateArticle_GET(self):
-        # test ว่าสามารถ update article ได้ไหม
+    def test_UpdateArticle_success(self):
+        # test ว่าสามารถ update article ได้
         form_data = {
             'title' : "UpdateArticle",
             'category' : "xxx",
@@ -181,19 +152,23 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(article.title,  "UpdateArticle")
 
-    def test_LikeView_GET(self):
-        # test ว่าสามารถ add category ได้ไหม
-        c = Client()
-        user = User.objects.get(username='admin')
-        article = Article.objects.get(title='article2')
-        c.force_login(user)
-        response = c.post(reverse('article:like_article', args=[str(article.pk)] ))
-        
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(article.likes.count(),  1)
 
-    def test_DeleteArticle_GET(self):
-        # test ว่าสามารถ update article ได้ไหม
+    # def test_LikeView_GET(self):
+    #     # test ว่าสามารถ add category ได้ไหม
+    #     form_data = {
+    #         'title' : "UpdateArticle",
+    #     }
+    #     c = Client()
+    #     user = User.objects.get(username='user2')
+    #     article = Article.objects.get(title='article2')
+    #     c.force_login(user)
+    #     response = c.post(reverse('article:like_article'), article_id=[str(article.id)])
+        
+    #     self.assertEqual(response.status_code, 302)
+    #     self.assertEqual(article.likes.count(),  1)
+
+    def test_DeleteArticle_success(self):
+        # test ว่าสามารถ Delete article ได้
         c = Client()
         user = User.objects.get(username='admin')
         article = Article.objects.get(title='article2')
@@ -202,10 +177,11 @@ class TestViews(TestCase):
 
         article = Article.objects.all()
         self.assertEqual(response.status_code, 302)
+        # จากเริ่มต้นมี 2article ถูก delete จึงเหลือ 1
         self.assertEqual(article.count(),  1)
 
-    def test_AddCategory_GET(self):
-        # test ว่าสามารถ add category ได้ไหม
+    def test_AddCategory_success(self):
+        # test ว่าสามารถ add category ได้
         form_data = {
             'name' : "AddCategory"
         }

@@ -6,6 +6,9 @@
     <div class="container">
         <div class="row align-items-start">
             <div class="col-lg-8 m-15px-tb">
+                <div class="actions">
+                    <a href="{% url 'article:article_home' %}" class="btn btn btn-outline-danger ">Back Article Homepage</a>
+                </div>
                 <article class="article">
                     {% if article.article_image %}
                     <div class="article-img">
@@ -28,9 +31,19 @@
                     <div class="article-content">
                         {{ article.body|safe }}
 
+                        
                         <form action="{% url 'article:like_article' article.pk%}" method="post">
                             {% csrf_token%}
-                            <button type="submit", name="article_id", value="{{ article.id}}", class="btn btn btn-outline-danger fa fa-heart"></button> <strong> - {{total_likes}} Like </strong>
+                            
+                            {% if user.is_authenticated %}
+                                {% if liked %}
+                                    <button type="submit", name="article_id", value="{{ article.id}}", class="btn btn btn-outline-secondary fa fa-heart">UnLike</button> <strong> - {{total_likes}} Like </strong>
+                                {% else %}
+                                    <button type="submit", name="article_id", value="{{ article.id}}", class="btn btn btn-outline-danger fa fa-heart">Like</button><strong> - {{total_likes}} Like </strong>
+                                {% endif %}
+                            {% else %}
+                                <a  class="btn btn btn-outline-secondary fa fa-heart">Login to like</a> <strong> - {{total_likes}} Like </strong>
+                            {% endif %}
                         </form>
                         <!-- <li><a href="{% url 'article:like_article' article.pk %}" class="fa fa-thumbs-up">{{ article.likes.count }}</a></li> -->
                     </div>
