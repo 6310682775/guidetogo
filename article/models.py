@@ -12,6 +12,16 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def category_choice():
+        choices = Category.objects.all().values_list('name','name')
+
+        choices_List = []
+
+        for item in choices:
+            choices_List.append(item)
+        
+        return choices_List
+
     def get_absolute_url(self):
         return reverse('article:article_home')
 
@@ -23,7 +33,6 @@ class Article(models.Model):
         on_delete=models.CASCADE,null=True, blank=True
     )
     body = RichTextField(blank=True, null=True)
-    # body = models.TextField()
     post_date = models.DateField(auto_now_add=True)
     category = models.CharField(max_length=255)
     snippet = models.CharField(max_length=255)
