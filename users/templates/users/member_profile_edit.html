@@ -19,8 +19,10 @@
         <div class="row align-items-center flex-row-reverse">
             <div class="col-lg-6">
                 <div class="about-text go-to">
+                    <form method = "post" enctype="multipart/form-data" id="form-group">
                     <h3 class="dark-color">Welcome: {{ request.user.username }}</h3>
                     <h6 class="theme-color lead">A User Member</h6>
+                    {% csrf_token %}
                     <div class="row about-list">
                         <div class="col-md-6">
                             <div class="media">
@@ -29,19 +31,19 @@
                             </div>
                             <div class="media">
                                 <label>Tel:</label>
-                                <p>{{ request.user.member.phone_number }}</p>
+                                <p>{{ mem_form.phone_number }}</p>
                             </div>
                             <div class="media">
                                 <label>Age</label>
-                                <p>{{ request.user.member.age }}</p>
+                                <p>{{ mem_form.age }}</p>
                             </div>
                             <div class="media">
                                 <label>Allergic</label>
-                                <p>{{ request.user.member.allergic }}</p>
+                                <p>{{ mem_form.allergic }}</p>
                             </div>
                             <div class="media">
                                 <label>Underlying Disease</label>
-                                <p>{{ request.user.member.underlying_disease }}</p>
+                                <p>{{ mem_form.underlying_disease }}</p>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -59,11 +61,11 @@
                             </div>
                             <div class="media">
                                 <label>Address</label>
-                                <p>{{ request.user.member.address }}</p>
+                                <p>{{ mem_form.address }}</p>
                             </div>
                             <div class="media">
                                 <label>religion</label>
-                                <p>{{ request.user.member.religion }}</p>
+                                <p>{{ mem_form.religion }}</p>
                             </div>
                         </div>
                     </div>
@@ -73,6 +75,10 @@
                 <div class="about-avatar">
                     <img  class="img-fluid"  src= "{{ request.user.member.member_image.url }}" >
                 </div>
+            </div>
+            <div class="btn-pro">
+                <button type="submit" class="pro">Save Changes</button>
+                <button type="reset" class="pro">Reset</button>
             </div>
         </div>
         <div class="counter">

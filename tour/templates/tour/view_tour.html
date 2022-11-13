@@ -8,24 +8,193 @@
 <style>
     .container {
         padding: 70px 0;
-        /* border: 1px solid red; */
     }
+
+    /* Reviews Part */
+    .rate {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+    }
+
+    .rate:not(:checked) > input {
+        position: fixed;
+        top: -9999px;
+    }
+
+    .rate:not(:checked) > label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 28px;
+        color: #ccc;
+    }
+
+    .rate:not(:checked) > label:before {
+        content: '★ ';
+    }
+
+    .rate > input:checked ~ label {
+        color: #ffc700;
+    }
+    .rate:not(:checked) > label:hover,
+    .rate:not(:checked) > label:hover ~ label {
+        color: #ffc700;
+    }
+
+    .rate > input:checked + label:hover,
+    .rate > input:checked + label:hover ~ label,
+    .rate > input:checked ~ label:hover,
+    .rate > input:checked ~ label:hover ~ label,
+    .rate > label:hover ~ input:checked ~ label {
+        color: #ffc700;
+    }
+
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      
+      position: absolute;
+      z-index: 1;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -60px;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+    }
+
+    /* Review Cards */
+    .stars {
+        color: #ffc700;
+    }
+
+    .reviewer-name {
+      color: rgb(92, 71, 32);
+    }
+
+    .img-fluid {
+        object-fit: cover;
+        width: 100%;
+        height: auto;
+    }
+
+    /* Blog Sidebar */
+   
+    .blog-aside .widget {
+        border-radius: 8px;
+        overflow: hidden;
+        background: #ffffff;
+        width: 100%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .blog-aside .widget-body {
+        padding: 15px;
+    }
+
+    .blog-aside .widget-title {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .blog-aside .widget-title h3 {
+        margin: 0;
+    }
+    .blog-aside .widget-author .media {
+        margin-bottom: 15px;
+    }
+    .blog-aside .widget-author p {
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .avatar img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        object-fit: cover;
+    }
+
+    .blog-aside .widget-author h6 {
+        font-weight: 600;
+        /* color: #20247b; */
+        font-size: 22px;
+        margin: 0;
+        padding-left: 20px;
+    }
+    
 </style>
 
 <div class="container">
-
-    {{ tour.img }}
-    <h2>{{ tour.t_name }}</h2>
+    <h1><a class="btn btn-outline-dark bd-highlight mb-2" role="button" href="{% url 'main:home' %}"><i class="fa-solid fa-chevron-left"></i> <i class="fa-solid fa-house"></i></a><span class="ms-4">{{ tour.t_name }}</h1>
     <hr>
-    <h3>{{ tour.guide.first_name }} {{ tour.guide.last_name }}</h3>
-    <h5>Province: {{ tour.province }}</h5>
-    <h5>Price: ฿{{ tour.price }} /per group</h5>
-    <h5>Up to {{ tour.amount }} People</h5>
-    <p class="text-start">{{ tour.information }}</p>
-    <p>{{ tour.date }}</p>
+    <div class="row">
+        <div class="col-lg-8 m-15px-tb">
+            <img class="img-fluid rounded d-block" src="{{ tour.img.url }}">
+            <div class="align-items-center d-flex pt-5">
+                <div class="avatar">
+                    <img src="{{ tour.guide.guide.guide_image.url }}" title="" alt="">
+                </div>
+                <div class="ps-2">
+                    <h3>by {{ tour.guide.first_name }} {{ tour.guide.last_name }}</h3>
+                </div>
+            </div>
+            <div class="d-flex flex-row justify-content-start pt-3">
+                <button type="button" class="btn btn-outline-secondary btn-sm mb-2" >{{ tour.province }}</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm mb-2 ms-2" >{{ tour.period }} hours</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm mb-2 ms-2" >Up to {{ tour.amount }} people</button>
+            </div>
+            <h5 class="mt-3">฿{{ tour.price }} /per group</h5>
+            <hr>
+            <p class="text-start">{{ tour.information | safe }}</p>
+            <p>{{ tour.date }}</p>
+        </div>
 
+    <!-- Blog Aside Part -->
+        <div class="col-lg-4 m-15px-tb blog-aside shadow-sm">
+            <div class="widget widget-author">
+                <div class="widget-title">
+                    <h3>{{ tour.t_name }}</h3>
+                </div>
+                <div class="widget-body">
+                    <div class="media align-items-center d-flex">
+                        <div class="avatar">
+                            <img src="{{ tour.guide.guide.guide_image.url }}" title="" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h6>by {{ tour.guide.first_name }} {{ tour.guide.last_name }}</h6>
+                        </div>
+                    </div>
+                    <p>{{ tour.snippet }}</p>
+                    <div class="price d-flex justify-content-center">
+                        <h2 class="pt-5">฿{{ tour.price }}</h2>
+                    </div>
+                    <button type="button" class="btn btn-outline-danger mt-3 w-100">Book</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button Part -->
     {% if check_owner == 1 %}
-        <div class="d-flex flex-row bd-highlight mb-2 justify-content-start">
+        <div class="d-flex flex-row bd-highlight mb-2 pt-3 justify-content-start">
             <a class="btn btn-outline-primary bd-highlight" role="button" href="{% url 'tour:update_tour' tour.id %}"><i class="fa-solid fa-pen"></i> Update</a>
             <a class="btn btn-outline-danger ms-2 bd-highlight" role="button" href="{% url 'tour:remove_tour' tour.id %}" onclick="return confirm('Are you sure to remove this tour?')"><i class="fa-solid fa-trash-can"></i> Remove</a>
         </div>
@@ -36,8 +205,101 @@
             <a class="btn btn-outline-danger ms-2 bd-highlight" role="button" href="{% url 'tour:remove_tour' tour.id %}" onclick="return confirm('Are you sure to remove this tour?')"><i class="fa-solid fa-trash-can"></i> Remove</a>
         </div>
     {% endif %}
-        <a class="btn btn-dark w-100" role="button" href="{% url 'main:home' %}">Back To Home Page</a>
+    <hr><br>
+
+    <!-- Reviews Part -->
+    <h3>Reviews ({{ reviews.count }})</h3>
+    <br>
+    {% if not request.user.is_authenticated %}
+        <small class="text-muted">(Login to write review)</small>
+        <br><br>
+    {% elif check_owner != 1 %}
+        <form action="{% url 'tour:add_review' tour.id %}" method="POST" class="mb-3">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-11">
+                    <div class="rating d-flex justify-content-start">
+                        <h5 class="text-muted pt-2">Rating: </h5>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text"><i class="fa-regular fa-star"></i></label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                    </div>
+                    <div class="review mb-4">
+                        <input class="form-control" type="text" name="review_title" placeholder="Review title" required>
+                        <textarea class="form-control mt-2" id="review_id_{{review.id}}" value="review_id_{{review.id}}" type="text" name="review_text" maxlength="600" placeholder="Enter your comment" required>{{ review.review_text }}</textarea>
+                        <button class="btn btn-dark mt-2" type="submit" onclick="return check_star()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    
+      {% endif %}
+
+
+    {% for review in reviews %}
+      <div class="card border-light shadow-sm">
+        <div class="card-header border-light d-flex justify-content-between">
+          <div class="d-flex" style="margin-top: 10px;">
+            <h5 class="reviewer-name">{{ review.review_user.first_name }} {{ review.review_user.last_name }} </h5>
+            <div class="stars ps-2">
+              {% if review.rating == 5 %}
+                  <h5>★★★★★</h5>
+              {% elif review.rating == 4 %}
+                  <h5>★★★★</h5>
+              {% elif review.rating == 3 %}
+                  <h5>★★★</h5>
+              {% elif review.rating == 2 %}
+                  <h5>★★</h5>
+              {% else %}
+                  <h5>★</h5>
+              {% endif %}
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <p class="pt-2">{{ review.date }}</p>
+            {% if review.review_user.username == request.user.username %}
+              <a class="text-danger m-2" role="button" href="{% url 'tour:remove_review' review.id %}"
+                onclick="return confirm('Are you sure to remove this review?')"><i class="fa-solid fa-trash-can p-1"></i>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>{{ review.review_title }}</p>
+            <footer class="blockquote-footer pt-2">{{ review.review_text }}</footer>
+          </blockquote>
+        </div>
+      </div>
+      <br>
+    {% endfor %}
 
 </div>
-    
+
+<script>
+    function check_star()
+    {
+        var s1 = document.getElementById("star1").checked;
+        var s2 = document.getElementById("star2").checked;
+        var s3 = document.getElementById("star3").checked;
+        var s4 = document.getElementById("star4").checked;
+        var s5 = document.getElementById("star5").checked;
+        if ((s1 == 0) && (s2 == 0) && (s3 == 0) && (s4 == 0) && (s5 == 0))
+        {
+            alert("Select at least 1 star");
+            return false;
+        }
+        return true;
+    }
+</script>
+
 {% endblock %}

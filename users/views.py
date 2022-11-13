@@ -5,12 +5,13 @@ from django.contrib.auth import login, logout,authenticate
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.views.generic import CreateView
-from .form import MemberSignUpForm, GuideSignUpForm
+
 from django.contrib.auth.forms import AuthenticationForm
 from .models import User, Member, Guide
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from .forms import MemberSignUpForm, GuideSignUpForm, UpdateMemberForm, UpdateGuideForm
 
 class member_register(CreateView):
     model = User
@@ -55,7 +56,7 @@ def login_request(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('main:home')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 @login_required(login_url='users:login')
 def member_profile_view(request):
@@ -69,3 +70,48 @@ def guide_profile_view(request):
         return HttpResponseRedirect(reverse('main:home',))
     return render(request, "users/guide_profile.html")
 
+############################
+@login_required(login_url='users:login')
+def member_profile_edit(request):
+    if request.method == 'POST':
+        user_form = UpdateMemberForm(request.POST, instance=request.user)
+        mem_form = UpdateMemberForm(request.POST, instance=request.user.member)
+
+        if user_form.is_valid():
+            user_form.save()
+            mem_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect('users:member_profile')
+    else:
+        user_form = UpdateMemberForm(instance=request.user)
+        mem_form = UpdateMemberForm(instance=request.user.member)
+
+    return render(request, 'users/member_profile_edit.html', {
+        'user_form': user_form,
+        'mem_form' : mem_form,
+    })
+
+
+@login_required(login_url='users:login')
+def guide_profile_edit(request):
+    if request.method == 'POST':
+        user_form = UpdateGuideForm(request.POST, request.FILES, instance=request.user)
+        guide_form = UpdateGuideForm(request.POST, request.FILES, instance=request.user.guide)
+
+        if user_form.is_valid():
+            user_form.save()
+            guide_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect('users:guide_profile')
+    else:
+        user_form = UpdateGuideForm(instance=request.user)
+        guide_form = UpdateGuideForm(instance=request.user.guide)
+
+    return render(request, 'users/guide_profile_edit.html', {
+        'user_form': user_form,
+        'guide_form' : guide_form,
+    })
+    
+
+
+    

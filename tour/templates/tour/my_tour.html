@@ -5,13 +5,9 @@
 
 {% load static %}
 <style>
-    .container {
-        /* border: 1px solid red; */
-    }
-
-    .card {
+    /* .card {
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    }
+    } */
 </style>
 
     <!-- Section-->
@@ -29,7 +25,7 @@
             <div class="row gx-4 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 {% for t in my_tour %}
                 <div class="col mb-5">
-                    <div class="card border-light h-100">
+                    <div class="card border-light h-100 shadow-sm">
                         <!-- Top badge-->
                         <!-- <div class="badge bg-transparent text-white position-absolute" style="top: 0.5rem; right: 0.5rem; font-size: 16px; letter-spacing: -2px;">
                             <span class="fa fa-star checked"></span>
@@ -56,10 +52,10 @@
                                     <i class="fa-solid fa-star pt-1"></i>
                                 </div>
                                 <!-- Tour info-->
-                                <p class="card-text text-truncate pt-2">{{ t.information| safe }}</p>
+                                <p class="card-text text-truncate pt-2">{{ t.snippet }}</p>
                                 <div class="d-flex flex-row justify-content-start">
                                     <button type="button" class="btn btn-outline-secondary btn-sm mb-2" disabled>{{ t.province }}</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm mb-2 ms-1" disabled>{{ t.period }}</button>
+                                    <button type="button" class="btn btn-outline-secondary btn-sm mb-2 ms-1" disabled>{{ t.period }} hours</button>
                                 </div>
                                 <small class="card-subtitle text-muted">Last Updated: {{ t.date }}</small>
                             </div>

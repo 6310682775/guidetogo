@@ -9,6 +9,7 @@ from tour.forms import TourForm
 
 # Create your tests here.
 
+
 class TourViewTestCase(TestCase):
 
     def setUp(self):
@@ -20,18 +21,20 @@ class TourViewTestCase(TestCase):
         userguide1 = User.objects.create(username='user2', password=make_password(
             '1234'), email='user2@example.com', is_guide=True)
         guide = Guide.objects.create(
-            user=userguide1, gender='xxx', age='xxx', province='xxx', address='xxx', tat_license='xxx')
+            user=userguide1, gender='xxx', age='xxx', province='xxx', address='xxx', tat_license='xxx', guide_image='xxx.jpg')
         userguide2 = User.objects.create(username='user3', password=make_password(
             '1234'), email='user2@example.com', is_guide=True)
         guide = Guide.objects.create(
-            user=userguide2, gender='xxx', age='xxx', province='xxx', address='xxx', tat_license='xxx')
+            user=userguide2, gender='xxx', age='xxx', province='xxx', address='xxx', tat_license='xxx', guide_image='xxx.jpg')
 
         usermember = User.objects.create(username='user4', password=make_password(
             '1234'), email='user3@example.com', is_member=True)
-        member = Member.objects.create(user=usermember, gender='xxx', age='xxx', address='xxx', allergic='xxx', underlying_disease = 'xxx', religion = 'xxx')
+        member = Member.objects.create(user=usermember, gender='xxx', age='xxx',
+                                       address='xxx', allergic='xxx', underlying_disease='xxx', religion='xxx')
 
         # Create Tour
-        Tour.objects.create(t_name='xxx', guide=userguide1, province='xxx', price=2000, period='xxx', amount=10, information='xxx')
+        Tour.objects.create(t_name='xxx', guide=userguide1, province='xxx',
+                            price=2000, period='xxx', amount=10, information='xxx', img='img.png')
 
     def test_guide_craete_tour_view(self):
         c = Client()
@@ -45,7 +48,7 @@ class TourViewTestCase(TestCase):
         user = User.objects.get(username='user4')
         c.force_login(user)
         response = c.get(reverse('tour:create_tour'))
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
 
     def test_create_tour_form(self):
         form_data = {
@@ -58,7 +61,8 @@ class TourViewTestCase(TestCase):
             'information': 'information',
         }
 
-        response = self.client.post(reverse('tour:create_tour'), data=form_data)
+        response = self.client.post(
+            reverse('tour:create_tour'), data=form_data)
         self.assertEqual(response.status_code, 302)
 
         tours = Tour.objects.all()
@@ -115,7 +119,7 @@ class TourViewTestCase(TestCase):
         user = User.objects.get(username='user3')
         c.force_login(user)
         response = c.get(reverse('tour:update_tour', args=(this_tour.id,)))
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
 
     def test_remove_tour_success(self):
         c = Client()
@@ -143,3 +147,26 @@ class TourViewTestCase(TestCase):
         c = Client()
         response = c.get(reverse('main:about'))
         self.assertEqual(response.status_code, 200)
+
+    ################# edit ####################
+
+    #ทดสอบว่าเพิ่ม review ได้ไหม บน model
+    def test_review(self):
+        user = User.objects.get(username='user4')
+        this_user = User.objects.get(id = user.id)
+        review = Review.objects.create(review_user = this_user,review_title="test", review_text="good", rating=3)
+        review = Review.objects.all()
+        self.assertEqual(review.count(), 1)
+    
+    '''
+    def test_addcomment_without_auth(self):
+        user = User.objects.get(username="user2345")
+
+        c = Client()
+        response = c.post(reverse('storepage:addcomment'), {
+            'name': 'kkk', 'review': 'aroi', 'rate': 3,
+        })
+        self.assertEqual(response.status_code, 302)
+    '''
+
+    

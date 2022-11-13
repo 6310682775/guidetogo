@@ -96,10 +96,12 @@
                                 <li><a class="dropdown-item" href="#">My Profile</a></li>
                             {% elif user.is_guide %}
                                 <li><a class="dropdown-item" href="{% url 'users:guide_profile' %}">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'users:guide_profile_edit' %}">Edit Profile</a></li>
                                 <li><a class="dropdown-item" href="{% url 'tour:my_tour' %}">My Tours</a></li>
                                 <li><a class="dropdown-item" href="{% url 'tour:create_tour' %}">Create Tour</a></li>
                             {% else %}
                                 <li><a class="dropdown-item" href="{% url 'users:member_profile' %}">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'users:member_profile_edit' %}">Edit Profile</a></li>
                                 <li><a class="dropdown-item" href="{% url 'tour:my_tour' %}">My Tours</a></li>
                             {% endif %}
                             <li><hr class="dropdown-divider"></li>

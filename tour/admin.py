@@ -4,3 +4,4 @@ from .models import Tour, Review
 # Register your models here.
 
 admin.site.register(Tour)
+admin.site.register(Review)
