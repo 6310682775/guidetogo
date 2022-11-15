@@ -12,8 +12,8 @@
                     <div class="card single_post">
                         <div class="body">
                             {% if article.article_image %}
-                                <div class="img-post">
-                                    <img class="d-block img-fluid" src="{{ article.article_image.url}}" alt="First slide">
+                                <div class="img-post ">
+                                    <img class="rounded mx-auto d-block img-fluid" src="{{ article.article_image.url}}" alt="First slide">
                                 </div>
                             {% endif %}
                             <h3><a href="{% url 'article:article_detail' article.pk %}">{{ article.title }}</a></h3>

@@ -4,7 +4,7 @@ from ckeditor.fields import RichTextField
 from django.db import models
 from django.urls import reverse, reverse_lazy
 from django.utils.timezone import now
-
+from models import Tour
 from users.models import Guide, Member, User
 
 # Create your models here.
@@ -43,3 +43,5 @@ class Tour(models.Model):
         return reverse('tour:my_tour')
     class Meta:
         ordering = ['-date']
+
+    

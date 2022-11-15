@@ -7,12 +7,12 @@
         <div class="row align-items-start">
             <div class="col-lg-8 m-15px-tb">
                 <div class="actions">
-                    <a href="{% url 'article:article_home' %}" class="btn btn btn-outline-danger ">Back Article Homepage</a>
+                    <a href="{% url 'article:article_home' %}" class="btn btn btn-outline-danger ">Back</a>
                 </div>
                 <article class="article">
                     {% if article.article_image %}
                     <div class="article-img">
-                        <img src="{{ article.article_image.url}}" title="" alt="">
+                        <img class="rounded mx-auto d-block img-fluid" src="{{ article.article_image.url}}" title="" alt="">
                     </div>
                     {% endif %}
                     <div class="article-title">
@@ -93,11 +93,11 @@
                     </div>
                     <div class="widget-body">
                         <div class="media align-items-center">
-                            <div class="avatar">
-                                <img src="{{ article.author.member.member_image.url }}" title="" alt="">
+                            <div class=" mx-auto avatar">
+                                <img class="rounded mx-auto d-block img-fluid" src="{{ article.author.guide.guide_image.url }}" title="" alt="">
                             </div>
-                            <div class="media-body">
-                                <h6>Hello, I'm<br> {{ article.author.first_name }} {{article.author.last_name}}</h6>
+                            <div class=" align-items-center media-body">
+                                <h6 >Hello, I'm {{ article.author.first_name }} {{article.author.last_name}}</h6>
                             </div>
                         </div>
                         <p>{{ article.snippet }}</p>

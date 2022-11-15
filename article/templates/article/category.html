@@ -40,12 +40,14 @@ category_posts
                             <div class="actions">
                                 <a href="{% url 'article:article_detail' article.pk %}" class="btn btn-outline-secondary">Continue Reading</a>
                             </div>
-                            <div class="actions">
-                                <a href="{% url 'article:article_update' article.pk %}" class="btn btn btn-outline-info">Edit</a>
-                            </div>
-                            <div class="actions">
-                                <a href="{% url 'article:article_delete' article.pk %}" class="btn btn btn-outline-danger">Delete</a>
-                            </div>
+                            {% if request.user.is_admin %}
+                                <div class="actions">
+                                    <a href="{% url 'article:article_update' article.pk %}" class="btn btn btn-outline-info">Edit</a>
+                                </div>
+                                <div class="actions">
+                                    <a href="{% url 'article:article_delete' article.pk %}" class="btn btn btn-outline-danger">Delete</a>
+                                </div>
+                            {% endif %}
                             <ul class="stats">
                                 <li><a href="javascript:void(0);">{{ article.post_date }}</a></li>
                                 <li><a href="javascript:void(0);">{{ article.category }}</a></li>

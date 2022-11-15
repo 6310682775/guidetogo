@@ -1,470 +1,485 @@
-{% extends "main/layout.html" %}
-
-{% block body %}
+{% extends "main/layout.html" %} {% block body %}
 <title>Profile | GuideToGo</title>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
 
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-    <link rel="stylesheet" type="text/css" href="./css/common.css" />
-    <link rel="stylesheet" type="text/css" href="./css/fonts.css" />
-    <link rel="stylesheet" type="text/css" href="./css/ProjectMember.css" />
-    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/headroom.js@0.12.0/dist/headroom.min.js"></script>
-
-
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+  />
+  <link rel="stylesheet" type="text/css" href="./css/common.css" />
+  <link rel="stylesheet" type="text/css" href="./css/fonts.css" />
+  <link rel="stylesheet" type="text/css" href="./css/ProjectMember.css" />
+  <script
+    type="text/javascript"
+    src="https://unpkg.com/aos@2.3.1/dist/aos.js"
+  ></script>
+  <script
+    type="text/javascript"
+    src="https://unpkg.com/headroom.js@0.12.0/dist/headroom.min.js"
+  ></script>
 </head>
 
 {% load static %}
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-    .root {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  position: relative;
-  overflow: hidden;
-}
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+  .root {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+  }
 
-.col {
-  display: flex;
-  flex-direction: column;
-  width: 71.25%;
-  position: relative;
-  flex-grow: 1;
-  margin: 135px 23.23% 799px 5.52%;
-}
+  .col {
+    display: flex;
+    flex-direction: column;
+    width: 71.25%;
+    position: relative;
+    flex-grow: 1;
+    margin: 135px 23.23% 799px 5.52%;
+  }
 
-.title {
-  font: 500 30px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  width: 90.94%;
-  position: relative;
-  margin: 0px auto;
-}
+  .title {
+    font: 500 30px/1.2 "Inter", Helvetica, Arial, serif;
+    color: black;
+    letter-spacing: 0px;
+    width: 90.94%;
+    position: relative;
+    margin: 0px auto;
+  }
 
-.content_box {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  box-shadow: 2px 6px 4px 0px rgba(0, 0, 0, 0.247);
-  border-radius: 10px 10px 10px 10px;
-  outline: 0.3000000119px solid black;
-  outline-offset: -0.3000000119px;
-  position: relative;
-  margin: 10px 0px 0px;
-}
+  .content_box {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 2px 6px 4px 0px rgba(0, 0, 0, 0.247);
+    border-radius: 10px 10px 10px 10px;
+    outline: 0.3000000119px solid black;
+    outline-offset: -0.3000000119px;
+    position: relative;
+    margin: 10px 0px 0px;
+  }
 
-.col1 {
-  display: flex;
-  flex-direction: column;
-  width: 88.01%;
-  position: relative;
-  flex-grow: 1;
-  margin: 26px 10.31% 69px 1.68%;
-}
+  .col1 {
+    display: flex;
+    flex-direction: column;
+    width: 88.01%;
+    position: relative;
+    flex-grow: 1;
+    margin: 26px 10.31% 69px 1.68%;
+  }
 
-.row {
-  display: flex;
-  position: relative;
-  margin: 0px 6px;
-}
+  .row {
+    display: flex;
+    position: relative;
+    margin: 0px 6px;
+  }
 
-.row > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 150px;
-}
+  .row > .item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 150px;
+  }
 
-.image3 {
-  width: 100%;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-}
+  .image3 {
+    width: 100%;
+    height: auto;
+    vertical-align: top;
+    -o-object-fit: contain;
+    object-fit: contain;
+    -o-object-position: center top;
+    object-position: center top;
+    position: relative;
+  }
 
-.row > .spacer {
-  flex: 0 1 32px;
-}
+  .row > .spacer {
+    flex: 0 1 32px;
+  }
 
-.title1 {
-  font: 400 28px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-  flex: 0 0 auto;
-  min-width: 523px;
-  min-height: 40px;
-  margin: 16px 0px 94px;
-}
+  .title1 {
+    font: 400 28px/1.2 "Inter", Helvetica, Arial, serif;
+    color: black;
+    letter-spacing: 0px;
+    position: relative;
+    flex: 0 0 auto;
+    min-width: 523px;
+    min-height: 40px;
+    margin: 16px 0px 94px;
+  }
 
-.row1 {
-  display: flex;
-  position: relative;
-  margin: 44px 0px 0px;
-}
+  .row1 {
+    display: flex;
+    position: relative;
+    margin: 44px 0px 0px;
+  }
 
-.col2 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 396px;
-}
+  .col2 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 396px;
+  }
 
-.row2 {
-  display: flex;
-  position: relative;
-}
+  .row2 {
+    display: flex;
+    position: relative;
+  }
 
-.row2 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 25px;
-}
+  .row2 > .item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 25px;
+  }
 
-.image2 {
-  width: 25px;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  min-width: 25px;
-  margin: 16px 0px 19px;
-}
+  .image2 {
+    width: 25px;
+    height: auto;
+    vertical-align: top;
+    -o-object-fit: contain;
+    object-fit: contain;
+    -o-object-position: center top;
+    object-position: center top;
+    position: relative;
+    min-width: 25px;
+    margin: 16px 0px 19px;
+  }
 
-.row2 > .spacer {
-  flex: 0 1 29px;
-}
+  .row2 > .spacer {
+    flex: 0 1 29px;
+  }
 
-.col3 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 341px;
-}
+  .col3 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 341px;
+  }
 
-.medium_title {
-  font: 400 26px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-}
+  .medium_title {
+    font: 400 26px/1.2 "Inter", Helvetica, Arial, serif;
+    color: black;
+    letter-spacing: 0px;
+    position: relative;
+  }
 
-.subtitle {
-  font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-  min-height: 35px;
-  margin: 4px 0px 0px;
-}
+  .subtitle {
+    font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
+    color: black;
+    letter-spacing: 0px;
+    position: relative;
+    min-height: 35px;
+    margin: 4px 0px 0px;
+  }
 
-.row3 {
-  display: flex;
-  position: relative;
-  margin: 7px 0px 0px;
-}
+  .row3 {
+    display: flex;
+    position: relative;
+    margin: 7px 0px 0px;
+  }
 
-.row3 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 37px;
-}
+  .row3 > .item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 37px;
+  }
 
-.image1 {
-  width: 37px;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  min-width: 37px;
-  margin: 16px 0px 21px;
-}
+  .image1 {
+    width: 37px;
+    height: auto;
+    vertical-align: top;
+    -o-object-fit: contain;
+    object-fit: contain;
+    -o-object-position: center top;
+    object-position: center top;
+    position: relative;
+    min-width: 37px;
+    margin: 16px 0px 21px;
+  }
 
-.row3 > .spacer {
-  flex: 0 1 17px;
-}
+  .row3 > .spacer {
+    flex: 0 1 17px;
+  }
 
-.row3 > .item1 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 37px;
-}
+  .row3 > .item1 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 37px;
+  }
 
-.image {
-  width: 37px;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  min-width: 37px;
-  margin: 16px 0px 25px;
-}
+  .image {
+    width: 37px;
+    height: auto;
+    vertical-align: top;
+    -o-object-fit: contain;
+    object-fit: contain;
+    -o-object-position: center top;
+    object-position: center top;
+    position: relative;
+    min-width: 37px;
+    margin: 16px 0px 25px;
+  }
 
-.row3 > .spacer1 {
-  flex: 0 1 17px;
-}
+  .row3 > .spacer1 {
+    flex: 0 1 17px;
+  }
 
-.row4 {
-  display: flex;
-  position: relative;
-  margin: 7px 0px 0px 1px;
-}
+  .row4 {
+    display: flex;
+    position: relative;
+    margin: 7px 0px 0px 1px;
+  }
 
-.row4 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 37px;
-}
+  .row4 > .item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 37px;
+  }
 
-.row4 > .spacer {
-  flex: 0 1 17px;
-}
+  .row4 > .spacer {
+    flex: 0 1 17px;
+  }
 
-.row1 > .spacer {
-  flex: 0 1 25px;
-}
+  .row1 > .spacer {
+    flex: 0 1 25px;
+  }
 
-.col4 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 353px;
-}
+  .col4 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 353px;
+  }
 
-.row2 > .item1 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 30px;
-}
+  .row2 > .item1 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 30px;
+  }
 
-.icon {
-  width: 30px;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  min-width: 30px;
-  margin: 17px 0px 29px;
-}
+  .icon {
+    width: 30px;
+    height: auto;
+    vertical-align: top;
+    -o-object-fit: contain;
+    object-fit: contain;
+    -o-object-position: center top;
+    object-position: center top;
+    position: relative;
+    min-width: 30px;
+    margin: 17px 0px 29px;
+  }
 
-.row2 > .item2 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 193px;
-}
+  .row2 > .item2 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 193px;
+  }
 
-.col5 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex-grow: 1;
-  margin: 0px 0px 0px 8px;
-}
+  .col5 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-grow: 1;
+    margin: 0px 0px 0px 8px;
+  }
 
-.subtitle1 {
-  font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-  min-height: 35px;
-  margin: 9px 0px 0px;
-}
+  .subtitle1 {
+    font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
+    color: black;
+    letter-spacing: 0px;
+    position: relative;
+    min-height: 35px;
+    margin: 9px 0px 0px;
+  }
 
-.row5 {
-  display: flex;
-  position: relative;
-  margin: 2px 0px 0px;
-}
+  .row5 {
+    display: flex;
+    position: relative;
+    margin: 2px 0px 0px;
+  }
 
-.row5 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 30px;
-}
+  .row5 > .item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 30px;
+  }
 
-.icon1 {
-  width: 30px;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  min-width: 30px;
-  margin: 12px 0px 29px;
-}
+  .icon1 {
+    width: 30px;
+    height: auto;
+    vertical-align: top;
+    -o-object-fit: contain;
+    object-fit: contain;
+    -o-object-position: center top;
+    object-position: center top;
+    position: relative;
+    min-width: 30px;
+    margin: 12px 0px 29px;
+  }
 
-.row5 > .item1 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 209px;
-}
+  .row5 > .item1 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 209px;
+  }
 
-.col6 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex-grow: 1;
-  margin: 0px 0px 0px 12px;
-}
+  .col6 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-grow: 1;
+    margin: 0px 0px 0px 12px;
+  }
 
-.subtitle2 {
-  font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-  min-height: 35px;
-  margin: 4px 9px 0px 0px;
-}
+  .subtitle2 {
+    font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
+    color: black;
+    letter-spacing: 0px;
+    position: relative;
+    min-height: 35px;
+    margin: 4px 9px 0px 0px;
+  }
 
-.row3 > .item2 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 30px;
-}
+  .row3 > .item2 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 30px;
+  }
 
-.row3 > .spacer2 {
-  flex: 0 1 12px;
-}
+  .row3 > .spacer2 {
+    flex: 0 1 12px;
+  }
 
-.col7 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 311px;
-}
+  .col7 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 311px;
+  }
 
-.subtitle3 {
-  font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-  margin: 4px 0px 0px;
-}
+  .subtitle3 {
+    font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
+    color: black;
+    letter-spacing: 0px;
+    position: relative;
+    margin: 4px 0px 0px;
+  }
 
-.row3 > .item3 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 30px;
-}
+  .row3 > .item3 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 30px;
+  }
 
-.row3 > .item4 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 200px;
-}
+  .row3 > .item4 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 200px;
+  }
 
-.medium_title1 {
-  font: 400 26px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-  margin: 0px 21px 0px 0px;
-}
+  .medium_title1 {
+    font: 400 26px/1.2 "Inter", Helvetica, Arial, serif;
+    color: black;
+    letter-spacing: 0px;
+    position: relative;
+    margin: 0px 21px 0px 0px;
+  }
 
-.row1 > .spacer1 {
-  flex: 0 1 58px;
-}
+  .row1 > .spacer1 {
+    flex: 0 1 58px;
+  }
 
-.col8 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 372px;
-}
+  .col8 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 372px;
+  }
 
-.row2 > .item3 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 30px;
-}
+  .row2 > .item3 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 30px;
+  }
 
-.row2 > .item4 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 193px;
-}
+  .row2 > .item4 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 193px;
+  }
 
-.row5 > .item2 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 30px;
-}
+  .row5 > .item2 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 30px;
+  }
 
-.row5 > .spacer {
-  flex: 0 1 12px;
-}
+  .row5 > .spacer {
+    flex: 0 1 12px;
+  }
 
-.col9 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 330px;
-}
+  .col9 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 330px;
+  }
 
-.row3 > .item5 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 30px;
-}
+  .row3 > .item5 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 30px;
+  }
 
-.row3 > .spacer3 {
-  flex: 0 1 12px;
-}
+  .row3 > .spacer3 {
+    flex: 0 1 12px;
+  }
 
-.row3 > .item6 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 30px;
-}
+  .row3 > .item6 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 30px;
+  }
 
-.row3 > .item7 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 200px;
-}
+  .row3 > .item7 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 0 1 200px;
+  }
 
   section {
     font-family: Roboto;
@@ -564,161 +579,172 @@
 </body> -->
 
 <body class="flex-column">
-    <div class="project-member root">
-        <div class="col">
-            <h1 class="title">Welcome: {{ request.user.username }}<br /></h1>
-            <div class="content_box">
-                <div class="col1">
-                    <div class="row">
-                        <div class="item">
-                            <img class="image3" src="{{ request.user.member.member_image.url }}" alt="Member picture" />
-                        </div>
-                        <div class="spacer"></div>
-                        <h1 class="title1">{{ request.user.username }}</h1>
-                    </div>
-                    <div class="row1">
-                        <div class="col2">
-                            <div class="row2">
-                                <div class="item">
-                                    <i class="fs-1 fa-solid fa-location-dot"></i>
-                                </div>
-                                <div class="spacer"></div>
-                                <div class="col3">
-                                    <h2 class="medium_title">Address</h2>
-                                    <h3 class="subtitle">{{ request.user.member.address }}</h3>
-                                </div>
-                            </div>
-                            <div class="row3">
-                                <div class="item">
-                                    <i class="fs-1 fa-solid fa-face-smile"></i>
-                                </div>
-                                <div class="spacer"></div>
-                                <div class="col3">
-                                    <h2 class="medium_title">Age</h2>
-                                    <h3 class="subtitle">{{ request.user.member.age }}</h3>
-                                </div>
-                            </div>
-                            <div class="row3">
-                                <div class="item1">
-                                    <i class="fs-1 fa-solid fa-user"></i>
-                                </div>
-                                <div class="spacer1"></div>
-                                <div class="col3">
-                                    <h2 class="medium_title">Gender</h2>
-                                    <h3 class="subtitle">{{ request.user.member.gender }}</h3>
-                                </div>
-                            </div>
-                            <div class="row4">
-                                <div class="item">
-                                    <i class="fs-1 fa-solid fa-envelope"></i>
-                                </div>
-                                <div class="spacer"></div>
-                                <div class="col3">
-                                    <h2 class="medium_title">Email</h2>
-                                    <h3 class="subtitle">{{ request.user.member.email }}</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="spacer"></div>
-                        <div class="col4">
-                            <div class="row2">
-                                <div class="item1">
-                                    <i class="fs-1 fa-solid fa-phone"></i>
-                                </div>
-                                <div class="item2">
-                                    <div class="col5">
-                                        <h2 class="medium_title">Tel.</h2>
-                                        <h3 class="subtitle1">{{ request.user.member.phone_number }}</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row5">
-                                <div class="item">
-                                    <i class="fs-1 fa-solid fa-shrimp"></i>
-                                </div>
-                                <div class="item1">
-                                    <div class="col6">
-                                        <h2 class="medium_title">Allergic</h2>
-                                        <h3 class="subtitle2">{{ request.user.member.allergic }}</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row3">
-                                <div class="item2">
-                                    <i class="fs-1 fa-solid fa-square-virus"></i>
-                                </div>
-                                <div class="spacer2"></div>
-                                <div class="col7">
-                                    <h2 class="medium_title">Underlying Disease</h2>
-                                    <h3 class="subtitle3">{{ request.user.member.underlying_disease }}</h3>
-                                </div>
-                            </div>
-                            <div class="row3">
-                                <div class="item3">
-                                    <i class="fs-1 fa-solid fa-person-praying"></i>
-                                </div>
-                                <div class="item4">
-                                    <div class="col6">
-                                        <h2 class="medium_title1">Religion</h2>
-                                        <h3 class="subtitle">{{ request.user.member.religion }}</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="spacer1"></div>
-                        <div class="col8">
-                            <div class="row2">
-                                <div class="item3">
-                                    <i class="fs-1 fa-solid fa-star"></i>
-                                </div>
-                                <div class="item4">
-                                    <div class="col5">
-                                        <h2 class="medium_title">Favorite</h2>
-                                        <h3 class="subtitle1">4</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row5">
-                                <div class="item2">
-                                    <i class="fs-1 fa-solid fa-circle-check"></i>
-                                </div>
-                                <div class="spacer"></div>
-                                <div class="col9">
-                                    <h2 class="medium_title">Tours Completed</h2>
-                                    <h3 class="subtitle3">2</h3>
-                                </div>
-                            </div>
-                            <div class="row3">
-                                <div class="item5">
-                                    <i class="fs-1 fa-solid fa-comment-dots"></i>
-                                </div>
-                                <div class="spacer3"></div>
-                                <div class="col9">
-                                    <h2 class="medium_title">Comments</h2>
-                                    <h3 class="subtitle3">0</h3>
-                                </div>
-                            </div>
-                            <div class="row3">
-                                <div class="item6">
-                                    <i class="fs-1 fa-solid fa-map"></i>
-                                </div>
-                                <div class="item7">
-                                    <div class="col6">
-                                        <h2 class="medium_title1">My Tours</h2>
-                                        <h3 class="subtitle">4</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="project-member root">
+    <div class="col">
+      <h1 class="title">Welcome: {{ request.user.username }}<br /></h1>
+      <div class="content_box">
+        <div class="col1">
+          <div class="row">
+            <div class="item">
+              <img
+                class="image-fluid"
+                src="{{ request.user.member.member_image.url }}"
+                alt="Member picture"
+              />
             </div>
+            <div class="spacer"></div>
+            <h1 class="title1">
+              {{ request.user.first_name }} {{ request.user.last_name }}
+            </h1>
+          </div>
+          <div class="row1">
+            <div class="col2">
+              <div class="row2">
+                <div class="item">
+                  <i class="fs-1 fa-solid fa-location-dot"></i>
+                </div>
+                <div class="spacer"></div>
+                <div class="col3">
+                  <h2 class="medium_title">Address</h2>
+                  <h3 class="subtitle">{{ request.user.member.address }}</h3>
+                </div>
+              </div>
+              <div class="row3">
+                <div class="item">
+                  <i class="fs-1 fa-solid fa-face-smile"></i>
+                </div>
+                <div class="spacer"></div>
+                <div class="col3">
+                  <h2 class="medium_title">Age</h2>
+                  <h3 class="subtitle">{{ request.user.member.age }}</h3>
+                </div>
+              </div>
+              <div class="row3">
+                <div class="item1">
+                  <i class="fs-1 fa-solid fa-user"></i>
+                </div>
+                <div class="spacer1"></div>
+                <div class="col3">
+                  <h2 class="medium_title">Gender</h2>
+                  <h3 class="subtitle">{{ request.user.member.gender }}</h3>
+                </div>
+              </div>
+              <div class="row4">
+                <div class="item">
+                  <i class="fs-1 fa-solid fa-envelope"></i>
+                </div>
+                <div class="spacer"></div>
+                <div class="col3">
+                  <h2 class="medium_title">Email</h2>
+                  <h3 class="subtitle">{{ request.user.member.email }}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="spacer"></div>
+            <div class="col4">
+              <div class="row2">
+                <div class="item1">
+                  <i class="fs-1 fa-solid fa-phone"></i>
+                </div>
+                <div class="item2">
+                  <div class="col5">
+                    <h2 class="medium_title">Tel.</h2>
+                    <h3 class="subtitle1">
+                      {{ request.user.member.phone_number }}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <div class="row5">
+                <div class="item">
+                  <i class="fs-1 fa-solid fa-shrimp"></i>
+                </div>
+                <div class="item1">
+                  <div class="col6">
+                    <h2 class="medium_title">Allergic</h2>
+                    <h3 class="subtitle2">
+                      {{ request.user.member.allergic }}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <div class="row3">
+                <div class="item2">
+                  <i class="fs-1 fa-solid fa-square-virus"></i>
+                </div>
+                <div class="spacer2"></div>
+                <div class="col7">
+                  <h2 class="medium_title">Underlying Disease</h2>
+                  <h3 class="subtitle3">
+                    {{ request.user.member.underlying_disease }}
+                  </h3>
+                </div>
+              </div>
+              <div class="row3">
+                <div class="item3">
+                  <i class="fs-1 fa-solid fa-person-praying"></i>
+                </div>
+                <div class="item4">
+                  <div class="col6">
+                    <h2 class="medium_title1">Religion</h2>
+                    <h3 class="subtitle">{{ request.user.member.religion }}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="spacer1"></div>
+            <div class="col8">
+              <div class="row2">
+                <div class="item3">
+                  <i class="fs-1 fa-solid fa-star"></i>
+                </div>
+                <div class="item4">
+                  <div class="col5">
+                    <h2 class="medium_title">Favorite</h2>
+                    <h3 class="subtitle1">4</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="row5">
+                <div class="item2">
+                  <i class="fs-1 fa-solid fa-circle-check"></i>
+                </div>
+                <div class="spacer"></div>
+                <div class="col9">
+                  <h2 class="medium_title">Tours Completed</h2>
+                  <h3 class="subtitle3">2</h3>
+                </div>
+              </div>
+              <div class="row3">
+                <div class="item5">
+                  <i class="fs-1 fa-solid fa-comment-dots"></i>
+                </div>
+                <div class="spacer3"></div>
+                <div class="col9">
+                  <h2 class="medium_title">Comments</h2>
+                  <h3 class="subtitle3">0</h3>
+                </div>
+              </div>
+              <div class="row3">
+                <div class="item6">
+                  <i class="fs-1 fa-solid fa-map"></i>
+                </div>
+                <div class="item7">
+                  <div class="col6">
+                    <h2 class="medium_title1">My Tours</h2>
+                    <h3 class="subtitle">4</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-    <script type="text/javascript">
-        AOS.init();
-    </script>
+  </div>
+  <script type="text/javascript">
+    AOS.init();
+  </script>
 </body>
-
 
 {% endblock %}
