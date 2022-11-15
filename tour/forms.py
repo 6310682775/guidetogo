@@ -1,7 +1,7 @@
 from django import forms
 from datetime import datetime
 from django.forms import ModelForm
-from .models import Tour, Review
+from .models import Tour, Review, BookTour
 from django.urls import reverse_lazy
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Row, Div, Layout
@@ -101,3 +101,5 @@ class TourForm(ModelForm):
             'snippet' : forms.Textarea(attrs={'class': 'form-control'}),
             'information' : forms.Textarea(attrs={'class': 'form-control'}),
         }                             
+
+

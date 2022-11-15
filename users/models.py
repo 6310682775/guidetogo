@@ -25,6 +25,12 @@ class Member(models.Model):
     member_image = models.ImageField(null = True, blank = True,upload_to="images/member/")
     
 class Guide(models.Model):
+    verify_choices = (
+        ('verified', 'verified'),
+        ('denied', 'denied'),
+        ('not_verified', 'not_verified'),
+    )
+
     user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
     phone_number = models.CharField(max_length=20)
     detail = models.CharField(max_length=200, blank=True)
@@ -32,6 +38,7 @@ class Guide(models.Model):
     age = models.CharField(max_length=10)
     email = models.CharField(max_length=100)
     address = models.CharField(max_length=200)
+    verify_guide = models.CharField(max_length=15, choices=verify_choices, default='not_verified')
     province = models.CharField(max_length=100)
     tat_license = models.CharField(max_length=100)
     guide_image = models.ImageField(null = True, blank = True,upload_to="images/guide/")

@@ -185,8 +185,14 @@
                     <div class="price d-flex justify-content-center">
                         <h2 class="pt-5">฿{{ tour.price }}</h2>
                     </div>
-                    <button type="button" class="btn btn-outline-danger mt-3 w-100">Book</button>
-
+                    {% if check_booked %}
+                    <form method="POST" action="{% url 'tour:book_tour' tour.id %}" >
+                        {% csrf_token %}
+                        <button  type="submit" class="btn btn-outline-danger mt-3 w-100" >Book</button>
+                    </form>
+                    {% else %}
+                        <h1>BOOKED</h1>
+                    {% endif%} 
                 </div>
             </div>
         </div>
