@@ -17,4 +17,5 @@ urlpatterns = [
     path('profile', views.TourProfile.as_view(), name='profile_tour'),
     path('profile/<int:pk>', views.ChangeStatus, name='change_status'),
     path('view_tour/book/<int:tour_id>', views.EnrollTour, name='book_tour'),
+    path('delete/member/<int:pk>', views.DeleteBookTourMember.as_view(), name='book_member_delete'),
 ]

@@ -11,6 +11,7 @@ from .forms import TourForm
 from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy, reverse
 
 # Create your views here.
 
@@ -27,6 +28,12 @@ def ChangeStatus(request, pk):
     bookTour.verify_member = status_change
     bookTour.save()
     return HttpResponseRedirect(reverse("tour:profile_tour"))
+
+
+class DeleteBookTourMember(DeleteView):
+    model = BookTour
+    template_name = 'tour/book_delete.html'
+    success_url = reverse_lazy('tour:my_tour')
 
 class TourProfile(ListView):
     model = BookTour
