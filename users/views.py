@@ -2,15 +2,41 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.contrib.auth import login, logout,authenticate
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from django.views.generic import CreateView
-from .form import *
+
 from django.contrib.auth.forms import AuthenticationForm
 from .models import User, Member, Guide
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from .forms import MemberSignUpForm, GuideSignUpForm, UpdateMemberForm, UpdateGuideForm
+
+def ChangeStatus(request, pk):
+    if request.method=='POST':
+        status = request.POST.get('status')
+        user = get_object_or_404(User, id=pk)
+        status_change = ""
+        if status == "verified":
+            status_change = "verified"
+        elif  status == "denied":
+            status_change = "denied"
+        else:
+            status_change = "not_verified"
+        user.guide.verify_guide = status_change
+        user.guide.save()
+    return HttpResponseRedirect(reverse("users:verified_guide"))
+
+def VerifiedGuide(request):
+    not_verified_guide = User.objects.filter(guide__verify_guide = "not_verified")
+    verified_guide = User.objects.filter(guide__verify_guide = "verified")
+    denied_guide = User.objects.filter(guide__verify_guide = "denied")
+    return render(request, 'users/verified_guide.html', {
+        'not_verified_guide': not_verified_guide,
+        'verified_guide': verified_guide,
+        'denied_guide': denied_guide,
+    })
 
 class member_register(CreateView):
     model = User
@@ -55,7 +81,7 @@ def login_request(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('main:home')
+    return HttpResponseRedirect(reverse('main:home',))
 
 @login_required(login_url='users:login')
 def member_profile_view(request):

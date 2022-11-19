@@ -1,34 +1,39 @@
-from django.db import models
-from users.models import User, Guide, Member
 from datetime import datetime
+from django.db.models import Avg
+from ckeditor.fields import RichTextField
+from django.db import models
+from django.urls import reverse, reverse_lazy
 from django.utils.timezone import now
+from users.models import Guide, Member, User
+
 # Create your models here.
-'''
-class Review(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE) # Guide User
-    reviewto = models.ForeignKey('tour.Tour', on_delete=models.CASCADE, related_name='reviewto')
-    stars = models.IntegerField()
-    content = models.TextField()
-    date = models.DateTimeField()
-    report = models.IntegerField(default=0)
 
-    def __str__(self):
-        return f'Reviewed {self.reviewto.t_name}: {self.reviewto} rating by {self.author}'
-
-    class Meta:
-        ordering = ['date']
-'''
 class Review(models.Model):
-    reviewed_tour = models.ManyToManyField(User, blank=True, related_name='comtour')
-    review_name = models.CharField(max_length=300, null=True, blank=True)
-    review_text = models.CharField(max_length=300,null=True, blank=True)
+    review_user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    review_tour = models.ManyToManyField('tour.Tour', blank=True, related_name='this_tour')
+    review_title = models.CharField(max_length=200)
+    review_text = models.TextField()
     rating = models.IntegerField(default=0)
-    date = models.DateTimeField(default= datetime.now(),blank=True, null=True)
-
+    date = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
-        return  f"{self.reviewed_tour} : {self.review_name}  {self.review_text}"
+        return  f'{self.review_tour} : {self.review_title}  {self.review_text}'
     class Meta:
-        ordering = ['date']
+        ordering = ['-date']
+
+
+class BookTour(models.Model):
+    verify_choices = (
+        ('verified', 'verified'),
+        ('denied', 'denied'),
+        ('not_verified', 'not_verified'),
+    )
+
+    tour = models.ForeignKey( 'tour.Tour', on_delete=models.CASCADE,  related_name="book_tour",blank=True)
+    member = models.ForeignKey(User, on_delete=models.CASCADE,  related_name="book_member",blank=True)
+    verify_member = models.CharField(max_length=15, choices=verify_choices, default='not_verified')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 class Tour(models.Model):
     
@@ -38,14 +43,22 @@ class Tour(models.Model):
     price = models.PositiveIntegerField(default=0)
     period = models.CharField(max_length=50)
     amount = models.PositiveIntegerField(default=1)
-    information = models.TextField()
-    img = models.ImageField(blank=True, null=True)
+    snippet = models.CharField(max_length=255)
+    information = RichTextField(blank=True, null=True)
+    img = models.ImageField(null=True, blank=True, upload_to="images/tour/")
     review = models.ManyToManyField(Review, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    status = models.BooleanField(default=False)
+    updated_at = models.DateTimeField(auto_now=True)
+    verify_tour = models.BooleanField(default=False)
+    book = models.ManyToManyField( BookTour, blank=True,related_name='book_tour')
+    avg_rating = models.IntegerField(null = True, default = 0,blank=True )
+    
 
     def __str__(self):
         return f'{self.t_name}'
 
+    def get_absolute_url(self):
+        return reverse('tour:my_tour')
     class Meta:
         ordering = ['-date']
+

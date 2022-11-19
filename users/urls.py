@@ -10,5 +10,6 @@ urlpatterns=[
      path('guide_profile_edit/',views.guide_profile_edit, name='guide_profile_edit'),
      path('member_profile/',views.member_profile_view, name='member_profile'),
      path('member_profile_edit/', views.member_profile_edit, name='member_profile_edit'),
-
+     path('verified/', views.VerifiedGuide, name='verified_guide'),
+     path('profile/<int:pk>', views.ChangeStatus, name='change_status'),
 ]

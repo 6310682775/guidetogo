@@ -12,8 +12,11 @@ dj-database-url==1.0.0
 Django==4.1.1
 django-bootstrap-icons==0.8.1
 django-bootstrap4==22.2
+django-ckeditor==6.5.1
 django-crispy-forms==1.14.0
+django-filter==22.1
 django-heroku==0.3.1
+django-js-asset==2.0.0
 django-on-heroku==1.1.2
 django-widget-tweaks==1.4.12
 fastapi==0.85.0

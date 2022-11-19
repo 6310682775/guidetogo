@@ -1,0 +1,21 @@
+{% extends "main/layout.html" %} {% block body %}
+<title>Delete Blog Post</title>
+
+{% load static %}
+<div class="container"></div>
+    <div class="card text-center">
+        <div class="card-header">
+            <h1>Delete: {{ article.title }}</h1>
+        </div>
+        <div class="card-body">
+            <div class="form-group mx-auto">
+                <form method="POST">
+                    {% csrf_token %}
+                    <strong class="text-center">Are you sure?</strong> <br/> <br/>
+                    <button class="btn btn-danger mx-auto">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

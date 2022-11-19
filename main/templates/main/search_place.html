@@ -1,0 +1,120 @@
+{% extends "main/layout.html" %}
+
+{% block body %}
+<title>Home | GuideToGo</title>
+
+{% load static %}
+
+
+<style>
+    .carousel-item img {
+        object-fit: cover;
+    }
+
+    .carousel-caption h5 {
+        font-size: 42px;
+    }
+</style>
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1616047493036-0e1d5ab21dab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+                class="d-block w-100" alt="slide" height="600">
+            <!-- <div class="carousel-caption d-none d-md-block">
+                <h5>Bangkok</h5>
+                <p>Thailand Capital</p>
+            </div> -->
+        </div>
+        <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1576311510484-ab9fbdb2a47e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+                class="d-block w-100" alt="slide" height="600">
+            <!-- <div class="carousel-caption d-none d-md-block">
+                <h5>Ayutthaya</h5>
+                <p>Ancient City</p>
+            </div> -->
+        </div>
+        <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+                class="d-block w-100" alt="slide" height="600">
+            <!-- <div class="carousel-caption d-none d-md-block">
+                <h5>Phuket</h5>
+                <p>Beautiful Beach</p>
+            </div> -->
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<br>
+
+<div class="container px-4 px-lg-5 mt-5">
+
+    <h2 class="pt-3">All Tours</h2><br><br>
+    <h3 class="pt-3"> {{request.tour.province }} </h3><br>
+
+    <div class="row gx-4 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+        
+        {% if tour %}
+        {% for t in tour %}
+        <div class="col mb-5">
+            <div class="card border-light h-100">
+                <img class="card-img-top" src="https://images.unsplash.com/photo-1576311510484-ab9fbdb2a47e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="..." />
+                <!-- Tour details-->
+                <div class="card-body p-4">
+                    <div class="text-start">
+                        <!-- Tour name-->
+                        <h5 class="fw-bolder text-truncate">{{ t.t_name }}</h5>
+                        <!-- Tour reviews-->
+                        <div class="d-flex justify-content-start small text-warning mb-2" style="font-size: 12px; letter-spacing: 2px;">
+                            <i class="fa-solid fa-star pt-1"></i>
+                            <i class="fa-solid fa-star pt-1"></i>
+                            <i class="fa-solid fa-star pt-1"></i>
+                            <i class="fa-solid fa-star pt-1"></i>
+                            <i class="fa-solid fa-star pt-1"></i>
+                        </div>
+                        <!-- Tour info-->
+                        <p class="card-text text-truncate pt-2">{{ t.information }}</p>
+                        <div class="d-flex flex-row justify-content-start">
+                            <button type="button" class="btn btn-outline-secondary btn-sm mb-2" disabled>{{ t.province }}</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm mb-2 ms-1" disabled>{{ t.period }}</button>
+                        </div>
+                        
+                        <div class="card_subtitle d-flex justify-content-start">
+                            <h5 class="text-black">฿{{ t.price }} <h6 class="text-muted ps-1"> /per group</h6></h5>
+                        </div>
+                        
+                        <small class="card-subtitle">By {{ t.guide.first_name }} {{ t.guide.last_name }}</small><br>
+                        <small class="card-subtitle text-muted">Last Updated: {{ t.date }}</small>
+                    </div>
+                </div>
+                <!-- Tour actions-->
+                <div class="card-footer border-top-0">
+                    <div class="d-flex flex-row bd-highlight m-1 justify-content-center text-center">
+                        <a class="btn btn-outline-dark m-2 bd-highlight" role="button" href="{% url 'tour:view_tour' t.id %}"><i class="fa-solid fa-eye p-1"></i> More Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <br/>
+        <h1><center>Nothing Found</center></h1>
+        {% endif %}
+    </div>
+  
+</div>
+
+{% endblock %}

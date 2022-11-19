@@ -61,20 +61,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mynavbar">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
-                        <button class="btn btn-dark" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                </li>
-            </ul>
+            
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'main:home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Articles</a>
+                    <a class="nav-link" href="{% url 'article:article_home' %}">Articles</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">SplitBill</a>
@@ -97,12 +90,15 @@
                             {% elif user.is_guide %}
                                 <li><a class="dropdown-item" href="{% url 'users:guide_profile' %}">My Profile</a></li>
                                 <li><a class="dropdown-item" href="{% url 'users:guide_profile_edit' %}">Edit Profile</a></li>
-                                <li><a class="dropdown-item" href="{% url 'tour:my_tour' %}">My Tours</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tour:my_tour_guide' %}">My Tours</a></li>
                                 <li><a class="dropdown-item" href="{% url 'tour:create_tour' %}">Create Tour</a></li>
-                            {% else %}
+                                <li><a class="dropdown-item" href="{% url 'tour:profile_tour' %}">Profile Tour</a></li>
+                            {% elif user.is_member %}
                                 <li><a class="dropdown-item" href="{% url 'users:member_profile' %}">My Profile</a></li>
                                 <li><a class="dropdown-item" href="{% url 'users:member_profile_edit' %}">Edit Profile</a></li>
                                 <li><a class="dropdown-item" href="{% url 'tour:my_tour' %}">My Tours</a></li>
+                            {% elif user.is_admin %}
+                                <li><a class="dropdown-item" href="{% url 'users:verified_guide' %}">verified guide</a></li>
                             {% endif %}
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{% url 'users:logout' %}">Logout</a></li>
