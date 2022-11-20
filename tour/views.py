@@ -26,6 +26,14 @@ def ChangeStatus(request, pk):
         bookTour.save()
         return HttpResponseRedirect(reverse("tour:profile_tour"))
 
+
+@method_decorator(login_required, name='dispatch')
+class DeleteBookTourMember(DeleteView):
+    model = BookTour
+    template_name = 'tour/book_delete.html'
+    success_url = reverse_lazy('tour:my_tour')
+
+@method_decorator(login_required, name='dispatch')
 class TourProfile(ListView):
     model = BookTour
     template_name = "tour/profile_tour.html"
@@ -48,6 +56,14 @@ def EnrollTour(request, tour_id):
         bookTour.save()
     return HttpResponseRedirect(reverse('tour:view_tour', args=(this_tour.id,)))
 
+# class create_tour(LoginRequiredMixin, CreateView):
+#     model = Tour
+#     template_name = "tour/create_tour.html"
+#     # fields = '__all__'
+
+#     def form_valid(self, form):
+#         form.instance.guide = self.request.user
+#         return super().form_valid(form)
 
 @method_decorator(login_required, name='dispatch')
 class create_tour(LoginRequiredMixin, CreateView):
