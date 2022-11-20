@@ -15,36 +15,70 @@
   .form-group {
     margin-top: 10px;
   }
+
+  .card {
+    width: 900px;
+  }
+
+  .re-b {
+        width: 100%;
+        padding: 5px;
+        background-color: #f58e2e;
+        border-style: hidden;
+        border-radius: 6px;
+        border-color: #f58e2e;
+        font-size: 18px;
+        color: #ffff;
+        transition: .5s;
+    }
+
+    .re-b:hover {
+        color: #ffff;
+        background-color: #d47c2a;
+        border-color: #d47c2a;
+        transition: .5s;
+    }
 </style>
 
-<section>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 mx-auto">
-          <div class="card m-5">
-            <div class="card-header border-light text-black">
-              <h2 class="mt-2">Guide Register</h2>
-            </div>
-            <div class="card-body p-4">
-                <form action="{% url 'users:guide_register' %}" method="POST" enctype="multipart/form-data">
-                  {% csrf_token %}
-                      {% for field in form.visible_fields %}
-                        <div class="form-group">
-                            {{ field.label_tag }}
-                              {% render_field field class="form-control" %}
-                                {% for error in field.errors %}
-                                  <span style="color:red">{{ error }}</span>
-                                {% endfor %}
-                      {% endfor %}
-                          <input type="submit" value="Register" class="btn btn-block btn-primary w-100 mt-4">
-                        </div>
-                </form>
+<body style="background: #eeee;">
+  
+  <section class="m-5">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10 d-flex justify-content-center align-items-center">
+          
+          <div class="card shadow" style="border-radius: 1rem; border: none;">
+
+              <div class="d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fa-solid fa-location-dot fa-2x me-2" style="color: #f58e2e; transform: rotate(40deg);"></i>
+                    <span class="h1 fw-bold mb-0">GuideToGo</span>
+                  </div>
+
+                    <h4 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color: #20247d;">Guide Register</h4>
+                    <form action="{% url 'users:guide_register' %}" method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                          {% for field in form.visible_fields %}
+                            <div class="form-group">
+                                {{ field.label_tag }}
+                                  {% render_field field class="form-control" %}
+                                    {% for error in field.errors %}
+                                      <span style="color:red">{{ error }}</span>
+                                    {% endfor %}
+                          {% endfor %}
+                              <input type="submit" value="Register" class="re-b w-100 mt-4">
+                            </div>
+                    </form>
+
+                </div>
               </div>
-                </div>   
-            </div>
+            
           </div>
         </div>
+      </div>
     </div>
   </section>
 
+</body>
 {% endblock %}

@@ -1,1317 +1,201 @@
 {% extends "main/layout.html" %}
 
 {% block body %}
-<title>Profile | GuideToGo</title>
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-    <link rel="stylesheet" type="text/css" href="./css/common.css" />
-    <link rel="stylesheet" type="text/css" href="./css/fonts.css" />
-    <link rel="stylesheet" type="text/css" href="./css/ProjectGuide.css" />
-    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/headroom.js@0.12.0/dist/headroom.min.js"></script>
-
-
-</head>
+<title>Guide | GuideToGo</title>
 
 {% load static %}
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-.root {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  position: relative;
-  overflow: hidden;
+.section {
+    padding: 100px 0 50px 0;
+    position: relative;
+}
+.gray-bg {
+    background-color: #ffff;
 }
 
-.col {
-  display: flex;
-  flex-direction: column;
-  width: 80.94%;
-  position: relative;
-  flex-grow: 1;
-  margin: 135px 13.54% 144px 5.52%;
+/* About Me 
+---------------------*/
+.about-text {
+  padding-left: 30px;
 }
 
-.col1 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.title {
-  font: 500 30px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  width: 92.02%;
-  position: relative;
-  margin: 0px auto;
-}
-@media (max-width: 1199px) {
-  .title {
-    font-size: 27px;
-    text-align: left;
-    width: 96.47%;
-  }
-}
-@media (max-width: 991px) {
-  .title {
-    font-size: 24px;
-    width: 97.33%;
-  }
+.about-text h3 {
+  font-size: 45px;
+  font-weight: 700;
+  margin: 0 0 6px;
 }
 @media (max-width: 767px) {
-  .title {
-    font-size: 21px;
-    width: 97.98%;
+  .about-text h3 {
+    font-size: 35px;
   }
 }
-@media (max-width: 575px) {
-  .title {
-    font-size: 20px;
-    width: 98.48%;
-  }
-}
-@media (max-width: 479px) {
-  .title {
-    font-size: 18px;
-    width: 98.86%;
-  }
-}
-@media (max-width: 383px) {
-  .title {
-    font-size: 17px;
-    width: 99.14%;
-  }
-}
-@media (max-width: 1919px) {
-  .title {
-    width: 93.89%;
-  }
-}
-@media (max-width: 1399px) {
-  .title {
-    width: 95.35%;
-  }
-}
-
-.row {
-  display: flex;
-  position: relative;
-  margin: 81px 0px 0px;
-}
-@media (max-width: 1399px) {
-  .row {
-    flex-wrap: wrap;
-    align-content: flex-start;
-    -moz-column-gap: 0px;
-    column-gap: 0px;
-    row-gap: 16px;
-  }
-}
-
-.row > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 1 1 937px;
-}
-@media (max-width: 1399px) {
-  .row > .item {
-    flex: 0 0 100%;
-  }
-}
-
-.content_box {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  box-shadow: 2px 6px 4px 0px rgba(0, 0, 0, 0.247);
-  border-radius: 10px 10px 10px 10px;
-  outline: 0.3000000119px solid black;
-  outline-offset: -0.3000000119px;
-  position: relative;
-  flex-grow: 1;
-}
-
-.col2 {
-  display: flex;
-  flex-direction: column;
-  width: 93.06%;
-  position: relative;
-  flex-grow: 1;
-  margin: 26px 4.48% 65px 2.45%;
-}
-
-.row1 {
-  display: flex;
-  position: relative;
-  margin: 0px 0px 0px 6px;
-}
-@media (max-width: 1199px) {
-  .row1 {
-    margin: 0px 0px 0px 5px;
-  }
-}
-
-.row1 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 150px;
-}
-
-.image3 {
-  width: 100%;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  margin: 0px 0px 11px;
-}
-
-.row1 > .spacer {
-  flex: 0 1 31px;
-}
-
-.col3 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 685px;
-  margin: 16px 0px 0px;
-}
-
-.title1 {
-  font: 400 28px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-  margin: 0px 1px;
-}
-@media (max-width: 1199px) {
-  .title1 {
-    font-size: 25px;
-    text-align: left;
-    margin: 0px 5px;
-  }
-}
-@media (max-width: 991px) {
-  .title1 {
-    font-size: 23px;
-  }
+.about-text h6 {
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 @media (max-width: 767px) {
-  .title1 {
-    font-size: 20px;
-  }
-}
-@media (max-width: 575px) {
-  .title1 {
-    font-size: 19px;
-  }
-}
-@media (max-width: 479px) {
-  .title1 {
+  .about-text h6 {
     font-size: 18px;
   }
 }
-@media (max-width: 383px) {
-  .title1 {
-    font-size: 17px;
-  }
+.about-text p {
+  font-size: 20px;
+  max-width: 450px; 
 }
 
-.row2 {
-  display: flex;
+.about-list {
+  padding-top: 10px;
+}
+.about-list .media {
+  padding: 5px 0;
+}
+.about-list label {
+  color: #20247b;
+  font-size: 17px;
+  font-weight: 600;
+  width: 115px;
+  margin: 0;
   position: relative;
-  margin: 19px 0px 0px;
 }
 
-.row3 {
-  display: flex;
-  position: relative;
-  flex: 0 1 189px;
-  margin: 0px 0px 35px;
+.about-list p {
+  margin: 0;
+  font-size: 16px;
 }
 
-.row3 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 51px;
+.about-avatar .img-fluid {
+    width: 700px;
+    height: 520px;
+    overflow: hidden;
+    object-fit: cover;
+    border-top-left-radius: 10px;
 }
 
-.icon1 {
-  border-radius: 2px 2px 2px 2px;
-  width: 51px;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  min-width: 51px;
-}
-
-.subtitle {
-  font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-  flex: 0 0 auto;
-  min-width: 124px;
-  margin: 11px 0px 8px 14px;
-}
-@media (max-width: 1199px) {
-  .subtitle {
-    font-size: 21px;
-    text-align: left;
-    margin: 11px 0px 8px 12px;
-  }
-}
 @media (max-width: 991px) {
-  .subtitle {
-    font-size: 19px;
-    margin: 11px 0px 8px 10px;
+  .about-avatar {
+    margin-top: 30px;
   }
 }
-@media (max-width: 767px) {
-  .subtitle {
-    font-size: 18px;
-    margin: 11px 0px 8px 9px;
-  }
-}
-@media (max-width: 575px) {
-  .subtitle {
-    font-size: 17px;
-    margin: 11px 0px 8px 8px;
-  }
-}
-@media (max-width: 383px) {
-  .subtitle {
-    font-size: 16px;
-  }
-}
-@media (max-width: 479px) {
-  .subtitle {
-    margin: 11px 0px 8px 7px;
-  }
-}
-
-.row2 > .spacer {
-  flex: 0 1 20px;
-}
-
-.row4 {
-  display: flex;
-  position: relative;
-  flex: 0 1 476px;
-  margin: 10px 0px 0px;
-}
-
-.row5 {
-  display: flex;
-  position: relative;
-  flex: 0 1 230px;
-  margin: 5px 0px 0px;
-}
-
-.row5 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 30px;
-}
-
-.icon {
-  width: 30px;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  min-width: 30px;
-  margin: 12px 0px 29px;
-}
-
-.row5 > .item1 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 200px;
-}
-
-.col4 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex-grow: 1;
-  margin: 0px 0px 0px 12px;
-}
-@media (max-width: 1199px) {
-  .col4 {
-    margin: 0px 0px 0px 11px;
-  }
-}
-@media (max-width: 991px) {
-  .col4 {
-    margin: 0px 0px 0px 9px;
-  }
-}
-@media (max-width: 767px) {
-  .col4 {
-    margin: 0px 0px 0px 8px;
-  }
-}
-@media (max-width: 575px) {
-  .col4 {
-    margin: 0px 0px 0px 7px;
-  }
-}
-@media (max-width: 479px) {
-  .col4 {
-    margin: 0px 0px 0px 6px;
-  }
-}
-
-.medium_title1 {
-  font: 400 26px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-}
-@media (max-width: 1199px) {
-  .medium_title1 {
-    font-size: 24px;
-    text-align: left;
-  }
-}
-@media (max-width: 991px) {
-  .medium_title1 {
-    font-size: 21px;
-  }
-}
-@media (max-width: 767px) {
-  .medium_title1 {
-    font-size: 19px;
-  }
-}
-@media (max-width: 575px) {
-  .medium_title1 {
-    font-size: 18px;
-  }
-}
-@media (max-width: 479px) {
-  .medium_title1 {
-    font-size: 17px;
-  }
-}
-
-.subtitle1 {
-  font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-  margin: 5px 0px 0px;
-}
-@media (max-width: 1199px) {
-  .subtitle1 {
-    font-size: 21px;
-    text-align: left;
-  }
-}
-@media (max-width: 991px) {
-  .subtitle1 {
-    font-size: 19px;
-  }
-}
-@media (max-width: 767px) {
-  .subtitle1 {
-    font-size: 18px;
-  }
-}
-@media (max-width: 575px) {
-  .subtitle1 {
-    font-size: 17px;
-  }
-}
-@media (max-width: 383px) {
-  .subtitle1 {
-    font-size: 16px;
-  }
-}
-
-.row4 > .spacer {
-  flex: 0 1 23px;
-}
-
-.row6 {
-  display: flex;
-  position: relative;
-  flex: 0 1 223px;
-}
-
-.row6 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 30px;
-}
-
-.icon2 {
-  width: 30px;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  min-width: 30px;
-  margin: 17px 0px 29px;
-}
-
-.row6 > .item1 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 193px;
-}
-
-.col5 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex-grow: 1;
-  margin: 0px 0px 0px 8px;
-}
-@media (max-width: 1199px) {
-  .col5 {
-    margin: 0px 0px 0px 7px;
-  }
-}
-@media (max-width: 991px) {
-  .col5 {
-    margin: 0px 0px 0px 6px;
-  }
-}
-@media (max-width: 767px) {
-  .col5 {
-    margin: 0px 0px 0px 5px;
-  }
-}
-
-.subtitle2 {
-  font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-  margin: 10px 0px 0px;
-}
-@media (max-width: 1199px) {
-  .subtitle2 {
-    font-size: 21px;
-    text-align: left;
-  }
-}
-@media (max-width: 991px) {
-  .subtitle2 {
-    font-size: 19px;
-  }
-}
-@media (max-width: 767px) {
-  .subtitle2 {
-    font-size: 18px;
-  }
-}
-@media (max-width: 575px) {
-  .subtitle2 {
-    font-size: 17px;
-  }
-}
-@media (max-width: 383px) {
-  .subtitle2 {
-    font-size: 16px;
-  }
-}
-
-.row7 {
-  display: flex;
-  position: relative;
-  margin: 33px 0px 0px;
-}
-
-.col6 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 396px;
-  margin: 0px 0px 4px;
-}
-
-.row8 {
-  display: flex;
-  position: relative;
-}
-
-.row8 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 25px;
-}
-
-.image2 {
-  width: 25px;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  min-width: 25px;
-  margin: 16px 0px 19px;
-}
-
-.row8 > .spacer {
-  flex: 0 1 29px;
-}
-
-.col7 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 341px;
-}
-
-.row9 {
-  display: flex;
-  position: relative;
-  margin: 7px 0px 0px;
-}
-
-.row9 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 37px;
-}
-
-.image1 {
-  width: 37px;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  min-width: 37px;
-  margin: 16px 0px 21px;
-}
-
-.row9 > .spacer {
-  flex: 0 1 17px;
-}
-
-.row9 > .item1 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 37px;
-}
-
-.image {
-  width: 37px;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  min-width: 37px;
-  margin: 16px 0px 25px;
-}
-
-.row9 > .spacer1 {
-  flex: 0 1 17px;
-}
-
-.row10 {
-  display: flex;
-  position: relative;
-  margin: 7px 0px 0px 1px;
-}
-@media (max-width: 1199px) {
-  .row10 {
-    margin: 7px 0px 0px 5px;
-  }
-}
-
-.row10 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 37px;
-}
-
-.row10 > .spacer {
-  flex: 0 1 17px;
-}
-
-.row7 > .spacer {
-  flex: 0 1 41px;
-}
-
-.col8 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 406px;
-}
-
-.medium_title {
-  font: 400 24px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-  margin: 4px 0px 0px;
-}
-@media (max-width: 1199px) {
-  .medium_title {
-    font-size: 22px;
-    text-align: left;
-  }
-}
-@media (max-width: 991px) {
-  .medium_title {
-    font-size: 20px;
-  }
-}
-@media (max-width: 767px) {
-  .medium_title {
-    font-size: 19px;
-  }
-}
-@media (max-width: 575px) {
-  .medium_title {
-    font-size: 18px;
-  }
-}
-@media (max-width: 479px) {
-  .medium_title {
-    font-size: 17px;
-  }
-}
-@media (max-width: 383px) {
-  .medium_title {
-    font-size: 16px;
-  }
-}
-
-.row > .spacer {
-  flex: 0 1 85px;
-}
-@media (max-width: 1399px) {
-  .row > .spacer {
-    display: none;
-  }
-}
-
-.row > .item1 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 1 1 532px;
-}
-@media (max-width: 1399px) {
-  .row > .item1 {
-    flex: 0 0 100%;
-  }
-}
-
-.image5 {
-  border-radius: 10px 10px 10px 10px;
-  width: 100%;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  margin: 0px 0px 225px;
-}
-
-.col9 {
-  display: flex;
-  flex-direction: column;
-  width: 23.17%;
-  position: relative;
-  margin: 92px 76.83% 0px 0%;
-}
-
-.title2 {
-  font: 500 30px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-}
-@media (max-width: 1199px) {
-  .title2 {
-    font-size: 27px;
-    text-align: left;
-  }
-}
-@media (max-width: 991px) {
-  .title2 {
-    font-size: 24px;
-  }
-}
-@media (max-width: 767px) {
-  .title2 {
-    font-size: 21px;
-  }
-}
-@media (max-width: 575px) {
-  .title2 {
-    font-size: 20px;
-  }
-}
-@media (max-width: 479px) {
-  .title2 {
-    font-size: 18px;
-  }
-}
-@media (max-width: 383px) {
-  .title2 {
-    font-size: 17px;
-  }
-}
-
-.content_box1 {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
-  border-radius: 10px 10px 10px 10px;
-  width: 82.22%;
-  position: relative;
-  margin: 35px 17.78% 0px 0%;
-}
-
-.col10 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex-grow: 1;
-  margin: 0px 0px 8px;
-}
-
-.col10 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.image4 {
-  border-radius: 10px 10px 10px 10px;
-  width: 100%;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-}
-
-.col11 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin: 10px 19px 0px 16px;
-}
-@media (max-width: 1199px) {
-  .col11 {
-    margin: 10px 17px 0px 14px;
-  }
-}
-@media (max-width: 991px) {
-  .col11 {
-    margin: 10px 14px 0px 12px;
-  }
-}
-@media (max-width: 767px) {
-  .col11 {
-    margin: 10px 12px 0px 10px;
-  }
-}
-@media (max-width: 575px) {
-  .col11 {
-    margin: 10px 11px 0px 9px;
-  }
-}
-@media (max-width: 479px) {
-  .col11 {
-    margin: 10px 10px 0px 8px;
-  }
-}
-@media (max-width: 383px) {
-  .col11 {
-    margin: 10px 9px 0px 8px;
-  }
-}
-
-.highlights {
-  font: 500 18px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-  margin: 0px 0px 0px 2px;
-}
-@media (max-width: 1199px) {
-  .highlights {
-    font-size: 17px;
-    text-align: left;
-    margin: 0px 0px 0px 5px;
-  }
-}
-@media (max-width: 991px) {
-  .highlights {
-    font-size: 16px;
-  }
-}
-@media (max-width: 767px) {
-  .highlights {
-    font-size: 15px;
-  }
-}
-@media (max-width: 479px) {
-  .highlights {
-    font-size: 14px;
-  }
-}
-
-.col12 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin: 33px 2px 0px 0px;
-}
-@media (max-width: 1199px) {
-  .col12 {
-    margin: 33px 5px 0px 0px;
-  }
-}
-
-.container1 {
-  display: flex;
-  flex-direction: column;
-  height: 60px;
-  position: relative;
-}
-
-.paragraph {
-  font: 500 14px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  width: 259px;
-  height: 66px;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-}
-@media (max-width: 991px) {
-  .paragraph {
-    font-size: 13px;
-    text-align: left;
-  }
-}
-@media (max-width: 575px) {
-  .paragraph {
-    font-size: 12px;
-  }
-}
-
-.col13 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin: 5px 0px 0px;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 30px;
-  position: relative;
-}
-
-.subtitle11 {
-  font: 500 20px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: absolute;
-  top: 0px;
-  height: 37px;
-  width: 259px;
-  right: 0px;
-}
-@media (max-width: 1199px) {
-  .subtitle11 {
-    font-size: 19px;
-    text-align: left;
-  }
-}
-@media (max-width: 991px) {
-  .subtitle11 {
-    font-size: 18px;
-  }
-}
-@media (max-width: 767px) {
-  .subtitle11 {
-    font-size: 17px;
-  }
-}
-@media (max-width: 479px) {
-  .subtitle11 {
-    font-size: 16px;
-  }
-}
-
-.line {
-  background-color: black;
-  height: 1px;
-  position: relative;
-  margin: 6px 0px 0px;
-}
 
-.row11 {
-  display: flex;
-  position: relative;
-  margin: 9px 0px 0px;
+.about-section .counter {
+  padding: 22px 20px;
+  background: #f58e2e;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
-
-.row11 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 67px;
-}
-
-.icon21 {
-  width: 67px;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  min-width: 67px;
-}
-
-.row11 > .item1 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 192px;
-}
-
-.col14 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex-grow: 1;
-  margin: 15px 0px 0px 15px;
-}
-@media (max-width: 1199px) {
-  .col14 {
-    margin: 15px 0px 0px 13px;
-  }
-}
-@media (max-width: 991px) {
-  .col14 {
-    margin: 15px 0px 0px 11px;
-  }
-}
-@media (max-width: 767px) {
-  .col14 {
-    margin: 15px 0px 0px 9px;
-  }
-}
-@media (max-width: 479px) {
-  .col14 {
-    margin: 15px 0px 0px 8px;
-  }
-}
-@media (max-width: 383px) {
-  .col14 {
-    margin: 15px 0px 0px 7px;
-  }
-}
-
-.paragraph1 {
-  font: 500 14px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-}
-@media (max-width: 991px) {
-  .paragraph1 {
-    font-size: 13px;
-    text-align: left;
-  }
-}
-@media (max-width: 575px) {
-  .paragraph1 {
-    font-size: 12px;
-  }
+.about-section .counter .count-data {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-
-.row12 {
-  display: flex;
-  position: relative;
-  margin: 4px 0px 0px;
+.about-section .counter .count {
+  font-weight: 700;
+  color: #20247b;
+  margin: 0 0 5px;
 }
-
-.row12 > .item {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 0 1 29px;
+.about-section .counter p {
+  font-weight: 600;
+  margin: 0;
 }
 
-.icon3 {
-  width: 29px;
-  height: auto;
-  vertical-align: top;
-  -o-object-fit: contain;
-  object-fit: contain;
-  -o-object-position: center top;
-  object-position: center top;
-  position: relative;
-  min-width: 29px;
+.count-data p {
+  color: #ffff;
+  font-size: 20px;
 }
 
-.text {
-  font: 400 14px/1.2 "Inter", Helvetica, Arial, serif;
-  color: black;
-  letter-spacing: 0px;
-  position: relative;
-  flex: 0 0 auto;
-  min-width: 139px;
-  margin: 5px 0px 5px 9px;
-}
-@media (max-width: 991px) {
-  .text {
-    font-size: 13px;
-    text-align: left;
-    margin: 5px 0px 5px 7px;
-  }
-}
-@media (max-width: 575px) {
-  .text {
-    font-size: 12px;
-    margin: 5px 0px 5px 5px;
-  }
-}
-@media (max-width: 1199px) {
-  .text {
-    margin: 5px 0px 5px 8px;
-  }
+.theme-color {
+    color: #f58e2e;
+    font-size: 28px;
 }
-@media (max-width: 767px) {
-  .text {
-    margin: 5px 0px 5px 6px;
-  }
+.dark-color {
+    color: #20247b;
 }
-
 </style>
 
-<body class="flex-column">
-  <div class="project-guide root">
-      <div class="col">
-          <div class="col1">
-              <h1 class="title">Welcome: {{ request.user.username }}<br /></h1>
-              <div class="row">
-                  <div class="item">
-                      <div class="content_box">
-                          <div class="col2">
-                              <div class="row1">
-                                  <div class="item">
-                                      <img class="image3" src="{{ request.user.guide.guide_image.url }}"  />
-                                  </div>
-                                  <div class="spacer"></div>
-                                  <div class="col3">
-                                      <h1 class="title1">{{ request.user.first_name }} {{ request.user.last_name }}</h1>
-                                      <div class="row2">
-                                          <div class="row3">
-                                              <div class="item">
-                                                  <i class="fs-1 fa-solid fa-star"></i>
-                                              </div>
-                                              <h3 class="subtitle">rating: 4</h3>
-                                          </div>
-                                          <div class="spacer"></div>
-                                          <div class="row4">
-                                              <div class="row5">
-                                                  <div class="item">
-                                                    <i class="fs-1 fa-solid fa-phone"></i>
-                                                  </div>
-                                                  <div class="item1">
-                                                      <div class="col4">
-                                                          <h2 class="medium_title1">Tel.</h2>
-                                                          <h3 class="subtitle1">{{ request.user.guide.phone_number }} </h3>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <div class="spacer"></div>
-                                              <div class="row6">
-                                                  <div class="item">
-                                                    <i class="fs-1 fa-solid fa-id-card"></i>
-                                                  </div>
-                                                  <div class="item1">
-                                                      <div class="col5">
-                                                          <h2 class="medium_title1">TAT License</h2>
-                                                          <h3 class="subtitle2">{{ request.user.guide.tat_license }}</h3>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="row7">
-                                  <div class="col6">
-                                      <div class="row8">
-                                          <div class="item">
-                                            <i class="fs-1 fa-solid fa-location-dot"></i>
-                                          </div>
-                                          <div class="spacer"></div>
-                                          <div class="col7">
-                                              <h2 class="medium_title1">Address</h2>
-                                              <h3 class="subtitle1">{{ request.user.guide.address }}, {{ request.user.guide.province }}</h3>
-                                          </div>
-                                      </div>
-                                      <div class="row9">
-                                          <div class="item">
-                                            <i class="fs-1 fa-solid fa-face-smile"></i>
-                                          </div>
-                                          <div class="spacer"></div>
-                                          <div class="col7">
-                                              <h2 class="medium_title1">Age</h2>
-                                              <h3 class="subtitle1">{{ request.user.guide.age }}</h3>
-                                          </div>
-                                      </div>
-                                      <div class="row9">
-                                          <div class="item1">
-                                            <i class="fs-1 fa-solid fa-user"></i>
-                                          </div>
-                                          <div class="spacer1"></div>
-                                          <div class="col7">
-                                              <h2 class="medium_title1">Gender</h2>
-                                              <h3 class="subtitle1">{{ request.user.guide.gender }}</h3>
-                                          </div>
-                                      </div>
-                                      <div class="row10">
-                                          <div class="item">
-                                            <i class="fs-1 fa-solid fa-envelope"></i>
-                                          </div>
-                                          <div class="spacer"></div>
-                                          <div class="col7">
-                                              <h2 class="medium_title1">Email</h2>
-                                              <h3 class="subtitle1">{{ request.user.guide.email }}</h3>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="spacer"></div>
-                                  <div class="col8">
-                                      <h2 class="medium_title1">About</h2>
-                                      <h2 class="medium_title">{{ request.user.guide.detail }}</h2>
-                                  </div>
-                              </div>
+<section class="section about-section gray-bg" id="about">
+    <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-lg-6">
+                <div class="about-text go-to">
+                    <h3 class="dark-color">Welcome, {{ request.user.first_name.title }} {{ request.user.last_name.title }}</h3>
+                    <h6 class="theme-color lead">GUIDE</h6>
+                    <p>{{ request.user.guide.detail }}</p>
+                    <div class="row about-list">
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label><i class="fa-solid fa-signature"></i> Name</label>
+                                <p>{{ request.user.first_name.title }} {{ request.user.last_name.title }}</p>
+                            </div>
+                            <div class="media">
+                                <label><i class="fa-solid fa-phone"></i> Tel</label>
+                                <p>{{ request.user.guide.phone_number }}</p>
+                            </div>
+                            <div class="media">
+                                <label><i class="fa-solid fa-face-smile"></i> Age</label>
+                                <p>{{ request.user.guide.age }}</p>
+                            </div>
+                            <div class="media">
+                                <label><i class="fa-solid fa-map"></i> Province</label>
+                                <p>{{ request.user.guide.province }}</p>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label><i class="fa-solid fa-envelope"></i> E-mail</label>
+                                <p>{{ request.user.guide.email }}</p>
+                            </div>
+                            <div class="media">
+                                <label><i class="fa-solid fa-user"></i> Gender</label>
+                                <p>{{ request.user.guide.gender }}</p>
+                            </div>
+                            <div class="media">
+                                <label><i class="fa-solid fa-location-dot"></i> Address</label>
+                                <p>{{ request.user.guide.address }}</p>
+                            </div>
+                            <div class="media">
+                              <label><i class="fa-solid fa-id-card"></i> TAT License</label>
+                              <p>{{ request.user.guide.tat_license }}</p>
                           </div>
-                      </div>
-                  </div>
-                  <!-- <div class="spacer"></div>
-                  <div class="item1">
-                      <img class="image5" src="./assets/a0893f00a569685d37e84195ef8ef43c.png"  />
-                  </div> -->
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-avatar">
+                    <img  class="img-fluid"  src= "{{ request.user.guide.guide_image.url }}" >
+                </div>   
+            </div>
+        </div>
+        <div class="counter shadow">
+            <div class="row">
+              <div class="col-6 col-lg-3">
+                  <a class="btn btn-dark w-100" href="{% url 'users:guide_profile_edit' %}">Edit Profile</a>
               </div>
-          </div>
-          <div class="col9">
-              <!-- <h1 class="title2">Availble Tours</h1>
-              
-              <div class="content_box1">
-                  <div class="col10">
-                      <div class="item">
-                          <img class="image4" src="https://images.unsplash.com/photo-1616047493036-0e1d5ab21dab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" />
-                      </div>
-                      <div class="col11">
-                          <h4 class="highlights">1 day trip in ancient city<br />of Ayuthaya</h4>
-                          <div class="col12">
-                              <div class="container1">
-                                  <p class="paragraph">
-                                      Ayuthaya has many beautiful places to visit. I would like to take you to the most exciting spot in
-                                      Ayuthaya in 1 day
-                                  </p>
-                              </div>
-                              <div class="col13">
-                                  <div class="col1">
-                                      <div class="container">
-                                          <h3 class="">
-                                              <div class="subtitle11">
-                                                  <span class="">3500 </span><span class="">bath / per group</span>
-                                              </div>
-                                          </h3>
-                                      </div>
-                                      <hr class="line" size="1" />
-                                  </div>
-                                  <div class="row11">
-                                      <div class="item">
-                                          <img class="icon21" src="{{ request.user.guide.guide_image.url }}" />
-                                      </div>
-                                      <div class="item1">
-                                          <div class="col14">
-                                              <div class="paragraph1">{{ request.user.username }}<br /></div>
-                                              <div class="row12">
-                                                  <div class="item">
-                                                    <i class="fa-solid fa-star"></i>
-                                                  </div>
-                                                  <div class="text">rating ...<br /></div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+              <div class="col-6 col-lg-3">
+                  
+              </div>
+              <div class="col-6 col-lg-3">
+                  
+              </div>
+              <div class="col-6 col-lg-3">
+                  <div class="count-data text-center">
+                    {% if request.user.guide.verify_guide == 'verified' %}
+                      <h6 class="count h2"><i class="fa-sharp fa-solid fa-circle-check"></i></h6>
+                      <p>Verified</p>
+                    {% elif request.user.guide.verify_guide == 'not_verified' %}
+                      <h6 class="count h2"><i class="fa-solid fa-hourglass-start"></i></h6>
+                      <p>Not Verified</p>
+                    {% else %}
+                      <h6 class="count h2"><i class="fa-solid fa-circle-xmark"></i></h6>
+                      <p>Denied</p>
+                    {% endif %}
                   </div>
-              </div> -->
-
-          </div>
-      </div>
-  </div>
-  <script type="text/javascript">
-      AOS.init();
-  </script>
-</body>
+              </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

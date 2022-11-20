@@ -1,0 +1,308 @@
+{% extends "main/layout.html" %}
+
+{% block body %}
+<title>Guide | GuideToGo</title>
+
+{% load static %}
+
+<style>
+.section {
+    padding: 100px 0 50px 0;
+    position: relative;
+}
+.gray-bg {
+    background-color: #ffff;
+}
+
+/* About Me 
+---------------------*/
+.about-text {
+  padding-left: 30px;
+}
+
+.about-text h3 {
+  font-size: 45px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+@media (max-width: 767px) {
+  .about-text h3 {
+    font-size: 35px;
+  }
+}
+.about-text h6 {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+@media (max-width: 767px) {
+  .about-text h6 {
+    font-size: 18px;
+  }
+}
+.about-text p {
+  font-size: 20px;
+  max-width: 450px; 
+}
+
+.about-list {
+  padding-top: 10px;
+}
+.about-list .media {
+  padding: 5px 0;
+}
+.about-list label {
+  color: #20247b;
+  font-size: 17px;
+  font-weight: 600;
+  width: 115px;
+  margin: 0;
+  position: relative;
+}
+
+.about-list p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.about-avatar .img-fluid {
+    width: 700px;
+    height: 520px;
+    overflow: hidden;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+}
+
+@media (max-width: 991px) {
+  .about-avatar {
+    margin-top: 30px;
+  }
+}
+
+.about-section .counter {
+  padding: 22px 20px;
+  background: #f58e2e;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.about-section .counter .count-data {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.about-section .counter .count {
+  font-weight: 700;
+  color: #20247b;
+  margin: 0 0 5px;
+}
+.about-section .counter p {
+  font-weight: 600;
+  margin: 0;
+}
+
+.count-data p {
+  color: #ffff;
+  font-size: 20px;
+}
+
+.theme-color {
+    color: #f58e2e;
+    font-size: 28px;
+}
+.dark-color {
+    color: #20247b;
+}
+
+/* Tour Card Part */
+.card-img-top {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+}
+</style>
+
+<section class="section about-section gray-bg" id="about">
+    <div class="container">
+        <div class="row align-items-center flex-row-reverse" >
+            <div class="col-lg-6">
+                <div class="about-text go-to">
+                    <h3 class="dark-color">About {{ guide.first_name.title }} {{ guide.last_name.title }}</h3>
+                    <h6 class="theme-color lead">GUIDE</h6>
+                    <p>{{ guide.guide.detail }}</p>
+                    <div class="row about-list">
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label><i class="fa-solid fa-signature"></i> Name</label>
+                                <p>{{ guide.first_name.title }} {{ guide.last_name.title }}</p>
+                            </div>
+                            <div class="media">
+                                <label><i class="fa-solid fa-phone"></i> Tel</label>
+                                <p>{{ guide.guide.phone_number }}</p>
+                            </div>
+                            <div class="media">
+                                <label><i class="fa-solid fa-face-smile"></i> Age</label>
+                                <p>{{ guide.guide.age }}</p>
+                            </div>
+                            <div class="media">
+                                <label><i class="fa-solid fa-map"></i> Province</label>
+                                <p>{{ guide.guide.province }}</p>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label><i class="fa-solid fa-envelope"></i> E-mail</label>
+                                <p>{{ guide.guide.email }}</p>
+                            </div>
+                            <div class="media">
+                                <label><i class="fa-solid fa-user"></i> Gender</label>
+                                <p>{{ guide.guide.gender }}</p>
+                            </div>
+                            <div class="media">
+                                <label><i class="fa-solid fa-location-dot"></i> Address</label>
+                                <p>{{ guide.guide.address }}</p>
+                            </div>
+                            <div class="media">
+                              <label><i class="fa-solid fa-id-card"></i> TAT License</label>
+                              <p>{{ guide.guide.tat_license }}</p>
+                          </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-avatar">
+                    <img class="img-fluid" src= "{{ guide.guide.guide_image.url }}" >
+                </div>   
+            </div>
+        </div>
+        <div class="counter shadow">
+            <div class="row">
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2">{{ t_count }}</h6>
+                        <p>Tours</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2">{{ r_count }}</h6>
+                        <p>Reviews</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        {% if avg_all > 0 %}
+                            <h6 class="count h2">{{ avg_all }}</h6>
+                        {% else %}
+                            <h6 class="count h2">-</h6>
+                        {% endif %}
+                        <p>Rating</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        {% if guide.guide.verify_guide == 'verified' %}
+                            <h6 class="count h2"><i class="fa-sharp fa-solid fa-circle-check"></i></h6>
+                            <p>Verified</p>
+                        {% elif guide.guide.verify_guide == 'not_verified' %}
+                            <h6 class="count h2"><i class="fa-solid fa-hourglass-start"></i></h6>
+                            <p>Not Verified</p>
+                        {% else %}
+                            <h6 class="count h2"><i class="fa-solid fa-circle-xmark"></i></h6>
+                            <p>Denied</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Guide Tours Part -->
+<div class="container px-4 px-lg-5 mt-5">
+    <h2 class="pt-3">{{ guide.first_name.title }}'s Tours</h2><br><br>
+        <div class="row gx-4 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start mt-3">
+            {% for t in tour %}
+            <div class="col mb-5">
+                <div class="card border-light h-100 shadow">
+                    <div class="card-img-body" style="transform: rotate(0);">
+                        {% if t.img %}
+                            <img class="card-img-top" src="{{ t.img.url }}" alt="..." />
+                        {% endif %}
+                        <!-- Tour details-->
+                        <div class="card-body p-4">
+                            <div class="text-start">
+                                <!-- Tour name-->
+                                <h5 class="fw-bolder text-truncate "><a href="{% url 'tour:view_tour' t.id %}" class="stretched-link" style="text-decoration: none; color: black;">{{ t.t_name }}</a></h5>
+                                <!-- Tour reviews-->
+                                <div class="d-flex justify-content-start small text-warning mb-2" style="font-size: 12px; letter-spacing: 2px;">
+                                    {% if t.avg_rating > 4  %}
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    {% elif t.avg_rating > 3  %}
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    {% elif t.avg_rating > 2  %}
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    {% elif t.avg_rating >  1  %}
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    {% else %}
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    {% endif %}
+                                </div>
+                                <!-- Tour info-->
+                                <p class="card-text text-truncate pt-2">{{ t.snippet }}</p>
+                                <div class="d-flex flex-row justify-content-start">
+                                    <button type="button" class="card-button btn btn-outline-secondary btn-sm mb-2" disabled>{{ t.province }}</button>
+                                    <button type="button" class="card-button btn btn-outline-secondary btn-sm mb-2 ms-1" disabled>{{ t.period }} hours</button>
+                                </div>
+                                
+                                <div class="card_subtitle d-flex justify-content-start pt-2">
+                                    <h5 class="text-black">฿{{ t.price }} <h6 class="text-muted ps-1 pt-1"> /per group</h6></h5>
+                                </div>
+                                
+                                <!-- <small class="card-subtitle">By {{ t.guide.first_name }} {{ t.guide.last_name }}</small><br> -->
+                                <!-- <small class="card-subtitle text-muted">Last Updated: {{ t.date }}</small> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tour guide-->
+                    <div class="card-footer border-top-0">
+                        <div class="d-flex flex-row bd-highlight m-1 justify-content-start text-center">
+                            <div class="align-items-center d-flex">
+                                <a href="{% url 'tour:view_guide' t.guide.id %}" class="guide-profile stretched-link align-items-center d-flex" style="text-decoration: none; color: black; transform: rotate(0);">
+                                    <div class="avatar">
+                                        <img src="{{ t.guide.guide.guide_image.url }}" title="" alt="">
+                                    </div>
+                                    <div class="g-name ps-2 pt-1" style="color: #20247b;">
+                                        <h6>by {{ t.guide.first_name.title }} {{ t.guide.last_name.title }}</h6>
+                                    </div>
+                                    <p class="ps-2 pt-3">({{ t.review.count }} reviews)</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

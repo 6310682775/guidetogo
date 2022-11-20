@@ -95,4 +95,3 @@ class DeleteArticle(DeleteView):
     model = Article
     template_name = 'article/article_delete.html'
     success_url = reverse_lazy('article:article_home')
-

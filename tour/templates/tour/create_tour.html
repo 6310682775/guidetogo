@@ -6,17 +6,6 @@
 {% load static %}
 {% load crispy_forms_tags %}
 <style>
-    .container {
-        padding: 70px 0;
-    }
-
-    .user_card {
-        margin: 0 150px;
-        padding: 30px 80px;
-        border-radius: 10px;
-        background-color: #dfdfdfd0;
-    }
-
     label {
         padding-top: 20px;
     }
@@ -38,53 +27,88 @@
         width: 100%;
         border-radius: 8px;
     }
+
+    section {
+        font-family: Roboto;
+    }
+
+    .card {
+        width: 1000px;
+    }
+
+    .re-b {
+        width: 100%;
+        padding: 5px;
+        background-color: #f58e2e;
+        border-style: hidden;
+        border-radius: 6px;
+        border-color: #f58e2e;
+        font-size: 18px;
+        color: #ffff;
+        transition: .5s;
+    }
+
+    .re-b:hover {
+        color: #ffff;
+        background-color: #d47c2a;
+        border-color: #d47c2a;
+        transition: .5s;
+    }
 </style>
 
-    <div class="container h-100">
-        <div class="user_card">
-            <a class="btn btn-dark me-auto" role="button" href="{% url 'tour:my_tour' %}">Back</a>
-    
-            <div class="d-flex justify-content-center">
-                <h3 id="form-title">Create Your Tour</h3>
-            </div>
+<body style="background: #eeee;">
 
-            <div class="justify-content-center form_container">
-                <form method="POST" action="{% url 'tour:create_tour' %}" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form.media }}
-                        <label for="id_t_name">Title:</label>
-                        {{ form.t_name }}
-                        <label for="id_province">Tour Area:</label>
-                        {{ form.province }}
-                        <label for="id_price">Price:</label>
-                        {{ form.price }}
-                        <label for="id_amount">Amount:</label>
-                        {{ form.amount }}
-                        <label for="id_period">Period (hours):</label>
-                        {{ form.period }}
-                        <label for="id_img">Cover Image:</label>
-                        {{ form.img }}
-                        <label for="id_snippet">Snippet:</label>
-                        {{ form.snippet }}
-                        <label for="id_information">Detail:</label>
-                        {{ form.information }}
+    <section class="m-5">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10 d-flex justify-content-center align-items-center">
+                
+                <div class="card shadow" style="border-radius: 1rem; border: none;">
+        
+                    <div class="d-flex align-items-center">
+                        <div class="card-body p-4 p-lg-5 text-black">
+                        <div class="d-flex align-items-center mb-3 pb-1">
+                            <i class="fa-solid fa-location-dot fa-2x me-2" style="color: #f58e2e; transform: rotate(40deg);"></i>
+                            <span class="h1 fw-bold mb-0">GuideToGo</span>
+                            <a class="btn btn-dark ms-3" role="button" href="{% url 'tour:my_tour_guide' %}">Cancel</a>
+                        </div>
+        
+                            <h4 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color: #20247d;">Create Your Tour</h4>
+                            
+                            <form method="POST" action="{% url 'tour:create_tour' %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form.media }}
+                                <label for="id_t_name">Title:</label>
+                                {{ form.t_name }}
+                                <label for="id_province">Tour Area:</label>
+                                {{ form.province }}
+                                <label for="id_price">Price:</label>
+                                {{ form.price }}
+                                <label for="id_amount">Amount:</label>
+                                {{ form.amount }}
+                                <label for="id_period">Period (hours):</label>
+                                {{ form.period }}
+                                <label for="id_img">Cover Image:</label>
+                                {{ form.img }}
+                                <label for="id_snippet">Snippet:</label>
+                                {{ form.snippet }}
+                                <label for="id_information">Detail:</label>
+                                <br>
+                                {{ form.information }}
+        
+                                <br>
+                                <input class="re-b w-100 mt-4" type="submit" value="Create Tour" onclick="return confirm('Please check the tour information again.')">
+                            </form>
+        
+                        </div>
+                    </div>
+                    
+                </div>
 
-                        <br>
-                        <input class="btn btn-dark w-100" type="submit" value="Create Tour" onclick="return confirm('Please check the tour information again.')">
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-
-<!-- <script>
-    var form_fields = document.getElementsByTagName('input')
-    form_fields[2].placeholder='Title';
-    form_fields[3].placeholder='Price';
-    form_fields[4].placeholder='Amount';
-    form_fields[5].placeholder='Period';
-
-    for (var field in form_fields) {	
-        form_fields[field].className += ' form-control'
-    }
-</script> -->
+    </section>
+    
+</body>
 {% endblock %}

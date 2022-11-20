@@ -1,536 +1,162 @@
-{% extends "main/layout.html" %} {% block body %}
-<title>Profile | GuideToGo</title>
+{% extends "main/layout.html" %}
 
-<head>
-  <meta charset="utf-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  <link
-    rel="stylesheet"
-    type="text/css"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-    crossorigin="anonymous"
-  />
-  <link
-    rel="stylesheet"
-    type="text/css"
-    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
-  />
-  <link rel="stylesheet" type="text/css" href="./css/common.css" />
-  <link rel="stylesheet" type="text/css" href="./css/fonts.css" />
-  <link rel="stylesheet" type="text/css" href="./css/ProjectMember.css" />
-  <script
-    type="text/javascript"
-    src="https://unpkg.com/aos@2.3.1/dist/aos.js"
-  ></script>
-  <script
-    type="text/javascript"
-    src="https://unpkg.com/headroom.js@0.12.0/dist/headroom.min.js"
-  ></script>
-</head>
+{% block body %}
+<title>Member | GuideToGo</title>
 
 {% load static %}
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-  .root {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
+.section {
+    padding: 100px 0 50px 0;
     position: relative;
+}
+.gray-bg {
+    background-color: #ffff;
+}
+
+/* About Me 
+---------------------*/
+.about-text {
+  padding-left: 30px;
+}
+
+.about-text h3 {
+  font-size: 45px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+@media (max-width: 767px) {
+  .about-text h3 {
+    font-size: 35px;
+  }
+}
+.about-text h6 {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+@media (max-width: 767px) {
+  .about-text h6 {
+    font-size: 18px;
+  }
+}
+.about-text p {
+  font-size: 20px;
+  max-width: 450px; 
+}
+
+.about-list {
+  padding-top: 10px;
+}
+.about-list .media {
+  padding: 5px 0;
+}
+.about-list label {
+  color: #20247b;
+  font-size: 17px;
+  font-weight: 600;
+  width: 115px;
+  margin: 0;
+  position: relative;
+}
+
+.about-list p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.about-avatar .img-fluid {
+    width: 700px;
+    height: 520px;
     overflow: hidden;
-  }
+    object-fit: cover;
+    border-top-left-radius: 10px;
+}
 
-  .col {
-    display: flex;
-    flex-direction: column;
-    width: 71.25%;
-    position: relative;
-    flex-grow: 1;
-    margin: 135px 23.23% 799px 5.52%;
+@media (max-width: 991px) {
+  .about-avatar {
+    margin-top: 30px;
   }
+}
 
-  .title {
-    font: 500 30px/1.2 "Inter", Helvetica, Arial, serif;
-    color: black;
-    letter-spacing: 0px;
-    width: 90.94%;
-    position: relative;
-    margin: 0px auto;
-  }
+.about-section .counter {
+  padding: 22px 20px;
+  background: #f58e2e;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.about-section .counter .count-data {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.about-section .counter .count {
+  font-weight: 700;
+  color: #20247b;
+  margin: 0 0 5px;
+}
+.about-section .counter p {
+  font-weight: 600;
+  margin: 0;
+}
 
-  .content_box {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    box-shadow: 2px 6px 4px 0px rgba(0, 0, 0, 0.247);
-    border-radius: 10px 10px 10px 10px;
-    outline: 0.3000000119px solid black;
-    outline-offset: -0.3000000119px;
-    position: relative;
-    margin: 10px 0px 0px;
-  }
+.count-data p {
+  color: #ffff;
+  font-size: 20px;
+}
 
-  .col1 {
-    display: flex;
-    flex-direction: column;
-    width: 88.01%;
-    position: relative;
-    flex-grow: 1;
-    margin: 26px 10.31% 69px 1.68%;
-  }
-
-  .row {
-    display: flex;
-    position: relative;
-    margin: 0px 6px;
-  }
-
-  .row > .item {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 150px;
-  }
-
-  .image3 {
-    width: 100%;
-    height: auto;
-    vertical-align: top;
-    -o-object-fit: contain;
-    object-fit: contain;
-    -o-object-position: center top;
-    object-position: center top;
-    position: relative;
-  }
-
-  .row > .spacer {
-    flex: 0 1 32px;
-  }
-
-  .title1 {
-    font: 400 28px/1.2 "Inter", Helvetica, Arial, serif;
-    color: black;
-    letter-spacing: 0px;
-    position: relative;
-    flex: 0 0 auto;
-    min-width: 523px;
-    min-height: 40px;
-    margin: 16px 0px 94px;
-  }
-
-  .row1 {
-    display: flex;
-    position: relative;
-    margin: 44px 0px 0px;
-  }
-
-  .col2 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 396px;
-  }
-
-  .row2 {
-    display: flex;
-    position: relative;
-  }
-
-  .row2 > .item {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 25px;
-  }
-
-  .image2 {
-    width: 25px;
-    height: auto;
-    vertical-align: top;
-    -o-object-fit: contain;
-    object-fit: contain;
-    -o-object-position: center top;
-    object-position: center top;
-    position: relative;
-    min-width: 25px;
-    margin: 16px 0px 19px;
-  }
-
-  .row2 > .spacer {
-    flex: 0 1 29px;
-  }
-
-  .col3 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 341px;
-  }
-
-  .medium_title {
-    font: 400 26px/1.2 "Inter", Helvetica, Arial, serif;
-    color: black;
-    letter-spacing: 0px;
-    position: relative;
-  }
-
-  .subtitle {
-    font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
-    color: black;
-    letter-spacing: 0px;
-    position: relative;
-    min-height: 35px;
-    margin: 4px 0px 0px;
-  }
-
-  .row3 {
-    display: flex;
-    position: relative;
-    margin: 7px 0px 0px;
-  }
-
-  .row3 > .item {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 37px;
-  }
-
-  .image1 {
-    width: 37px;
-    height: auto;
-    vertical-align: top;
-    -o-object-fit: contain;
-    object-fit: contain;
-    -o-object-position: center top;
-    object-position: center top;
-    position: relative;
-    min-width: 37px;
-    margin: 16px 0px 21px;
-  }
-
-  .row3 > .spacer {
-    flex: 0 1 17px;
-  }
-
-  .row3 > .item1 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 37px;
-  }
-
-  .image {
-    width: 37px;
-    height: auto;
-    vertical-align: top;
-    -o-object-fit: contain;
-    object-fit: contain;
-    -o-object-position: center top;
-    object-position: center top;
-    position: relative;
-    min-width: 37px;
-    margin: 16px 0px 25px;
-  }
-
-  .row3 > .spacer1 {
-    flex: 0 1 17px;
-  }
-
-  .row4 {
-    display: flex;
-    position: relative;
-    margin: 7px 0px 0px 1px;
-  }
-
-  .row4 > .item {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 37px;
-  }
-
-  .row4 > .spacer {
-    flex: 0 1 17px;
-  }
-
-  .row1 > .spacer {
-    flex: 0 1 25px;
-  }
-
-  .col4 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 353px;
-  }
-
-  .row2 > .item1 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 30px;
-  }
-
-  .icon {
-    width: 30px;
-    height: auto;
-    vertical-align: top;
-    -o-object-fit: contain;
-    object-fit: contain;
-    -o-object-position: center top;
-    object-position: center top;
-    position: relative;
-    min-width: 30px;
-    margin: 17px 0px 29px;
-  }
-
-  .row2 > .item2 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 193px;
-  }
-
-  .col5 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex-grow: 1;
-    margin: 0px 0px 0px 8px;
-  }
-
-  .subtitle1 {
-    font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
-    color: black;
-    letter-spacing: 0px;
-    position: relative;
-    min-height: 35px;
-    margin: 9px 0px 0px;
-  }
-
-  .row5 {
-    display: flex;
-    position: relative;
-    margin: 2px 0px 0px;
-  }
-
-  .row5 > .item {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 30px;
-  }
-
-  .icon1 {
-    width: 30px;
-    height: auto;
-    vertical-align: top;
-    -o-object-fit: contain;
-    object-fit: contain;
-    -o-object-position: center top;
-    object-position: center top;
-    position: relative;
-    min-width: 30px;
-    margin: 12px 0px 29px;
-  }
-
-  .row5 > .item1 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 209px;
-  }
-
-  .col6 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex-grow: 1;
-    margin: 0px 0px 0px 12px;
-  }
-
-  .subtitle2 {
-    font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
-    color: black;
-    letter-spacing: 0px;
-    position: relative;
-    min-height: 35px;
-    margin: 4px 9px 0px 0px;
-  }
-
-  .row3 > .item2 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 30px;
-  }
-
-  .row3 > .spacer2 {
-    flex: 0 1 12px;
-  }
-
-  .col7 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 311px;
-  }
-
-  .subtitle3 {
-    font: 400 22px/1.2 "Inter", Helvetica, Arial, serif;
-    color: black;
-    letter-spacing: 0px;
-    position: relative;
-    margin: 4px 0px 0px;
-  }
-
-  .row3 > .item3 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 30px;
-  }
-
-  .row3 > .item4 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 200px;
-  }
-
-  .medium_title1 {
-    font: 400 26px/1.2 "Inter", Helvetica, Arial, serif;
-    color: black;
-    letter-spacing: 0px;
-    position: relative;
-    margin: 0px 21px 0px 0px;
-  }
-
-  .row1 > .spacer1 {
-    flex: 0 1 58px;
-  }
-
-  .col8 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 372px;
-  }
-
-  .row2 > .item3 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 30px;
-  }
-
-  .row2 > .item4 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 193px;
-  }
-
-  .row5 > .item2 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 30px;
-  }
-
-  .row5 > .spacer {
-    flex: 0 1 12px;
-  }
-
-  .col9 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 330px;
-  }
-
-  .row3 > .item5 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 30px;
-  }
-
-  .row3 > .spacer3 {
-    flex: 0 1 12px;
-  }
-
-  .row3 > .item6 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 30px;
-  }
-
-  .row3 > .item7 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    flex: 0 1 200px;
-  }
-
-  section {
-    font-family: Roboto;
-  }
-
-  .form-group {
-    margin-top: 10px;
-  }
+.theme-color {
+    color: #f58e2e;
+    font-size: 28px;
+}
+.dark-color {
+    color: #20247b;
+}
 </style>
 
-<!-- <section class="section about-section gray-bg" id="about">
+<section class="section about-section gray-bg" id="about">
     <div class="container">
         <div class="row align-items-center flex-row-reverse">
             <div class="col-lg-6">
                 <div class="about-text go-to">
-                    <h3 class="dark-color">Welcome: {{ request.user.username }}</h3>
-                    <h6 class="theme-color lead">A User Member</h6>
+                    <h3 class="dark-color">Welcome, {{ request.user.first_name.title }} {{ request.user.last_name.title }}</h3>
+                    <h6 class="theme-color lead">MEMBER</h6>
                     <div class="row about-list">
                         <div class="col-md-6">
                             <div class="media">
-                                <label>Tel:</label>
+                              <label><i class="fa-solid fa-signature"></i> Name</label>
+                              <p>{{ request.user.first_name.title }} {{ request.user.last_name.title }}</p>
+                            </div>
+                            <div class="media">
+                                <label><i class="fa-solid fa-phone"></i> Tel</label>
                                 <p>{{ request.user.member.phone_number }}</p>
                             </div>
                             <div class="media">
-                                <label>Age</label>
+                                <label><i class="fa-solid fa-face-smile"></i> Age</label>
                                 <p>{{ request.user.member.age }}</p>
                             </div>
                             <div class="media">
-                                <label>Allergic</label>
+                                <label><i class="fa-solid fa-shrimp"></i> Allergic</label>
                                 <p>{{ request.user.member.allergic }}</p>
                             </div>
                             <div class="media">
-                                <label>Underlying Disease</label>
+                                <label><i class="fa-solid fa-square-virus"></i> Underlying Disease</label>
                                 <p>{{ request.user.member.underlying_disease }}</p>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="media">
-                                <label>E-mail</label>
-                                <p>{{ request.user.member.email }}</p>
+                          <div class="media">
+                            <label><i class="fa-solid fa-envelope"></i> E-mail</label>
+                            <p>{{ request.user.member.email }}</p>
                             </div>
                             <div class="media">
-                                <label>Gender</label>
+                                <label><i class="fa-solid fa-user"></i> Gender</label>
                                 <p>{{ request.user.member.gender }}</p>
                             </div>
                             <div class="media">
-                                <label>Address</label>
+                                <label><i class="fa-solid fa-location-dot"></i> Address</label>
                                 <p>{{ request.user.member.address }}</p>
                             </div>
                             <div class="media">
-                                <label>religion</label>
+                                <label><i class="fa-solid fa-person-praying"></i> Religion</label>
                                 <p>{{ request.user.member.religion }}</p>
                             </div>
                         </div>
@@ -546,27 +172,17 @@
         <div class="counter">
             <div class="row">
                 <div class="col-6 col-lg-3">
-                    <div class="count-data text-center">
-                        <h6 class="count h2" data-to="500" data-speed="500">3</h6>
-                        <p class="m-0px font-w-600">Favorite</p>
-                    </div>
+                    <a class="btn btn-dark w-100" href="{% url 'users:member_profile_edit' %}">Edit Profile</a>
+                </div>
+                <div class="col-6 col-lg-3">
+                    
+                </div>
+                <div class="col-6 col-lg-3">
+                    
                 </div>
                 <div class="col-6 col-lg-3">
                     <div class="count-data text-center">
-                        <h6 class="count h2" data-to="150" data-speed="150">7</h6>
-                        <p class="m-0px font-w-600">Tours Completed</p>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-center">
-                        <h6 class="count h2" data-to="850" data-speed="850">4</h6>
-                        <p class="m-0px font-w-600">Comment</p>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-center">
-                        <h6 class="count h2" data-to="190" data-speed="190">4</h6>
-                        <p class="m-0px font-w-600">My Tours</p>
+                      
                     </div>
                 </div>
             </div>
@@ -575,176 +191,5 @@
 </section>
 
 
-
-</body> -->
-
-<body class="flex-column">
-  <div class="project-member root">
-    <div class="col">
-      <h1 class="title">Welcome: {{ request.user.username }}<br /></h1>
-      <div class="content_box">
-        <div class="col1">
-          <div class="row">
-            <div class="item">
-              <img
-                class="image-fluid"
-                src="{{ request.user.member.member_image.url }}"
-                alt="Member picture"
-              />
-            </div>
-            <div class="spacer"></div>
-            <h1 class="title1">
-              {{ request.user.first_name }} {{ request.user.last_name }}
-            </h1>
-          </div>
-          <div class="row1">
-            <div class="col2">
-              <div class="row2">
-                <div class="item">
-                  <i class="fs-1 fa-solid fa-location-dot"></i>
-                </div>
-                <div class="spacer"></div>
-                <div class="col3">
-                  <h2 class="medium_title">Address</h2>
-                  <h3 class="subtitle">{{ request.user.member.address }}</h3>
-                </div>
-              </div>
-              <div class="row3">
-                <div class="item">
-                  <i class="fs-1 fa-solid fa-face-smile"></i>
-                </div>
-                <div class="spacer"></div>
-                <div class="col3">
-                  <h2 class="medium_title">Age</h2>
-                  <h3 class="subtitle">{{ request.user.member.age }}</h3>
-                </div>
-              </div>
-              <div class="row3">
-                <div class="item1">
-                  <i class="fs-1 fa-solid fa-user"></i>
-                </div>
-                <div class="spacer1"></div>
-                <div class="col3">
-                  <h2 class="medium_title">Gender</h2>
-                  <h3 class="subtitle">{{ request.user.member.gender }}</h3>
-                </div>
-              </div>
-              <div class="row4">
-                <div class="item">
-                  <i class="fs-1 fa-solid fa-envelope"></i>
-                </div>
-                <div class="spacer"></div>
-                <div class="col3">
-                  <h2 class="medium_title">Email</h2>
-                  <h3 class="subtitle">{{ request.user.member.email }}</h3>
-                </div>
-              </div>
-            </div>
-            <div class="spacer"></div>
-            <div class="col4">
-              <div class="row2">
-                <div class="item1">
-                  <i class="fs-1 fa-solid fa-phone"></i>
-                </div>
-                <div class="item2">
-                  <div class="col5">
-                    <h2 class="medium_title">Tel.</h2>
-                    <h3 class="subtitle1">
-                      {{ request.user.member.phone_number }}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-              <div class="row5">
-                <div class="item">
-                  <i class="fs-1 fa-solid fa-shrimp"></i>
-                </div>
-                <div class="item1">
-                  <div class="col6">
-                    <h2 class="medium_title">Allergic</h2>
-                    <h3 class="subtitle2">
-                      {{ request.user.member.allergic }}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-              <div class="row3">
-                <div class="item2">
-                  <i class="fs-1 fa-solid fa-square-virus"></i>
-                </div>
-                <div class="spacer2"></div>
-                <div class="col7">
-                  <h2 class="medium_title">Underlying Disease</h2>
-                  <h3 class="subtitle3">
-                    {{ request.user.member.underlying_disease }}
-                  </h3>
-                </div>
-              </div>
-              <div class="row3">
-                <div class="item3">
-                  <i class="fs-1 fa-solid fa-person-praying"></i>
-                </div>
-                <div class="item4">
-                  <div class="col6">
-                    <h2 class="medium_title1">Religion</h2>
-                    <h3 class="subtitle">{{ request.user.member.religion }}</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="spacer1"></div>
-            <div class="col8">
-              <div class="row2">
-                <div class="item3">
-                  <i class="fs-1 fa-solid fa-star"></i>
-                </div>
-                <div class="item4">
-                  <div class="col5">
-                    <h2 class="medium_title">Favorite</h2>
-                    <h3 class="subtitle1">4</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="row5">
-                <div class="item2">
-                  <i class="fs-1 fa-solid fa-circle-check"></i>
-                </div>
-                <div class="spacer"></div>
-                <div class="col9">
-                  <h2 class="medium_title">Tours Completed</h2>
-                  <h3 class="subtitle3">2</h3>
-                </div>
-              </div>
-              <div class="row3">
-                <div class="item5">
-                  <i class="fs-1 fa-solid fa-comment-dots"></i>
-                </div>
-                <div class="spacer3"></div>
-                <div class="col9">
-                  <h2 class="medium_title">Comments</h2>
-                  <h3 class="subtitle3">0</h3>
-                </div>
-              </div>
-              <div class="row3">
-                <div class="item6">
-                  <i class="fs-1 fa-solid fa-map"></i>
-                </div>
-                <div class="item7">
-                  <div class="col6">
-                    <h2 class="medium_title1">My Tours</h2>
-                    <h3 class="subtitle">4</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script type="text/javascript">
-    AOS.init();
-  </script>
 </body>
-
 {% endblock %}

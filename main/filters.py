@@ -28,13 +28,23 @@ class Tourfilter(django_filters.FilterSet):
             ('lt', 'Less than'),
         ]
     )
+
+    avg_rating = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices = [
+            ('exact', 'Equals'),
+            ('gt', 'Greater than'),
+            ('lt', 'Less than'),
+        ]
+    )
     
     class Meta:     
         model = Tour
         fields = {
                 'province': ['icontains'],
-                'price':[], 
-                'period':[] , 
-                'amount':[],
+                'price':['exact'], 
+                'period':['exact'],  
+                'amount':['exact'],
+                'avg_rating':['exact'],
                 }
         

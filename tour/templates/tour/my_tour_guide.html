@@ -8,24 +8,31 @@
     /* .card {
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     } */
+
+    .card-img-top {
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        object-fit: cover;
+    }
 </style>
 
     <!-- Section-->
     <section class="py-1">
         <div class="container px-4 px-lg-5 mt-5">
             <br>
-            <h1><a class="btn btn-outline-dark bd-highlight mb-2" role="button" href="{% url 'main:home' %}"><i class="fa-solid fa-chevron-left"></i> <i class="fa-solid fa-house"></i></a><span class="ms-4">{{ request.user.username.title }}'s Tour</h1>
+            <h1><a class="btn btn-outline-dark bd-highlight mb-2" role="button" href="{% url 'main:home' %}"><i class="fa-solid fa-chevron-left"></i> <i class="fa-solid fa-house"></i></a><span class="ms-4">{{ request.user.first_name.title }}'s Tour</h1>
             <br>
             <h3>Number of Tours: <span class="text-primary">{{ count }}</span></h3>
             
-            {% if user.is_guide %}
+            {% if user.is_guide == True and user.guide.verify_guide == 'verified' %}
                 <a class="btn btn-primary w-100 p-3 mt-3 mb-4" role="button" href="{% url 'tour:create_tour' %}">Create New Tour <i class="fa-solid fa-plus"></i></a>
             {% endif %}
 
             <div class="row gx-4 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 {% for t in my_tour %}
                 <div class="col mb-5">
-                    <div class="card border-light h-100 shadow-sm">
+                    <div class="card border-light h-100 shadow">
                         <!-- Top badge-->
                         <!-- <div class="badge bg-transparent text-white position-absolute" style="top: 0.5rem; right: 0.5rem; font-size: 16px; letter-spacing: -2px;">
                             <span class="fa fa-star checked"></span>
@@ -45,11 +52,27 @@
                                 <h5 class="fw-bolder text-truncate">{{ t.t_name }}</h5>
                                 <!-- Tour reviews-->
                                 <div class="d-flex justify-content-start small text-warning mb-2" style="font-size: 12px; letter-spacing: 2px;">
+                                    {% if t.avg_rating > 4  %}
                                     <i class="fa-solid fa-star pt-1"></i>
                                     <i class="fa-solid fa-star pt-1"></i>
                                     <i class="fa-solid fa-star pt-1"></i>
                                     <i class="fa-solid fa-star pt-1"></i>
                                     <i class="fa-solid fa-star pt-1"></i>
+                                    {% elif t.avg_rating > 3  %}
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    {% elif t.avg_rating > 2  %}
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    {% elif t.avg_rating >  1  %}
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    {% else %}
+                                    <i class="fa-solid fa-star pt-1"></i>
+                                    {% endif %}
                                 </div>
                                 <!-- Tour info-->
                                 <p class="card-text text-truncate pt-2">{{ t.snippet }}</p>
@@ -57,7 +80,7 @@
                                     <button type="button" class="btn btn-outline-secondary btn-sm mb-2" disabled>{{ t.province }}</button>
                                     <button type="button" class="btn btn-outline-secondary btn-sm mb-2 ms-1" disabled>{{ t.period }} hours</button>
                                 </div>
-                                <small class="card-subtitle text-muted">Last Updated: {{ t.date }}</small>
+                                <small class="card-subtitle text-muted">Created at {{ t.date }}</small>
                             </div>
                         </div>
                         <!-- Tour actions-->

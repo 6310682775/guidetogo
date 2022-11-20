@@ -17,7 +17,7 @@
   }
 </style>
 
-    <section>
+    <!-- <section>
         <div class="container">
           <div class="row">
             <div class="col-md-6 mx-auto">
@@ -48,6 +48,53 @@
               </div>
             </div>
         </div>
-      </section>
+      </section> -->
+<body style="background: #eeee;">
+  <section class="m-5">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card shadow" style="border-radius: 1rem; border: none;">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <img src="https://images.unsplash.com/photo-1508502726440-477c94bc369e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+              </div>
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fa-solid fa-location-dot fa-2x me-2" style="color: #f58e2e; transform: rotate(40deg);"></i>
+                    <span class="h1 fw-bold mb-0">GuideToGo</span>
+                  </div>
 
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+                    <form action="{% url 'users:login' %}" method="POST" novalidate>
+                      {% csrf_token %}
+                          {% for field in form.visible_fields %}
+                            <div class="form-group">
+                                {{ field.label_tag }}
+                                  {% render_field field class="form-control" %}
+                                    {% if messages%}
+                                      {% for message in messages %}
+                                        <span style="color:red">{{ message }}</span>
+                                      {% endfor %}
+                                      {% endif %}
+                          {% endfor %}
+                          <br>
+                              <input type="submit" value="Login" class="btn btn-block btn-dark w-100 mt-3">
+                            </div>
+                    </form>
+
+                    <p class="mt-5 pb-lg-2" style="color: #20247b;">Don't have an account? <a href="{% url 'users:member_register' %}"
+                        style="color: #393f81;">Register here</a></p>
+                        
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
 {% endblock %}

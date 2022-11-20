@@ -1,18 +1,116 @@
 {% extends "main/layout.html" %}
-{% load static %}
-
-<html lang="en">
-<head>
-  <title>Guide to Go</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="{% static 'main/profile.css' %}">
-</head>
 
 {% block body %}
+<title>Guide | GuideToGo</title>
+
+{% load static %}
+
+<style>
+.section {
+    padding: 100px 0 50px 0;
+    position: relative;
+}
+.gray-bg {
+    background-color: #ffff;
+}
+
+/* About Me 
+---------------------*/
+.about-text {
+  padding-left: 30px;
+}
+
+.about-text h3 {
+  font-size: 45px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+@media (max-width: 767px) {
+  .about-text h3 {
+    font-size: 35px;
+  }
+}
+.about-text h6 {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+@media (max-width: 767px) {
+  .about-text h6 {
+    font-size: 18px;
+  }
+}
+.about-text p {
+  font-size: 20px;
+  max-width: 450px; 
+}
+
+.about-list {
+  padding-top: 10px;
+}
+.about-list .media {
+  padding: 5px 0;
+}
+.about-list label {
+  color: #20247b;
+  font-size: 17px;
+  font-weight: 600;
+  width: 115px;
+  margin: 0;
+  position: relative;
+}
+
+.about-list p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.about-avatar .img-fluid {
+    width: 700px;
+    height: 520px;
+    overflow: hidden;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+}
+
+@media (max-width: 991px) {
+  .about-avatar {
+    margin-top: 30px;
+  }
+}
+
+.about-section .counter {
+  padding: 22px 20px;
+  background: #f58e2e;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.about-section .counter .count-data {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.about-section .counter .count {
+  font-weight: 700;
+  color: #20247b;
+  margin: 0 0 5px;
+}
+.about-section .counter p {
+  font-weight: 600;
+  margin: 0;
+}
+
+.count-data p {
+  color: #ffff;
+  font-size: 20px;
+}
+
+.theme-color {
+    color: #f58e2e;
+    font-size: 28px;
+}
+.dark-color {
+    color: #20247b;
+}
+</style>
 
 <section class="section about-section gray-bg" id="about">
     <div class="container">
@@ -33,50 +131,47 @@
             <div class="col-lg-6">
                 <div class="about-text go-to">
                     <form method = "post" enctype="multipart/form-data" id="form-group">
-                    <h3 class="dark-color">Welcome: {{ request.user.username }}</h3>
-                    <h6 class="theme-color lead">A Lead GUIDE</h6>
+                    <h3 class="dark-color">Edit Profile</h3>
+                    <h6 class="theme-color lead">GUIDE</h6>
                     <p>Edit datail: {{ guide_form.detail }}</p>
                         {% csrf_token %}
                     <div class="row about-list">
                         <div class="col-md-6">
                             <div class="media">
-                                <label>First Name</label>
-                                <p>{{ request.user.first_name }}</p>
+                                <label><i class="fa-solid fa-signature"></i> Name</label>
+                                <p>{{ request.user.first_name.title }} {{ request.user.last_name.title }}</p>
                             </div>
                             <div class="media">
-                                <label>Tel:</label>
+                                <label><i class="fa-solid fa-phone"></i> Tel</label>
                                 <p>{{ guide_form.phone_number }}</p>
                             </div>
                             <div class="media">
-                                <label>Age</label>
+                                <label><i class="fa-solid fa-face-smile"></i> Age</label>
                                 <p>{{ guide_form.age }}</p>
                             </div>
                             <div class="media">
-                                <label>Province</label>
+                                <label><i class="fa-solid fa-map"></i> Province</label>
                                 <p>{{ request.user.guide.province }}</p>
                             </div>
-                            <div class="media">
-                                <label>TAT_License</label>
-                                <p>{{ request.user.guide.tat_license }}</p>
-                            </div>
+                            
                         </div>
                         <div class="col-md-6">
                             <div class="media">
-                                <label>Last Name</label>
-                                <p>{{ request.user.last_name }}</p>
-                            </div>
-                            <div class="media">
-                                <label>E-mail</label>
+                                <label><i class="fa-solid fa-envelope"></i> E-mail</label>
                                 <p>{{ guide_form.email }}</p>
                             </div>
                             <div class="media">
-                                <label>Gender</label>
+                                <label><i class="fa-solid fa-user"></i> Gender</label>
                                 <p>{{ request.user.guide.gender }}</p>
                             </div>
                             <div class="media">
-                                <label>Address</label>
+                                <label><i class="fa-solid fa-location-dot"></i> Address</label>
                                 <p>{{ request.user.guide.address }}</p>
                             </div>
+                            <div class="media">
+                              <label><i class="fa-solid fa-id-card"></i> TAT License</label>
+                              <p>{{ request.user.guide.tat_license }}</p>
+                          </div>
                             
                         </div>
                     </div>
@@ -87,35 +182,24 @@
                     <img  class="img-fluid"  src= "{{ request.user.guide.guide_image.url }}" >
                 </div>   
             </div>
-            <div class="btn-pro">
-                <button type="submit" class="pro">Save Changes</button>
-                <button type="reset" class="pro">Reset</button>
-            </div>
         </div>
         <div class="counter">
             <div class="row">
                 <div class="col-6 col-lg-3">
-                    <div class="count-data text-center">
-                        <h6 class="count h2" data-to="500" data-speed="500">500</h6>
-                        <p class="m-0px font-w-600">View</p>
-                    </div>
+                    <a class="btn btn-dark w-100" href="{% url 'users:guide_profile' %}">Cancel</a>
+                </div>
+                <div class="col-6 col-lg-3">
+                    
+                </div>
+                <div class="col-6 col-lg-3">
+                    
                 </div>
                 <div class="col-6 col-lg-3">
                     <div class="count-data text-center">
-                        <h6 class="count h2" data-to="150" data-speed="150">7</h6>
-                        <p class="m-0px font-w-600">Tours Completed</p>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-center">
-                        <h6 class="count h2" data-to="850" data-speed="850">4</h6>
-                        <p class="m-0px font-w-600">Rating</p>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-center">
-                        <h6 class="count h2" data-to="190" data-speed="190">4</h6>
-                        <p class="m-0px font-w-600">My Tours</p>
+                        <div class="btn-pro">
+                            <button type="reset" class="btn btn-outline-dark">Reset</button>
+                            <button type="submit" class="btn btn-dark">Save Changes</button>
+                        </div>
                     </div>
                 </div>
             </div>

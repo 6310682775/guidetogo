@@ -1,18 +1,97 @@
-{% extends "main/layout.html" %} {% block body %}
-<title>Edit Blog Post</title>
+{% extends "main/layout.html" %}
+
+{% block body %}
+<title>Update Article | GuideToGo</title>
 
 {% load static %}
-<div class="container">
-    <div class="header mx-auto">
-        <h2 class="text-center">Update</h2>
-    </div>
-    <div class="form-group " >
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.media }}
-            {{ form.as_p }}
-            <button class="btn btn-secondary">Update</button>
-        </form>
-    </div>
-</div>
+<style>
+    label {
+        padding-top: 20px;
+    }
+
+    #id_province {
+        padding: 5px;
+        width: 100%;
+        border-radius: 5px;
+        
+    }
+
+    #id_img {
+        width: 100%;
+    }
+
+    #id_snippet {
+        height: 150px;
+        padding: 5px;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    section {
+        font-family: Roboto;
+    }
+
+    .card {
+        width: 1000px;
+    }
+
+    .re-b {
+        width: 100%;
+        padding: 5px;
+        background-color: #f58e2e;
+        border-style: hidden;
+        border-radius: 6px;
+        border-color: #f58e2e;
+        font-size: 18px;
+        color: #ffff;
+        transition: .5s;
+    }
+
+    .re-b:hover {
+        color: #ffff;
+        background-color: #d47c2a;
+        border-color: #d47c2a;
+        transition: .5s;
+    }
+</style>
+
+<body style="background: #eeee;">
+
+    <section class="m-5">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10 d-flex justify-content-center align-items-center">
+                
+                <div class="card shadow" style="border-radius: 1rem; border: none;">
+        
+                    <div class="d-flex align-items-center">
+                        <div class="card-body p-4 p-lg-5 text-black">
+                        <div class="d-flex align-items-center mb-3 pb-1">
+                            <i class="fa-solid fa-location-dot fa-2x me-2" style="color: #f58e2e; transform: rotate(40deg);"></i>
+                            <span class="h1 fw-bold mb-0">GuideToGo</span>
+                            <a class="btn btn-dark ms-3" role="button" href="{% url 'article:article_home' %}">Cancel</a>
+                        </div>
+        
+                            <h4 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color: #20247d;">Update Article</h4>
+                            
+                            <div class="form-group" >
+                                <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{ form.media }}
+                                    {{ form.as_p }}
+                                    <button class="btn btn-dark w-100">Update</button>
+                                </form>
+                            </div>
+        
+                        </div>
+                    </div>
+                    
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</body>
 {% endblock %}

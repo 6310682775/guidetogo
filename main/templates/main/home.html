@@ -14,16 +14,33 @@
         font-size: 42px;
     }
 
-    form input, form select {
-        margin: 5px;
-        border-radius: 5px;
+    .dropdown-menu form {
+        display: flow-root;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
     }
 
-    form button {
-        margin-left: 40px;
+    .dropdown-menu form label, select, input {
+        margin: 5px;
+        border-radius: 5px;
+        color: #20247b;
+    }
+
+    .dropdown-center .d-button {
+        background: #f58e2e;
+        border-color: #f58e2e;
+    }
+
+    .dropdown-center .d-button:hover {
+        background: #df812a;
+        border-color: #df812a;
     }
 
     .card-img-top {
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
         object-fit: cover;
     }
 
@@ -83,65 +100,177 @@
 <div class="container px-4 px-lg-5 mt-5">
 
     <h2 class="pt-3">All Tours</h2><br><br>
-    <div class="row">
-        <div class="col">
-            <div class="card card-body">
+    <div class="dropdown-center">
+        <button class="d-button btn btn-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-magnifying-glass"></i> Search Filters
+        </button>
+        <ul class="dropdown-menu">
+          <li><form method="get">{{myFilter.form}}<button class="btn btn-secondary w-25" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button></form></li>
+        </ul>
+      </div>
+    <!-- <div class="row">
+        <div class="col-5">
+            <div class="my-filter card card-body">
                 <form method="get">
                     {{myFilter.form}}
-                <button class="btn btn-secondary w-25" type="submit">
+                <button class="btn btn-secondary w-100 mt-2" type="submit">
                     Search</button>
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
     <br>
     <div class="row gx-4 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start mt-3">
         {% for t in all_tour %}
         <div class="col mb-5">
-            <div class="card border-light h-100 shadow-sm">
-                {% if t.img %}
-                    <img class="card-img-top" src="{{ t.img.url}}" alt="..." />
-                {% endif %}
-                <!-- Tour details-->
-                <div class="card-body p-4">
-                    <div class="text-start">
-                        <!-- Tour name-->
-                        <h5 class="fw-bolder text-truncate "><a href="{% url 'tour:view_tour' t.id %}" class="stretched-link" style="text-decoration: none; color: black;">{{ t.t_name }}</a></h5>
-                        <!-- Tour reviews-->
-                        <div class="d-flex justify-content-start small text-warning mb-2" style="font-size: 12px; letter-spacing: 2px;">
-                            <i class="fa-solid fa-star pt-1"></i>
-                            <i class="fa-solid fa-star pt-1"></i>
-                            <i class="fa-solid fa-star pt-1"></i>
-                            <i class="fa-solid fa-star pt-1"></i>
-                            <i class="fa-solid fa-star pt-1"></i>
+            <div class="card border-light h-100 shadow">
+                <div class="card-img-body" style="transform: rotate(0);">
+                    {% if t.img %}
+                        <img class="card-img-top" src="{{ t.img.url}}" alt="..." />
+                    {% endif %}
+                    <!-- Tour details-->
+                    <div class="card-body p-4">
+                        <div class="text-start">
+                            <!-- Tour name-->
+                            <h5 class="fw-bolder text-truncate "><a href="{% url 'tour:view_tour' t.id %}" class="stretched-link" style="text-decoration: none; color: black;">{{ t.t_name }}</a></h5>
+                            <!-- Tour reviews-->
+                            <div class="d-flex justify-content-start small text-warning mb-2" style="font-size: 12px; letter-spacing: 2px;">
+                                {% if t.avg_rating > 4  %}
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                {% elif t.avg_rating > 3  %}
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                {% elif t.avg_rating > 2  %}
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                {% elif t.avg_rating >  1  %}
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                {% else %}
+                                <i class="fa-solid fa-star pt-1"></i>
+                                {% endif %}
+                            </div>
+                            <!-- Tour info-->
+                            <p class="card-text text-truncate pt-2">{{ t.snippet }}</p>
+                            <div class="d-flex flex-row justify-content-start">
+                                <button type="button" class="card-button btn btn-outline-secondary btn-sm mb-2" disabled>{{ t.province }}</button>
+                                <button type="button" class="card-button btn btn-outline-secondary btn-sm mb-2 ms-1" disabled>{{ t.period }} hours</button>
+                            </div>
+                            
+                            <div class="card_subtitle d-flex justify-content-start pt-2">
+                                <h5 class="text-black">฿{{ t.price }} <h6 class="text-muted ps-1 pt-1"> /per group</h6></h5>
+                            </div>
+                            
+                            <!-- <small class="card-subtitle">By {{ t.guide.first_name }} {{ t.guide.last_name }}</small><br> -->
+                            <!-- <small class="card-subtitle text-muted">Last Updated: {{ t.date }}</small> -->
                         </div>
-                        <!-- Tour info-->
-                        <p class="card-text text-truncate pt-2">{{ t.snippet }}</p>
-                        <div class="d-flex flex-row justify-content-start">
-                            <button type="button" class="card-button btn btn-outline-secondary btn-sm mb-2" disabled>{{ t.province }}</button>
-                            <button type="button" class="card-button btn btn-outline-secondary btn-sm mb-2 ms-1" disabled>{{ t.period }} hours</button>
-                        </div>
-                        
-                        <div class="card_subtitle d-flex justify-content-start pt-2">
-                            <h5 class="text-black">฿{{ t.price }} <h6 class="text-muted ps-1 pt-1"> /per group</h6></h5>
-                        </div>
-                        
-                        <!-- <small class="card-subtitle">By {{ t.guide.first_name }} {{ t.guide.last_name }}</small><br> -->
-                        <!-- <small class="card-subtitle text-muted">Last Updated: {{ t.date }}</small> -->
                     </div>
                 </div>
                 <!-- Tour guide-->
                 <div class="card-footer border-top-0">
                     <div class="d-flex flex-row bd-highlight m-1 justify-content-start text-center">
                         <div class="align-items-center d-flex">
-                            <div class="avatar">
+                            <a href="{% url 'tour:view_guide' t.guide.id %}" class="guide-profile stretched-link align-items-center d-flex" style="text-decoration: none; color: black; transform: rotate(0);">
+                                <div class="avatar">
+                                    <img src="{{ t.guide.guide.guide_image.url }}" title="" alt="">
+                                </div>
+                                <div class="g-name ps-2 pt-1" style="color: #20247b;">
+                                    <h6>by {{ t.guide.first_name }} {{ t.guide.last_name }}</h6>
+                                </div>
+                                <p class="ps-2 pt-3">({{ t.review.count }} reviews)</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <hr><br>
+    <!--    part popular   -->
+    <h2 class="pt-3">Popular Tours</h2><br>
+    
+    <div class="row gx-4 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start mt-3">
+        {% for t in popular_tour %}
+        <div class="col mb-5">
+            <div class="card border-light h-100 shadow">
+                <div class="card-img-body" style="transform: rotate(0);">
+                    {% if t.img %}
+                        <img class="card-img-top" src="{{ t.img.url}}" alt="..." />
+                    {% endif %}
+                    <!-- Tour details-->
+                    <div class="card-body p-4">
+                        <div class="text-start">
+                            <!-- Tour name-->
+                            <h5 class="fw-bolder text-truncate "><a href="{% url 'tour:view_tour' t.id %}" class="stretched-link" style="text-decoration: none; color: black;">{{ t.t_name }}</a></h5>
+                            <!-- Tour reviews-->
+                            <div class="d-flex justify-content-start small text-warning mb-2" style="font-size: 12px; letter-spacing: 2px;">
+                                {% if t.avg_rating > 4  %}
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                {% elif t.avg_rating > 3  %}
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                {% elif t.avg_rating > 2  %}
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                {% elif t.avg_rating >  1  %}
+                                <i class="fa-solid fa-star pt-1"></i>
+                                <i class="fa-solid fa-star pt-1"></i>
+                                {% else %}
+                                <i class="fa-solid fa-star pt-1"></i>
+                                {% endif %}
+                            </div>
+                            <!-- Tour info-->
+                            <p class="card-text text-truncate pt-2">{{ t.snippet }}</p>
+                            <div class="d-flex flex-row justify-content-start">
+                                <button type="button" class="card-button btn btn-outline-secondary btn-sm mb-2" disabled>{{ t.province }}</button>
+                                <button type="button" class="card-button btn btn-outline-secondary btn-sm mb-2 ms-1" disabled>{{ t.period }} hours</button>
+                            </div>
+                            
+                            <div class="card_subtitle d-flex justify-content-start pt-2">
+                                <h5 class="text-black">฿{{ t.price }} <h6 class="text-muted ps-1 pt-1"> /per group</h6></h5>
+                            </div>
+                            
+                            <!-- <small class="card-subtitle">By {{ t.guide.first_name }} {{ t.guide.last_name }}</small><br> -->
+                            <!-- <small class="card-subtitle text-muted">Last Updated: {{ t.date }}</small> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Tour guide-->
+                <div class="card-footer border-top-0">
+                    <div class="d-flex flex-row bd-highlight m-1 justify-content-start text-center">
+                        <div class="align-items-center d-flex">
+                            <a href="{% url 'tour:view_guide' t.guide.id %}" class="guide-profile stretched-link align-items-center d-flex" style="text-decoration: none; color: black; transform: rotate(0);">
+                                <div class="avatar">
+                                    <img src="{{ t.guide.guide.guide_image.url }}" title="" alt="">
+                                </div>
+                                <div class="g-name ps-2 pt-1" style="color: #20247b;">
+                                    <h6>by {{ t.guide.first_name }} {{ t.guide.last_name }}</h6>
+                                </div>
+                                <p class="ps-2 pt-3">({{ t.review.count }} reviews)</p>
+                            </a>
+                            <!-- <div class="avatar">
                                 <img src="{{ t.guide.guide.guide_image.url }}" title="" alt="">
                             </div>
                             <div class="g-name ps-2 pt-1">
                                 <h6>{{ t.guide.first_name }} {{ t.guide.last_name }}</h6>
                             </div>
-                            <p class="ps-2 pt-3">({{ t.review.count }} reviews)</p>
-
+                            <p class="ps-2 pt-3">({{ t.review.count }} reviews)</p> -->
                         </div>
                     </div>
                 </div>

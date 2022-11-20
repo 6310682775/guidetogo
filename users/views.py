@@ -81,7 +81,7 @@ def login_request(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    return HttpResponseRedirect(reverse('main:home',))
 
 @login_required(login_url='users:login')
 def member_profile_view(request):

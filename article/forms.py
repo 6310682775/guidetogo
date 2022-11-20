@@ -17,10 +17,10 @@ class ArticleForm(forms.ModelForm):
         model = Article
         fields = ('title','category', 'body','snippet','article_image')
 
-        category = Category.category_choice()
+        #category = Category.category_choice()
         widgets = {
             'title' : forms.TextInput(attrs={'class': 'form-control'}),
-            'category' : forms.Select(choices=category,attrs={'class': 'form-control'}),
+            #'category' : forms.Select(choices=category,attrs={'class': 'form-control'}),
             'snippet' : forms.Textarea(attrs={'class': 'form-control'}),
             'body' : forms.Textarea(attrs={'class': 'form-control'}),
     
@@ -33,10 +33,10 @@ class UpdateArticleForm(forms.ModelForm):
         model = Article
         fields = ('title','category','body','snippet','article_image')
 
-        category = Category.category_choice()
+        #category = Category.category_choice()
         widgets = {
             'title' : forms.TextInput(attrs={'class': 'form-control'}),
-            'category' : forms.Select(choices=category,attrs={'class': 'form-control'}),
+            #'category' : forms.Select(choices=category,attrs={'class': 'form-control'}),
             'snippet' : forms.Textarea(attrs={'class': 'form-control'}),
             'body' : forms.Textarea(attrs={'class': 'form-control'}),
         }
