@@ -13,7 +13,7 @@ class Review(models.Model):
     review_tour = models.ManyToManyField('tour.Tour', blank=True, related_name='this_tour')
     review_title = models.CharField(max_length=200)
     review_text = models.TextField()
-    rating = models.IntegerField(default=0)
+    rating = models.IntegerField(default=0,null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
@@ -61,4 +61,6 @@ class Tour(models.Model):
         return reverse('tour:my_tour_guide')
     class Meta:
         ordering = ['-date']
+
+    
 
