@@ -16,7 +16,7 @@ class TestViews(TestCase):
         userguide1 = User.objects.create(username='user2', password=make_password(
             '1234'), email='user2@example.com', is_guide=True)
         guide = Guide.objects.create(
-            user=userguide1, gender='xxx', age='xxx', province='xxx', address='xxx', tat_license='xxx')
+            user=userguide1, gender='xxx', age='xxx', province='xxx', address='xxx', tat_license='xxx',guide_image='xxx.jpg')
 
         # Create user admin
         admin = User.objects.create(username='admin', password=make_password(
@@ -66,6 +66,20 @@ class TestViews(TestCase):
         response = c.get(reverse('article:article_detail', args=str(article.id)))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'article/article_detail.html')
+
+    #iteration 3
+    def test_article_detail_Liked(self):
+        # test ว่าสามารถเข้าหน้า detail ของ article
+        c = Client()
+        member = User.objects.get(username='user4')
+        article = Article.objects.get(title='article1')
+        article.likes.add(member)
+        article.save()
+        c.force_login(member)
+        response = c.get(reverse('article:article_detail', args=str(article.id)))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'article/article_detail.html')
+        self.assertEqual(response.context['liked'], True)
 
     def test_article_add_home_GET(self):
         # test ว่าสามารถเข้าหน้า detail ของ article
@@ -153,19 +167,38 @@ class TestViews(TestCase):
         self.assertEqual(article.title,  "UpdateArticle")
 
 
-    # def test_LikeView_GET(self):
-    #     # test ว่าสามารถ add category ได้ไหม
-    #     form_data = {
-    #         'title' : "UpdateArticle",
-    #     }
-    #     c = Client()
-    #     user = User.objects.get(username='user2')
-    #     article = Article.objects.get(title='article2')
-    #     c.force_login(user)
-    #     response = c.post(reverse('article:like_article'), article_id=[str(article.id)])
+    #iteration 3
+    def test_LikeView_like_success(self):
+        # testว่าสามารถlike ได้
+
+        c = Client()
+        member = User.objects.get(username='user4')
+        article = Article.objects.get(title='article2')
+        data = {'article_id': article.id}
+        c.force_login(member)
         
-    #     self.assertEqual(response.status_code, 302)
-    #     self.assertEqual(article.likes.count(),  1)
+        response = c.post(reverse('article:like_article', args=(member.id,)), data)
+        
+        article.refresh_from_db()
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(article.likes.count(),  1)
+
+    #iteration 3
+    def test_LikeView_unlike_success(self):
+        # testว่าสามารถ unlike ได้
+        c = Client()
+        member = User.objects.get(username='user4')
+        article = Article.objects.get(title='article2')
+        article.likes.add(member)
+        article.save()
+        data = {'article_id': article.id}
+        c.force_login(member)
+        
+        response = c.post(reverse('article:like_article', args=(member.id,)), data)
+        
+        article.refresh_from_db()
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(article.likes.count(),  0)
 
     def test_DeleteArticle_success(self):
         # test ว่าสามารถ Delete article ได้
