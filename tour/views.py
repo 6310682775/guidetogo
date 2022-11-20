@@ -11,13 +11,10 @@ from .forms import TourForm
 from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-<<<<<<< HEAD
 from django.db.models import Avg
-=======
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 
->>>>>>> 2f488b9 (article and tour tests.py)
 # Create your views here.
 @login_required(login_url='users:login')
 def ChangeStatus(request, pk):
@@ -29,17 +26,6 @@ def ChangeStatus(request, pk):
         bookTour.save()
         return HttpResponseRedirect(reverse("tour:profile_tour"))
 
-<<<<<<< HEAD
-=======
-
-@method_decorator(login_required, name='dispatch')
-class DeleteBookTourMember(DeleteView):
-    model = BookTour
-    template_name = 'tour/book_delete.html'
-    success_url = reverse_lazy('tour:my_tour')
-
-@method_decorator(login_required, name='dispatch')
->>>>>>> 2f488b9 (article and tour tests.py)
 class TourProfile(ListView):
     model = BookTour
     template_name = "tour/profile_tour.html"
@@ -62,17 +48,6 @@ def EnrollTour(request, tour_id):
         bookTour.save()
     return HttpResponseRedirect(reverse('tour:view_tour', args=(this_tour.id,)))
 
-<<<<<<< HEAD
-=======
-# class create_tour(LoginRequiredMixin, CreateView):
-#     model = Tour
-#     template_name = "tour/create_tour.html"
-#     # fields = '__all__'
-
-#     def form_valid(self, form):
-#         form.instance.guide = self.request.user
-#         return super().form_valid(form)
->>>>>>> 2f488b9 (article and tour tests.py)
 
 @method_decorator(login_required, name='dispatch')
 class create_tour(LoginRequiredMixin, CreateView):
@@ -126,7 +101,6 @@ def view_tour(request, tour_id):
 
     check_owner = 0
     check_booked = True
-<<<<<<< HEAD
     if request.user.is_authenticated:
         this_user = get_object_or_404(User ,id=request.user.id)
         if BookTour.objects.filter(tour=this_tour,member=this_user).exists():
@@ -134,13 +108,6 @@ def view_tour(request, tour_id):
         if request.user.username == this_tour.guide.username:
             check_owner = 1
     return render(request, 'tour/view_tour.html', {
-=======
-    if BookTour.objects.filter(tour=this_tour,member=this_user).exists():
-        check_booked = False
-    if request.user.username == this_tour.guide.username:
-        check_owner = 1
-    return render(request, 'tour/view_tour.html', context={
->>>>>>> 2f488b9 (article and tour tests.py)
         'tour': this_tour,
         'check_owner': check_owner,
         'reviews': Review.objects.filter(review_tour=this_tour),

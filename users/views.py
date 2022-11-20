@@ -17,14 +17,7 @@ def ChangeStatus(request, pk):
     if request.method=='POST':
         status = request.POST.get('status')
         user = get_object_or_404(User, id=pk)
-        status_change = ""
-        if status == "verified":
-            status_change = "verified"
-        elif  status == "denied":
-            status_change = "denied"
-        else:
-            status_change = "not_verified"
-        user.guide.verify_guide = status_change
+        user.guide.verify_guide = status
         user.guide.save()
     return HttpResponseRedirect(reverse("users:verified_guide"))
 
