@@ -117,10 +117,16 @@
 
                                 <a href="{% url 'tour:book_member_delete' t.id %}" class="btn btn-outline-danger m-2 bd-highlight">Delete</a>
                             </div>
-                            {% else %}
+                            {% elif t.verify_member == 'verified' %}
                             <center><p class="text-secondary"> Your payment is <span class="fw-bolder text-success">verified</span></p></center>
                             <div class="d-flex flex-row bd-highlight m-1 justify-content-center text-center">
                                 <h6 class="btn btn-success m-2 bd-highlight"><i class="fa-sharp fa-solid fa-circle-check"></i></h6>
+                                <a class="btn btn-outline-dark m-2 bd-highlight" role="button" href="{% url 'tour:view_tour' t.tour.id %}"><i class="fa-solid fa-eye p-1"></i></a>
+                            </div>
+                            {% else %}
+                            <center><p class="text-danger"> Your payment is <span class="fw-bolder text-danger">denied</span></p></center>
+                            <div class="d-flex flex-row bd-highlight m-1 justify-content-center text-center">
+                                <h6 class="btn btn-danger m-2 bd-highlight"><i class="fa-sharp fa-solid fa-circle-xmark"></i></h6>
                                 <a class="btn btn-outline-dark m-2 bd-highlight" role="button" href="{% url 'tour:view_tour' t.tour.id %}"><i class="fa-solid fa-eye p-1"></i></a>
                             </div>
                             {% endif %}
