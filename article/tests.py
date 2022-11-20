@@ -68,8 +68,8 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'article/article_detail.html')
 
     #iteration 3
-    def test_article_detail_Liked(self):
-        # test ว่าสามารถเข้าหน้า detail ของ article
+    def test_article_detail_Liked_GET(self):
+        # test ว่าสามารถเข้าหน้า detail ของ article กรณีที่ user คนนั้น like article นั้นแล้ว
         c = Client()
         member = User.objects.get(username='user4')
         article = Article.objects.get(title='article1')

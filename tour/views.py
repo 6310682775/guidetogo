@@ -47,8 +47,6 @@ class TourProfile(ListView):
 
 @login_required(login_url='users:login')
 def EnrollTour(request, tour_id):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('users:login'))
     if request.method == 'POST':
         this_user = User.objects.get(id=request.user.id)
         this_tour = Tour.objects.get(id=tour_id)
@@ -108,6 +106,7 @@ def my_tour_guide(request):
         'check_owner': check_owner,
     })
 
+
 def view_tour(request, tour_id):
     this_tour = get_object_or_404(Tour, id=tour_id)
 
@@ -164,6 +163,8 @@ def remove_review(request, review_id,):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+@method_decorator(login_required, name='dispatch')
 class DeleteBookTourMember(DeleteView):
     model = BookTour
     template_name = 'tour/book_delete.html'
