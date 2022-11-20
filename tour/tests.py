@@ -228,6 +228,13 @@ class TourViewTestCase(TestCase):
         # ค่า check_booked จะเป็น False
         self.assertEqual(response.context['check_booked'], False)
 
+    def test_view_guide_view_success(self):
+        c = Client()
+        guide = User.objects.get(username='guide1')
+        c.force_login(guide)
+        response = c.get(reverse('tour:view_guide', args=(guide.id,)))
+        self.assertEqual(response.status_code, 200)
+    
     
     
     
