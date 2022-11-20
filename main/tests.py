@@ -91,8 +91,8 @@ class TourSearchListViewTest(TestCase):
                     },
                 }
         self.assertEqual(len(F.declared_filters), 3)
-        self.assertEqual(len(F.base_filters), 12)
+        self.assertEqual(len(F.base_filters), 15)
         self.assertListEqual(
             list(F.base_filters), ["t_name", "guide", "province", "price",
-                                   "period", "amount", "snippet", "information", "img", "review", "date", "status"]
+                                   "period", "amount", "snippet", "information", "img", "review", "date", "updated_at", "verify_tour","book","avg_rating"]
         )
