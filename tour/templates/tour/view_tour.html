@@ -239,7 +239,7 @@
             <a class="btn btn-outline-primary bd-highlight" role="button" href="{% url 'tour:update_tour' tour.id %}"><i class="fa-solid fa-pen"></i> Update</a>
             <a class="btn btn-outline-danger ms-2 bd-highlight" role="button" href="{% url 'tour:remove_tour' tour.id %}" onclick="return confirm('Are you sure to remove this tour?')"><i class="fa-solid fa-trash-can"></i> Remove</a>
         </div>
-        <a class="btn btn-outline-dark w-100" role="button" href="{% url 'tour:my_tour' %}">Back To My Tour Page</a>
+        <a class="btn btn-outline-dark w-100" role="button" href="{% url 'tour:my_tour_guide' %}">Back To My Tour Page</a>
         <br><br>
     {% elif check_owner == 1 or request.user.is_superuser %}
         <div class="d-flex flex-row bd-highlight mb-2 justify-content-start">
