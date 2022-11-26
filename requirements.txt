@@ -38,3 +38,4 @@ tzdata==2022.2
 urllib3==1.26.12
 uvicorn==0.18.3
 whitenoise==6.2.0
+dj-database-url 
