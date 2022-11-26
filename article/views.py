@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Article, Category
+from .models import Article
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ArticleForm, UpdateArticleForm
 from django.urls import reverse_lazy, reverse
@@ -30,8 +30,21 @@ class ArticleHome(ListView):
     ordering = ['-post_date']
 
     def get_context_data(self, **kwargs):
+        category=[
+            'HOTEL',
+            'CAFE',
+            'NATURAL',
+            'LANDMARK',
+            'BEACH',
+            'MOUNTAIN',
+            'CAMPING',
+            'FOREST',
+            'TOUR',
+            'PARTY',
+            'FAMILY',
+            'ALL',
+        ]
         context = super().get_context_data(**kwargs)
-        category = Category.objects.all()
         popular_article = Article.objects.annotate(num_likes= Count('likes')).order_by('-num_likes')[:3]
         context['category'] = category
         context['popular_article'] = popular_article
@@ -41,8 +54,21 @@ class ArticleHome(ListView):
     
 
 def CategoryView(request, cats):
+    category=[
+            'HOTEL',
+            'CAFE',
+            'NATURAL',
+            'LANDMARK',
+            'BEACH',
+            'MOUNTAIN',
+            'CAMPING',
+            'FOREST',
+            'TOUR',
+            'PARTY',
+            'FAMILY',
+            'ALL',
+        ]
     category_posts = Article.objects.filter(category=cats)
-    category = Category.objects.all()
     popular_article = Article.objects.annotate(num_likes= Count('likes')).order_by('-num_likes')[:3]
     return render(request, 'article/category.html', {'cats':cats, 'category_posts':category_posts, 'category':category, 'popular_article': popular_article})
 
@@ -57,8 +83,21 @@ class ArticleDetail(DetailView):
         liked = False
         if stuff.likes.filter(id=self.request.user.id).exists():
             liked = True
+        category=[
+            'HOTEL',
+            'CAFE',
+            'NATURAL',
+            'LANDMARK',
+            'BEACH',
+            'MOUNTAIN',
+            'CAMPING',
+            'FOREST',
+            'TOUR',
+            'PARTY',
+            'FAMILY',
+            'ALL',
+        ]
         
-        category = Category.objects.all()
         context['category'] = category
         context["total_likes"] = total_likes
         context["liked"] = liked
@@ -76,12 +115,12 @@ class AddArticle(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-@method_decorator(login_required, name='dispatch')
-class AddCategory(LoginRequiredMixin, CreateView):
-    model = Category
-    # form_class = ArticleForm
-    template_name = "article/category_add.html"
-    fields = '__all__'
+# @method_decorator(login_required, name='dispatch')
+# class AddCategory(LoginRequiredMixin, CreateView):
+#     model = Category
+#     # form_class = ArticleForm
+#     template_name = "article/category_add.html"
+#     fields = '__all__'
 
 @method_decorator(login_required, name='dispatch')
 class UpdateArticle(UpdateView):

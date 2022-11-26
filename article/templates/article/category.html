@@ -78,11 +78,6 @@ category_posts
                                 <a href="{% url 'article:article_add' %}" class="btn btn btn-outline-info">Create Article</a>
                             </div>
                         </div>
-                        <div class="body widget">
-                            <div class="actions">
-                                <a href="{% url 'article:category_add' %}" class="btn btn btn-outline-info">Add Category</a>
-                            </div>
-                        </div>
                     </div>
                 {% endif %}
                 <div class="card">
@@ -103,7 +98,7 @@ category_posts
                         <ul class="list-unstyled categories-clouds m-b-0">
                             <li><a href="{% url 'article:article_home' %}">All</a></li>
                             {% for item in category%}
-                            <li><a href="{% url 'article:category_view' item.name %}">{{ item.name }}</a></li>
+                            <li><a href="{% url 'article:category_view' item %}">{{ item }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

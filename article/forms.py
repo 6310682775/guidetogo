@@ -1,23 +1,14 @@
 from django import forms
-from .models import Article,Category
+from .models import Article
 from django.db import transaction
 
-def category_choice():
-    if Category.objects.all().exists():
-        choices = Category.objects.all().values_list('name','name')
 
-        choices_List = []
-
-        for item in choices:
-            choices_List.append(item)
-        
-        return choices_List
-    else:
-        return  []
 
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
+        fields = ('title','category','snippet','body')
+
         category=[
             ('HOTEL','HOTEL'),
             ('CAFE','CAFE'),
@@ -60,7 +51,7 @@ class UpdateArticleForm(forms.ModelForm):
             ('PARTY','PARTY'),
             ('FAMILY','FAMILY'),
         ]
-        
+
         widgets = {
             'title' : forms.TextInput(attrs={'class': 'form-control'}),
             'category' : forms.Select(choices=category,attrs={'class': 'form-control'}),

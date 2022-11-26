@@ -6,16 +6,22 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=255, null=True, blank=True)
-    
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse('article:article_home')
-
 class Article(models.Model):
+    category=[
+            ('HOTEL','HOTEL'),
+            ('CAFE','CAFE'),
+            ('NATURAL','NATURAL'),
+            ('LANDMARK','LANDMARK'),
+            ('BEACH','BEACH'),
+            ('MOUNTAIN','MOUNTAIN'),
+            ('CAMPING','CAMPING'),
+            ('FOREST','FOREST'),
+            ('TOUR','TOUR'),
+            ('PARTY','PARTY'),
+            ('FAMILY','FAMILY'),
+            ('ALL','ALL'),
+        ]
+
     title = models.CharField(max_length=255)
     article_image = models.ImageField(null=True, blank=True,upload_to="images/article/")
     author = models.ForeignKey(
@@ -24,7 +30,7 @@ class Article(models.Model):
     )
     body = RichTextField(blank=True, null=True)
     post_date = models.DateField(auto_now_add=True)
-    category = models.CharField(max_length=255)
+    category = models.CharField(max_length=10, choices=category, default='ALL')
     snippet = models.CharField(max_length=255)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True,related_name='article_post')
 

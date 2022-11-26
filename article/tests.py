@@ -2,10 +2,10 @@ from django.test import TestCase
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 from django.test import TestCase, Client
-from article.views import LikeView, CategoryView, ArticleHome, ArticleDetail, AddArticle, AddCategory, UpdateArticle ,DeleteArticle
+from article.views import LikeView, CategoryView, ArticleHome, ArticleDetail, AddArticle, UpdateArticle ,DeleteArticle
 from django.contrib.auth.hashers import make_password
 from django.http import HttpRequest
-from article.models import Article, Category
+from article.models import Article
 from users.models import User, Guide, Member
 # Create your tests here.
 
@@ -34,7 +34,7 @@ class TestViews(TestCase):
         article2 = Article.objects.create(title = 'article2',author =userguide1,category = 'xxx',snippet = 'xxx')
 
         # Create 1 category
-        category = Category.objects.create(name = 'category1')
+
         
 
     def test_article_home_GET(self):
@@ -100,15 +100,15 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'article/category_add.html')
     
-    def test_category_view_GET(self):
-        # test ว่าสามารถเข้าหน้า detailของ article
-        c = Client()
-        user = User.objects.get(username='user2')
-        category = Category.objects.get(name='category1')
-        c.force_login(user)
-        response = c.get(reverse('article:category_view', args=[str(category.name)]))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'article/category.html')
+    # def test_category_view_GET(self):
+    #     # test ว่าสามารถเข้าหน้า detailของ article
+    #     c = Client()
+    #     user = User.objects.get(username='user2')
+    #     category = Category.objects.get(name='category1')
+    #     c.force_login(user)
+    #     response = c.get(reverse('article:category_view', args=[str(category.name)]))
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTemplateUsed(response, 'article/category.html')
 
     def test_article_update_GET(self):
         # test ว่าสามารถเข้าหน้า update ของ article
@@ -213,18 +213,18 @@ class TestViews(TestCase):
         # จากเริ่มต้นมี 2article ถูก delete จึงเหลือ 1
         self.assertEqual(article.count(),  1)
 
-    def test_AddCategory_success(self):
-        # test ว่าสามารถ add category ได้
-        form_data = {
-            'name' : "AddCategory"
-        }
-        c = Client()
-        user = User.objects.get(username='admin')
-        c.force_login(user)
-        response = c.post(reverse('article:category_add'), data = form_data)
+    # def test_AddCategory_success(self):
+    #     # test ว่าสามารถ add category ได้
+    #     form_data = {
+    #         'name' : "AddCategory"
+    #     }
+    #     c = Client()
+    #     user = User.objects.get(username='admin')
+    #     c.force_login(user)
+    #     response = c.post(reverse('article:category_add'), data = form_data)
 
-        category = Category.objects.last()
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(category.name,  "AddCategory")
+    #     category = Category.objects.last()
+    #     self.assertEqual(response.status_code, 302)
+    #     self.assertEqual(category.name,  "AddCategory")
     
     
