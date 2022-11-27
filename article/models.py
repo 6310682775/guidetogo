@@ -19,7 +19,6 @@ class Article(models.Model):
             ('TOUR','TOUR'),
             ('PARTY','PARTY'),
             ('FAMILY','FAMILY'),
-            ('ALL','ALL'),
         ]
 
     title = models.CharField(max_length=255)
