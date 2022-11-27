@@ -7,7 +7,7 @@ from django.db import transaction
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('title','category','snippet','body')
+        fields = ('title','category','snippet','body','article_image')
 
         category=[
             ('HOTEL','HOTEL'),
