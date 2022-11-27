@@ -65,7 +65,6 @@ def CategoryView(request, cats):
             'TOUR',
             'PARTY',
             'FAMILY',
-            'ALL',
         ]
     category_posts = Article.objects.filter(category=cats)
     popular_article = Article.objects.annotate(num_likes= Count('likes')).order_by('-num_likes')[:3]

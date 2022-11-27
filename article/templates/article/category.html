@@ -3,18 +3,6 @@
 
 {% load static %} 
 
-<!-- <h1>{{ cats }} </h1>
-<ul>
-    {% for article in category_posts %}
-        <li><a href="{% url 'article:article_detail' article.pk %}">{{article.title}} - {{article.category}} - {{article.author.first_name}}</a>
-            {{article.author.last_name}} - <small><a href="{% url 'article:article_update' article.pk %}">Edit</a></small><br/>
-            - <small><a href="{% url 'article:article_delete' article.pk %}">Delete</a></small>
-            {{article.body}}</li>
-        </ul>
-    {% endfor%}
-category_posts
-<h1>{{ cats }} </h1> -->
-
 
 <div id="main-content" class="blog-page">
     <div class="container pt-5">
@@ -52,20 +40,10 @@ category_posts
                                 <li><a href="javascript:void(0);">{{ article.post_date }}</a></li>
                                 <li><a href="javascript:void(0);">{{ article.category }}</a></li>
                                 <li><a href="javascript:void(0);" class="fa fa-heart">{{ article.likes.count }}</a></li>
-                                <!-- <li><a href="javascript:void(0);" class="fa fa-comment">128</a></li> -->
                             </ul>
                         </div>
                     </div>
                 {% endfor %}
-
-                
-                <!-- <ul class="pagination pagination-primary">
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
-                    <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
-                </ul>                 -->
             </div>
             <div class="col-lg-4 col-md-12 right-box">
                 {% if request.user.is_admin %}
@@ -80,16 +58,6 @@ category_posts
                         </div>
                     </div>
                 {% endif %}
-                <div class="card">
-                    <div class="body search">
-                        <div class="input-group m-b-0">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-search"></i></span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Search...">                                    
-                        </div>
-                    </div>
-                </div>
                 <div class="card">
                     <div class="header">
                         <h2>Categories Clouds</h2>
