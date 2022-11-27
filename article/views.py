@@ -42,7 +42,6 @@ class ArticleHome(ListView):
             'TOUR',
             'PARTY',
             'FAMILY',
-            'ALL',
         ]
         context = super().get_context_data(**kwargs)
         popular_article = Article.objects.annotate(num_likes= Count('likes')).order_by('-num_likes')[:3]
